@@ -1,2 +1,2 @@
-# Zoe-Hagenberg-2-Electric-Boogaloo
+# Zoes-Hagenberg-2-Electric-Boogaloo
 Another semester 
