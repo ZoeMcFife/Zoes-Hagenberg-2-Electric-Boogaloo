@@ -54,8 +54,18 @@ public class Circle extends Polygon
     }
 
     @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Circle other = (Circle) obj;
+        return Double.compare(other.radius, radius) == 0;
+    }
+
+    @Override
     public String toString()
     {
-        return String.format("Circle(Position: %s, Radius: %.2f)", getPosition(), radius);
+        return String.format("Circle(Position: %s, Radius: %.2f)", getPosition(), getRadius());
     }
 }

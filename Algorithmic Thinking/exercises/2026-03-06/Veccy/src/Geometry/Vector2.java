@@ -51,6 +51,15 @@ public class Vector2
     }
 
     @Override
+    public boolean equals(Object other)
+    {
+        if (this == other) return true;
+        if (other == null || getClass() != other.getClass()) return false;
+        Vector2 vector2 = (Vector2) other;
+        return Double.compare(vector2.x, x) == 0 && Double.compare(vector2.y, y) == 0;
+    }
+
+    @Override
     public String toString()
     {
         return String.format("Vector2(%.2f, %.2f)", x, y);

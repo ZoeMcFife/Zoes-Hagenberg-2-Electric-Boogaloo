@@ -60,4 +60,22 @@ public class Ellipse extends Polygon
 
         this.semiMinorAxis = semiMinorAxis;
     }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Ellipse other = (Ellipse) obj;
+
+        return Double.compare(getSemiMajorAxis(), other.getSemiMajorAxis()) == 0 &&
+               Double.compare(getSemiMinorAxis(), other.getSemiMinorAxis()) == 0;
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.format("Ellipse(semiMajorAxis=%.2f, semiMinorAxis=%.2f, position=%s)", getSemiMajorAxis(), getSemiMinorAxis(), getPosition());
+    }
 }

@@ -65,4 +65,22 @@ public class Rectangle extends Polygon implements Shape
 
         this.height = height;
     }
+
+    @Override
+    public String toString()
+    {
+        return String.format("Rectangle [position=%s, width=%.2f, height=%.2f]", getPosition(), getWidth(), getHeight());
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Rectangle rectangle = (Rectangle) o;
+
+        return Double.compare(rectangle.getWidth(), getWidth()) == 0 &&
+               Double.compare(rectangle.getHeight(), getHeight()) == 0;
+    }
 }

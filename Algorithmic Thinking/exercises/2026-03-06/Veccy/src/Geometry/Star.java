@@ -90,4 +90,23 @@ public class Star extends Polygon
     {
         return numPoints;
     }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Star other = (Star) obj;
+
+        return Double.compare(getInnerRadius(), other.getInnerRadius()) == 0 &&
+               Double.compare(getOuterRadius(), other.getOuterRadius()) == 0 &&
+               getNumPoints() == other.getNumPoints();
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.format("Star [position=%s, innerRadius=%.2f, outerRadius=%.2f, numPoints=%d]", getPosition(), getInnerRadius(), getOuterRadius(), getNumPoints());
+    }
 }

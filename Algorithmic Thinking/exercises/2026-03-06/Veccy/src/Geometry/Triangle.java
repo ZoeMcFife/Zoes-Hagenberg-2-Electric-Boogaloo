@@ -93,4 +93,23 @@ public class Triangle extends Polygon
 
         this.c = c;
     }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Triangle triangle = (Triangle) obj;
+
+        return Double.compare(triangle.a, a) == 0 &&
+               Double.compare(triangle.b, b) == 0 &&
+               Double.compare(triangle.c, c) == 0;
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.format("Triangle [position=%s, a=%.2f, b=%.2f, c=%.2f]", getPosition(), getA(), getB(), getC());
+    }
 }

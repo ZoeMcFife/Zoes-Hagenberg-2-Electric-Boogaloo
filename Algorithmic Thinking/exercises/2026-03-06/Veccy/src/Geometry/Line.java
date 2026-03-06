@@ -56,4 +56,20 @@ public class Line extends Polygon
         this.from = from;
         this.setPosition(getMidPoint());
     }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Line other = (Line) obj;
+        return this.from.equals(other.from) && this.to.equals(other.to);
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Line: From" + from + " to " + to;
+    }
 }
