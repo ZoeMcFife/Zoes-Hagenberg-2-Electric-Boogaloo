@@ -2,15 +2,15 @@ package Geometry;
 
 public class Line extends Polygon
 {
-    public Vector2 to;
-    public Vector2 from;
+    private Vector2 to;
+    private Vector2 from;
 
     Line(Vector2 from, Vector2 to)
     {
         super();
         this.from = from;
         this.to = to;
-        this.position = getMidPoint();
+        setPosition(getMidPoint());
     }
 
     public Vector2 getMidPoint()
@@ -33,5 +33,27 @@ public class Line extends Polygon
     public double perimeter()
     {
         return getLength();
+    }
+
+    public Vector2 getTo()
+    {
+        return to;
+    }
+
+    private void setTo(Vector2 to)
+    {
+        this.to = to;
+        this.setPosition(getMidPoint());
+    }
+
+    public Vector2 getFrom()
+    {
+        return from;
+    }
+
+    private void setFrom(Vector2 from)
+    {
+        this.from = from;
+        this.setPosition(getMidPoint());
     }
 }

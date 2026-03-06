@@ -2,24 +2,37 @@ package Geometry;
 
 public class Triangle extends Polygon
 {
-    public double a;
-    public double b;
-    public double c;
+    private double a;
+    private double b;
+    private double c;
 
-    Triangle(double a, double b, double c)
+    Triangle(double a, double b, double angleC)
     {
         super();
-        this.a = a;
-        this.b = b;
-        this.c = c;
+        setA(a);
+        setB(b);
+
+        if (angleC <= 0 || angleC >= 180)
+        {
+            throw new IllegalArgumentException("Angle C must be between 0 and 180 degrees.");
+        }
+
+        setC(Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(Math.toRadians(angleC))));
     }
 
-    Triangle(Vector2 position, double a, double b, double c)
+    Triangle(Vector2 position, double a, double b, double angleC)
     {
         super(position);
-        this.a = a;
-        this.b = b;
-        this.c = c;
+
+        setA(a);
+        setB(b);
+
+        if (angleC <= 0 || angleC >= 180)
+        {
+            throw new IllegalArgumentException("Angle C must be between 0 and 180 degrees.");
+        }
+
+        setC(Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(Math.toRadians(angleC))));
     }
 
     @Override
@@ -34,5 +47,50 @@ public class Triangle extends Polygon
     public double perimeter()
     {
         return a + b + c;
+    }
+
+    public double getA()
+    {
+        return a;
+    }
+
+    private void setA(double a)
+    {
+        if (a <= 0)
+        {
+            throw new IllegalArgumentException("Side a must be greater than 0.");
+        }
+
+        this.a = a;
+    }
+
+    public double getB()
+    {
+        return b;
+    }
+
+    private void setB(double b)
+    {
+        if (b <= 0)
+        {
+            throw new IllegalArgumentException("Side b must be greater than 0.");
+        }
+
+        this.b = b;
+    }
+
+    public double getC()
+    {
+        return c;
+    }
+
+    private void setC(double c)
+    {
+        if (c <= 0)
+        {
+            throw new IllegalArgumentException("Side c must be greater than 0.");
+        }
+
+        this.c = c;
     }
 }

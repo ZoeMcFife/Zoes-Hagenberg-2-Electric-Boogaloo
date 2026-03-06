@@ -2,23 +2,23 @@ package Geometry;
 
 public class Circle extends Polygon
 {
-    public double radius;
+    private double radius;
 
     Circle(double radius)
     {
         super();
-        this.radius = radius;
+        setRadius(radius);
     }
 
     Circle(Vector2 position, double radius)
     {
         super(position);
-        this.radius = radius;
+        setRadius(radius);
     }
 
-    public void scale(double scale)
+    public Circle scale(double scale)
     {
-        this.radius *= scale;
+        return new Circle(getRadius() * scale);
     }
 
     public boolean isBiggerThan(Circle other)
@@ -38,9 +38,24 @@ public class Circle extends Polygon
         return 2 * Math.PI * radius;
     }
 
+    public double getRadius()
+    {
+        return radius;
+    }
+
+    private void setRadius(double radius)
+    {
+        if (radius <= 0)
+        {
+            throw new IllegalArgumentException("Radius must be positive.");
+        }
+
+        this.radius = radius;
+    }
+
     @Override
     public String toString()
     {
-        return String.format("Circle(Position: %s, Radius: %.2f)", position, radius);
+        return String.format("Circle(Position: %s, Radius: %.2f)", getPosition(), radius);
     }
 }

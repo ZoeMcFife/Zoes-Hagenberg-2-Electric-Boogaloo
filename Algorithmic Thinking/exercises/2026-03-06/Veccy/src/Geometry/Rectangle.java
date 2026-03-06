@@ -2,37 +2,67 @@ package Geometry;
 
 public class Rectangle extends Polygon implements Shape
 {
-    public double width;
-    public double height;
+    private double width;
+    private double height;
 
     Rectangle(double width, double height)
     {
         super();
-        this.width = width;
-        this.height = height;
+        setWidth(width);
+        setHeight(height);
     }
 
     Rectangle(Vector2 position, double width, double height)
     {
         super(position);
-        this.width = width;
-        this.height = height;
+        setWidth(width);
+        setHeight(height);
     }
 
     public double getDiagonalLength()
     {
-        return Math.sqrt(width * width + height * height);
+        return Math.sqrt(getWidth() * getWidth() + getHeight() * getHeight());
     }
 
     @Override
     public double area()
     {
-        return width * height;
+        return getWidth() * getHeight();
     }
 
     @Override
     public double perimeter()
     {
-        return 2 * (width + height);
+        return 2 * (getWidth() + getHeight());
+    }
+
+    public double getWidth()
+    {
+        return width;
+    }
+
+    private void setWidth(double width)
+    {
+        if (width <= 0)
+        {
+            throw new IllegalArgumentException("Width must be positive.");
+        }
+
+        this.width = width;
+    }
+
+    public double getHeight()
+    {
+        return height;
+    }
+
+    private void setHeight(double height)
+    {
+        if (height <= 0)
+        {
+            throw new IllegalArgumentException("Height must be positive.");
+        }
+
+        this.height = height;
     }
 }
