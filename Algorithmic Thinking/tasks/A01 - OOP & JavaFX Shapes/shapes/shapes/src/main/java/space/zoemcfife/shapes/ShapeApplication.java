@@ -30,24 +30,23 @@ public class ShapeApplication extends Application
     private void drawShapes(GraphicsContext gc)
     {
         Point point = new Point(new Vector2(100, 100));
-        point.draw(gc, javafx.scene.paint.Color.RED);
-
         Circle circle = new Circle(new Vector2(400, 300), 150);
-        circle.draw(gc, javafx.scene.paint.Color.GREEN);
-
         Ellipse ellipse = new Ellipse(new Vector2(600, 200), 100, 50);
-        ellipse.draw(gc, javafx.scene.paint.Color.BLUE);
-
         Line line = new Line(new Vector2(200, 500), new Vector2(700, 200));
-        line.draw(gc, javafx.scene.paint.Color.ORANGE);
-
         Rectangle rectangle = new Rectangle(new Vector2(300, 400), 200, 100);
-        rectangle.draw(gc, javafx.scene.paint.Color.PURPLE);
-
         Star star = new Star(new Vector2(500, 100), 25, 50, 5);
-        star.draw(gc, javafx.scene.paint.Color.YELLOW);
-
         Triangle triangle = new Triangle(new Vector2(160, 500), 60, 90, 50);
-        triangle.draw(gc, javafx.scene.paint.Color.CYAN);
+
+        Drawer drawer = new Drawer(gc);
+
+        drawer.addPolygon(point);
+        drawer.addPolygon(circle);
+        drawer.addPolygon(ellipse);
+        drawer.addPolygon(line);
+        drawer.addPolygon(rectangle);
+        drawer.addPolygon(star);
+        drawer.addPolygon(triangle);
+
+        drawer.drawAll();
     }
 }
