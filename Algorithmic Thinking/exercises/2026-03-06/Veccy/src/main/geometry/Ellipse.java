@@ -1,4 +1,4 @@
-package Geometry;
+package main.geometry;
 
 public class Ellipse extends Polygon
 {

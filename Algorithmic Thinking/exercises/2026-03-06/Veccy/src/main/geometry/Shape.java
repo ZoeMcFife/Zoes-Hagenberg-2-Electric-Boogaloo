@@ -1,4 +1,4 @@
-package Geometry;
+package main.geometry;
 
 public interface Shape
 {
