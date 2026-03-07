@@ -46,7 +46,9 @@ public class Point extends Polygon
     @Override
     public void draw(GraphicsContext gc, Color color)
     {
+        double radius = 2.5;
+
         gc.setFill(color);
-        gc.fillOval(getPosition().x - 2.5, getPosition().y - 2.5, 5, 5);
+        gc.fillOval(getPosition().x - radius / 2, getPosition().y - radius / 2, radius, radius);
     }
 }

@@ -91,6 +91,6 @@ public class Rectangle extends Polygon implements Shape
     public void draw(GraphicsContext gc, Color color)
     {
         gc.setFill(color);
-        gc.fillRect(getPosition().x - getWidth(), getPosition().y - getHeight(), getWidth(), getHeight());
+        gc.fillRect(getPosition().x - getWidth() / 2, getPosition().y - getHeight() / 2, getWidth(), getHeight());
     }
 }
