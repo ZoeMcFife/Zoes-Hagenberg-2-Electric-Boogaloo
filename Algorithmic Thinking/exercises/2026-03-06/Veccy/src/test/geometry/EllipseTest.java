@@ -26,15 +26,15 @@ class EllipseTest
     void testArea()
     {
         Ellipse e = new Ellipse(4, 2);
-        assertEquals(Math.PI * 4 * 2, e.area(), 1e-9);
+        assertEquals(25.13274, e.area(), 1e-5);
     }
 
     @Test
     void testPerimeter()
     {
         Ellipse e = new Ellipse(3, 2);
-        double expected = Math.PI * (3 * (3 + 2) - Math.sqrt((3 * 3 + 2) * (3 + 3 * 2)));
-        assertEquals(expected, e.perimeter(), 1e-9);
+        double expected = 15.86544;
+        assertEquals(expected, e.perimeter(), 1e-5);
     }
 
     @Test

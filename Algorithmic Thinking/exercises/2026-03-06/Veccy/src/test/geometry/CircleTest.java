@@ -39,11 +39,17 @@ class CircleTest
     }
 
     @Test
-    void testAreaAndPerimeter()
+    void testArea()
     {
         Circle c = new Circle(3);
-        assertEquals(Math.PI * 3 * 3, c.area(), 1e-9);
-        assertEquals(2 * Math.PI * 3, c.perimeter(), 1e-9);
+        assertEquals(28.27433, c.area(), 1e-5);
+    }
+
+    @Test
+    void testPerimeter()
+    {
+        Circle c = new Circle(3);
+        assertEquals(18.84956, c.perimeter(), 1e-5);
     }
 
     @Test

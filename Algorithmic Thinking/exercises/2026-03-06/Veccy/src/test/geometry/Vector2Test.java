@@ -69,7 +69,7 @@ class Vector2Test
     }
 
     @Test
-    void testEqualsAndHashCode()
+    void testEquals()
     {
         Vector2 v1 = new Vector2(1, 1);
         Vector2 v2 = new Vector2(1, 1);
