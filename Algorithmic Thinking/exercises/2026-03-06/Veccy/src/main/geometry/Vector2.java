@@ -56,7 +56,8 @@ public class Vector2
         if (this == other) return true;
         if (other == null || getClass() != other.getClass()) return false;
         Vector2 vector2 = (Vector2) other;
-        return Double.compare(vector2.x, x) == 0 && Double.compare(vector2.y, y) == 0;
+
+        return (Math.abs(this.x - vector2.x) < 1e-9) && (Math.abs(this.y - vector2.y) < 1e-9);
     }
 
     @Override

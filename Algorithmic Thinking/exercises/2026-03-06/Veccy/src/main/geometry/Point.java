@@ -2,12 +2,12 @@ package main.geometry;
 
 public class Point extends Polygon
 {
-    Point()
+    public Point()
     {
         super();
     }
 
-    Point(Vector2 position)
+    public Point(Vector2 position)
     {
         super(position);
     }
