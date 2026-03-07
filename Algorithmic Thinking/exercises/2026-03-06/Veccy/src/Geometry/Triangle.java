@@ -5,6 +5,7 @@ public class Triangle extends Polygon
     private double a;
     private double b;
     private double c;
+    private double angleC;
 
     Triangle(double a, double b, double angleC)
     {
@@ -12,12 +13,9 @@ public class Triangle extends Polygon
         setA(a);
         setB(b);
 
-        if (angleC <= 0 || angleC >= 180)
-        {
-            throw new IllegalArgumentException("Angle C must be between 0 and 180 degrees.");
-        }
+        setAngleC(angleC);
 
-        setC(Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(Math.toRadians(angleC))));
+        setC(Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(Math.toRadians(getAngleC()))));
     }
 
     Triangle(Vector2 position, double a, double b, double angleC)
@@ -27,12 +25,9 @@ public class Triangle extends Polygon
         setA(a);
         setB(b);
 
-        if (angleC <= 0 || angleC >= 180)
-        {
-            throw new IllegalArgumentException("Angle C must be between 0 and 180 degrees.");
-        }
+        setAngleC(angleC);
 
-        setC(Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(Math.toRadians(angleC))));
+        setC(Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(Math.toRadians(getAngleC()))));
     }
 
     @Override
@@ -92,6 +87,21 @@ public class Triangle extends Polygon
         }
 
         this.c = c;
+    }
+
+    private void setAngleC(double angleC)
+    {
+        if (angleC <= 0 || angleC >= 180)
+        {
+            throw new IllegalArgumentException("Angle C must be between 0 and 180 degrees.");
+        }
+
+        this.angleC = angleC;
+    }
+
+    private double getAngleC()
+    {
+        return angleC;
     }
 
     @Override
