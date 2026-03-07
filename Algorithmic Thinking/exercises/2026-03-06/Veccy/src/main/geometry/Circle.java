@@ -4,13 +4,13 @@ public class Circle extends Polygon
 {
     private double radius;
 
-    Circle(double radius)
+    public Circle(double radius)
     {
         super();
         setRadius(radius);
     }
 
-    Circle(Vector2 position, double radius)
+    public Circle(Vector2 position, double radius)
     {
         super(position);
         setRadius(radius);
