@@ -6,7 +6,7 @@ public class Star extends Polygon
     private double outerRadius;
     private int numPoints;
 
-    Star(double innerRadius, double outerRadius, int numPoints)
+    public Star(double innerRadius, double outerRadius, int numPoints)
     {
         super();
 
@@ -15,7 +15,7 @@ public class Star extends Polygon
         setNumPoints(numPoints);
     }
 
-    Star(Vector2 position, double innerRadius, double outerRadius, int numPoints)
+    public Star(Vector2 position, double innerRadius, double outerRadius, int numPoints)
     {
         super(position);
 
