@@ -1,5 +1,8 @@
 package geometry;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 public class Circle extends Polygon
 {
     private double radius;
@@ -67,5 +70,12 @@ public class Circle extends Polygon
     public String toString()
     {
         return String.format("Circle(Position: %s, Radius: %.2f)", getPosition(), getRadius());
+    }
+
+    @Override
+    public void draw(GraphicsContext gc, Color color)
+    {
+        gc.setFill(color);
+        gc.fillOval(getPosition().x - radius, getPosition().y - radius, radius * 2, radius * 2);
     }
 }

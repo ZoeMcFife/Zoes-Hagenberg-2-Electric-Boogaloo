@@ -1,5 +1,8 @@
 package geometry;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 public class Triangle extends Polygon
 {
     private double a;
@@ -121,5 +124,15 @@ public class Triangle extends Polygon
     public String toString()
     {
         return String.format("Triangle [position=%s, a=%.2f, b=%.2f, c=%.2f]", getPosition(), getA(), getB(), getC());
+    }
+
+    @Override
+    public void draw(GraphicsContext gc, Color color)
+    {
+        gc.setFill(color);
+        gc.fillPolygon(new double[]{getPosition().x, getPosition().x + a, getPosition().x + b * Math.cos(Math.toRadians(getAngleC()))},
+                       new double[]{getPosition().y, getPosition().y, getPosition().y + b * Math.sin(Math.toRadians(getAngleC()))},
+                       3);
+
     }
 }

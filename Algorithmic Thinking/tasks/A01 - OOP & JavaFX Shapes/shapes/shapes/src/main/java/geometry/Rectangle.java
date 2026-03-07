@@ -1,5 +1,8 @@
 package geometry;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 public class Rectangle extends Polygon implements Shape
 {
     private double width;
@@ -82,5 +85,12 @@ public class Rectangle extends Polygon implements Shape
 
         return Double.compare(rectangle.getWidth(), getWidth()) == 0 &&
                Double.compare(rectangle.getHeight(), getHeight()) == 0;
+    }
+
+    @Override
+    public void draw(GraphicsContext gc, Color color)
+    {
+        gc.setFill(color);
+        gc.fillRect(getPosition().x - getWidth(), getPosition().y - getHeight(), getWidth(), getHeight());
     }
 }

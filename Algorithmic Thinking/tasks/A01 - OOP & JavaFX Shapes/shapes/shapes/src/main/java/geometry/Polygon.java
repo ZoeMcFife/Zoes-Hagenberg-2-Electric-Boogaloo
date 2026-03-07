@@ -1,6 +1,6 @@
 package geometry;
 
-public abstract class Polygon implements Shape
+public abstract class Polygon implements Shape, Drawable
 {
     private Vector2 position;
 

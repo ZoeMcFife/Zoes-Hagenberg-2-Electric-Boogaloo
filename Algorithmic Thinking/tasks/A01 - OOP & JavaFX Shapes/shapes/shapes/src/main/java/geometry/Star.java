@@ -1,5 +1,8 @@
 package geometry;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 public class Star extends Polygon
 {
     private double innerRadius;
@@ -108,5 +111,25 @@ public class Star extends Polygon
     public String toString()
     {
         return String.format("Star [position=%s, innerRadius=%.2f, outerRadius=%.2f, numPoints=%d]", getPosition(), getInnerRadius(), getOuterRadius(), getNumPoints());
+    }
+
+    @Override
+    public void draw(GraphicsContext gc, Color color)
+    {
+        double angleStep = 2 * Math.PI / getNumPoints();
+        double[] xPoints = new double[getNumPoints() * 2];
+        double[] yPoints = new double[getNumPoints() * 2];
+
+        for (int i = 0; i < getNumPoints(); i++)
+        {
+            double angle = i * angleStep;
+            xPoints[i * 2] = getPosition().x + getOuterRadius() * Math.cos(angle);
+            yPoints[i * 2] = getPosition().y + getOuterRadius() * Math.sin(angle);
+            xPoints[i * 2 + 1] = getPosition().x + getInnerRadius() * Math.cos(angle + angleStep / 2);
+            yPoints[i * 2 + 1] = getPosition().y + getInnerRadius() * Math.sin(angle + angleStep / 2);
+        }
+
+        gc.setFill(color);
+        gc.fillPolygon(xPoints, yPoints, getNumPoints() * 2);
     }
 }

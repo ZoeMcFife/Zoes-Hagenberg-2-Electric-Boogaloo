@@ -1,5 +1,8 @@
 package geometry;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 public class Ellipse extends Polygon
 {
     private double semiMajorAxis;
@@ -77,5 +80,12 @@ public class Ellipse extends Polygon
     public String toString()
     {
         return String.format("Ellipse(semiMajorAxis=%.2f, semiMinorAxis=%.2f, position=%s)", getSemiMajorAxis(), getSemiMinorAxis(), getPosition());
+    }
+
+    @Override
+    public void draw(GraphicsContext gc, Color color)
+    {
+        gc.setFill(color);
+        gc.fillOval(getPosition().x - semiMajorAxis, getPosition().y - semiMinorAxis, 2 * semiMajorAxis, 2 * semiMinorAxis);
     }
 }

@@ -1,5 +1,8 @@
 package geometry;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 public class Point extends Polygon
 {
     public Point()
@@ -40,4 +43,10 @@ public class Point extends Polygon
         return getPosition().equals(other.getPosition());
     }
 
+    @Override
+    public void draw(GraphicsContext gc, Color color)
+    {
+        gc.setFill(color);
+        gc.fillOval(getPosition().x - 2.5, getPosition().y - 2.5, 5, 5);
+    }
 }

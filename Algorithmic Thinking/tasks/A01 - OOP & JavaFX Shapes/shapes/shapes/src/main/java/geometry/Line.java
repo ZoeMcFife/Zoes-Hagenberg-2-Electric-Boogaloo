@@ -1,5 +1,8 @@
 package geometry;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 public class Line extends Polygon
 {
     private Vector2 to;
@@ -71,5 +74,12 @@ public class Line extends Polygon
     public String toString()
     {
         return "Line: From" + from + " to " + to;
+    }
+
+    @Override
+    public void draw(GraphicsContext gc, Color color)
+    {
+        gc.setStroke(color);
+        gc.strokeLine(from.x, from.y, to.x, to.y);
     }
 }
