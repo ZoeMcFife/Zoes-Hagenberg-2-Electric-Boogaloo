@@ -47,6 +47,7 @@ class EllipseTest
         assertEquals(e1, e2);
         assertNotEquals(e1, e3);
         assertNotEquals(null, e1);
+        assertNotEquals("Ellipse", e3);
     }
 
     @Test

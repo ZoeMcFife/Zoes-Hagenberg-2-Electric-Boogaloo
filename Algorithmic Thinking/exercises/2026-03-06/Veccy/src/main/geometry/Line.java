@@ -5,7 +5,7 @@ public class Line extends Polygon
     private Vector2 to;
     private Vector2 from;
 
-    Line(Vector2 from, Vector2 to)
+    public Line(Vector2 from, Vector2 to)
     {
         super();
         this.from = from;

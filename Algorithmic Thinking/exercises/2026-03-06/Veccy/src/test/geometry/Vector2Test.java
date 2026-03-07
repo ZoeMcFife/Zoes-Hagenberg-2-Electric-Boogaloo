@@ -78,6 +78,7 @@ class Vector2Test
         assertEquals(v1, v2);
         assertNotEquals(v1, v3);
         assertNotEquals(null, v1);
+        assertNotEquals("Not a Vector2", v1);
     }
 
     @Test

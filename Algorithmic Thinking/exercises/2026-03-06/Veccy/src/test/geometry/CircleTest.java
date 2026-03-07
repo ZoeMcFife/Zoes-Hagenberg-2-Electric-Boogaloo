@@ -56,6 +56,7 @@ class CircleTest
         assertEquals(c1, c2);
         assertNotEquals(c1, c3);
         assertNotEquals(null, c1);
+        assertNotEquals("Not a Circle", c1);
     }
 
     @Test

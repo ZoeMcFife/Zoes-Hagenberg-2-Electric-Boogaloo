@@ -48,6 +48,7 @@ public class PointTest
         assertEquals(p1, p2);
         assertNotEquals(p1, p3);
         assertNotEquals(null, p1);
+        assertNotEquals("Not a Point", p1);
     }
 
 }
