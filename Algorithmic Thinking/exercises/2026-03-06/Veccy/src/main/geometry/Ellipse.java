@@ -5,14 +5,14 @@ public class Ellipse extends Polygon
     private double semiMajorAxis;
     private double semiMinorAxis;
 
-    Ellipse(double semiMajorAxis, double semiMinorAxis)
+    public Ellipse(double semiMajorAxis, double semiMinorAxis)
     {
         super();
         setSemiMajorAxis(semiMajorAxis);
         setSemiMinorAxis(semiMinorAxis);
     }
 
-    Ellipse(Vector2 position, double semiMajorAxis, double semiMinorAxis)
+    public Ellipse(Vector2 position, double semiMajorAxis, double semiMinorAxis)
     {
         super(position);
         setSemiMajorAxis(semiMajorAxis);
