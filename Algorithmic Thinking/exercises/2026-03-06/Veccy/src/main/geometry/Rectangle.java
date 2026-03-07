@@ -5,14 +5,14 @@ public class Rectangle extends Polygon implements Shape
     private double width;
     private double height;
 
-    Rectangle(double width, double height)
+    public Rectangle(double width, double height)
     {
         super();
         setWidth(width);
         setHeight(height);
     }
 
-    Rectangle(Vector2 position, double width, double height)
+    public Rectangle(Vector2 position, double width, double height)
     {
         super(position);
         setWidth(width);
