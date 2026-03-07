@@ -17,7 +17,7 @@ public class ShapeApplication extends Application
     @Override
     public void start(Stage stage) throws IOException
     {
-        stage.setTitle("Drawing Operations Test");
+        stage.setTitle("Shapes?");
         Group root = new Group();
         Canvas canvas = new Canvas(800, 600);
 
@@ -57,11 +57,11 @@ public class ShapeApplication extends Application
         Circle planet = new Circle(new Vector2(730, 300), 50);
         planet.draw(gc, Color.rgb(150, 60, 40));
 
-        // Orbital ellipse around the planet
+        // moon
         Ellipse orbit = new Ellipse(new Vector2(760, 200), 25, 15);
         orbit.draw(gc, Color.rgb(120, 140, 120));
 
-        // Small station rectangle left of the star
+        // Small station thingy
         Rectangle station = new Rectangle(new Vector2(110, 300), 40, 25);
         station.draw(gc, Color.GRAY);
 
@@ -71,12 +71,17 @@ public class ShapeApplication extends Application
         Rectangle station3 = new Rectangle(new Vector2(130, 300), 10, 40);
         station3.draw(gc, Color.GRAY);
 
+        Rectangle panelLeft = new Rectangle(new Vector2(90, 300), 15, 2);
+        panelLeft.draw(gc, Color.DARKBLUE);
+
+        Rectangle panelRight = new Rectangle(new Vector2(120, 300), 15, 2);
+        panelRight.draw(gc, Color.DARKBLUE);
+
         // Surrounding lines
         Line l1 = new Line(new Vector2(95, 280), new Vector2(75, 260));
         Line l2 = new Line(new Vector2(145, 280), new Vector2(165, 260));
         Line l3 = new Line(new Vector2(95, 320), new Vector2(75, 340));
         Line l4 = new Line(new Vector2(145, 320), new Vector2(165, 340));
-
         Line l5 = new Line(new Vector2(120, 260), new Vector2(120, 240));
         Line l6 = new Line(new Vector2(120, 340), new Vector2(120, 360));
 
@@ -90,6 +95,25 @@ public class ShapeApplication extends Application
         // Star on top of the station
         Star stationStar = new Star(new Vector2(110, 300), 6, 10, 10);
         stationStar.draw(gc, Color.DARKGRAY);
+
+        // a comet thingy
+        Circle cometHead = new Circle(new Vector2(650, 80), 8);
+        cometHead.draw(gc, Color.WHITE);
+
+        Line tail1 = new Line(new Vector2(650, 80), new Vector2(620, 100));
+        Line tail2 = new Line(new Vector2(650, 80), new Vector2(610, 110));
+        Line tail3 = new Line(new Vector2(650, 80), new Vector2(600, 120));
+
+        tail1.draw(gc, Color.LIGHTGRAY);
+        tail2.draw(gc, Color.LIGHTGRAY);
+        tail3.draw(gc, Color.LIGHTGRAY);
+
+        // whatever this is, a galaxy or something
+        Ellipse galaxy1 = new Ellipse(new Vector2(600, 500), 60, 20);
+        Ellipse galaxy2 = new Ellipse(new Vector2(600, 500), 40, 10);
+
+        galaxy1.draw(gc, Color.PURPLE);
+        galaxy2.draw(gc, Color.LIGHTPINK);
     }
 
     private void drawShapes(GraphicsContext gc)
