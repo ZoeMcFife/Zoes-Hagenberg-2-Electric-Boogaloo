@@ -7,7 +7,7 @@ public class Triangle extends Polygon
     private double c;
     private double angleC;
 
-    Triangle(double a, double b, double angleC)
+    public Triangle(double a, double b, double angleC)
     {
         super();
         setA(a);
@@ -18,7 +18,7 @@ public class Triangle extends Polygon
         setC(Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(Math.toRadians(getAngleC()))));
     }
 
-    Triangle(Vector2 position, double a, double b, double angleC)
+    public Triangle(Vector2 position, double a, double b, double angleC)
     {
         super(position);
 
