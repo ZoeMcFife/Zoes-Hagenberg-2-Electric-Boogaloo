@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://d1ftlxvgtaojr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oq0pg"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_i3ke5"]
+sky_material = SubResource("ProceduralSkyMaterial_oq0pg")
+
+[sub_resource type="Environment" id="Environment_s6v7x"]
+background_mode = 2
+sky = SubResource("Sky_i3ke5")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_oq0pg"]
+size = Vector3(10, 10, 10)
+
+[node name="TestScene1" type="Node3D" unique_id=79769826]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1278481140]
+environment = SubResource("Environment_s6v7x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=343675278]
+mesh = SubResource("BoxMesh_oq0pg")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=557671019]
+transform = Transform3D(0.8008568, -0.16258387, 0.57636344, -1.4901161e-08, 0.962441, 0.27149084, -0.59885585, -0.2174253, 0.77077746, 11.295266, 4.5636873, 12.858852)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1527471754]
+transform = Transform3D(0.91455066, 0.399926, 0.06046878, -0.37376952, 0.7784977, 0.50422007, 0.15457591, -0.48373643, 0.8614555, 0, 0, 0)
