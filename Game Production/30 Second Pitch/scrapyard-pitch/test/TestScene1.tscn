@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://d1ftlxvgtaojr"]
 
+[ext_resource type="Script" uid="uid://dfhiu8lvnkjqr" path="res://tools/PreviewRect.gd" id="1_s6v7x"]
+[ext_resource type="PackedScene" uid="uid://bn7bvfvd6pfd5" path="res://fox/Fox.tscn" id="2_s6v7x"]
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oq0pg"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -24,8 +27,25 @@ environment = SubResource("Environment_s6v7x")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=343675278]
 mesh = SubResource("BoxMesh_oq0pg")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=557671019]
-transform = Transform3D(0.8008568, -0.16258387, 0.57636344, -1.4901161e-08, 0.962441, 0.27149084, -0.59885585, -0.2174253, 0.77077746, 11.295266, 4.5636873, 12.858852)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1527471754]
 transform = Transform3D(0.91455066, 0.399926, 0.06046878, -0.37376952, 0.7784977, 0.50422007, 0.15457591, -0.48373643, 0.8614555, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=557671019]
+transform = Transform3D(0.8008568, -0.16258387, 0.57636344, -1.4901161e-08, 0.962441, 0.27149084, -0.59885585, -0.2174253, 0.77077746, 11.295266, 4.5636873, 12.858852)
+current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=953160947]
+follow_viewport_enabled = true
+
+[node name="PreviewRect" type="ColorRect" parent="CanvasLayer" unique_id=322405230]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(1, 1, 1, 0.1)
+script = ExtResource("1_s6v7x")
+metadata/_custom_type_script = "uid://dfhiu8lvnkjqr"
+
+[node name="Fox" parent="CanvasLayer" unique_id=234536592 instance=ExtResource("2_s6v7x")]
+position = Vector2(513, 242.00003)
+scale = Vector2(0.835, 0.835)
+fox_img = 7
+text = "You Smell"

@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://cdagv7jp6bqdl"]
+
+[ext_resource type="SpriteFrames" uid="uid://ci06atnp7v54w" path="res://fox/text-box/TextBubbleStart.tres" id="1_5mqs1"]
+[ext_resource type="Script" uid="uid://d0gdlnak2746o" path="res://fox/text-box/AnimatedTextBox.gd" id="1_058s5"]
+[ext_resource type="FontFile" uid="uid://cl7sr4vegliq3" path="res://resources/fonts/comic-relief/ComicRelief-Regular.ttf" id="1_pgkv3"]
+[ext_resource type="AudioStream" uid="uid://261pvqv3fxhy" path="res://resources/audio/sfx/blipSelect.wav" id="2_wp4c6"]
+
+[sub_resource type="GDScript" id="GDScript_5mqs1"]
+resource_name = "test"
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	play(\"loop\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pgkv3"]
+bg_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 10
+
+[node name="TextBox" type="Node2D" unique_id=751139174 node_paths=PackedStringArray("sprite", "text_label", "audio_player")]
+script = ExtResource("1_058s5")
+text = "Hello World"
+time_per_letter = 0.1
+random_time_variation = 0.05
+wait_time_before_end = 1.5
+sound = ExtResource("2_wp4c6")
+min_pitch = 0.7
+max_pitch = 4.1
+sprite = NodePath("AnimatedSprite2D")
+text_label = NodePath("RichTextLabel")
+audio_player = NodePath("AudioStreamPlayer")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2008658405]
+scale = Vector2(3.19, 3.19)
+sprite_frames = ExtResource("1_5mqs1")
+animation = &"end"
+frame = 7
+frame_progress = 1.0
+script = SubResource("GDScript_5mqs1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=634263323]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -47.0
+offset_right = 214.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_pgkv3")
+theme_override_fonts/bold_font = ExtResource("1_pgkv3")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_pgkv3")
+bbcode_enabled = true
+text = "Hello World"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=631647809]
+stream = ExtResource("2_wp4c6")
+volume_db = -5.0
+pitch_scale = 2.527076
