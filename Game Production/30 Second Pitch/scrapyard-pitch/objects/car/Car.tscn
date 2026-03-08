@@ -1,0 +1,203 @@
+[gd_scene format=3 uid="uid://bw2acqv81l7jl"]
+
+[ext_resource type="Script" uid="uid://dk3gef2y6oo01" path="res://objects/car/Car.gd" id="1_5flew"]
+[ext_resource type="PackedScene" uid="uid://daxqy71ukh5uc" path="res://objects/car/mesh/car.glb" id="1_fc0a6"]
+[ext_resource type="PackedScene" uid="uid://dn41xr676qrd7" path="res://objects/car/mesh/Turret.glb" id="2_d2dsr"]
+[ext_resource type="PackedScene" uid="uid://bfjeqqwxbl8gy" path="res://objects/car/mesh/rotary_cannon.glb" id="3_cf4qq"]
+
+[sub_resource type="Animation" id="Animation_0jonp"]
+resource_name = "CloseDoor"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("car/LF_Door:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5899949, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5flew"]
+resource_name = "OpenDoor"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("car/LF_Door:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.5899949, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mxe4m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("car/LF_Door:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mxe4m"]
+_data = {
+&"CloseDoor": SubResource("Animation_0jonp"),
+&"OpenDoor": SubResource("Animation_5flew"),
+&"RESET": SubResource("Animation_mxe4m")
+}
+
+[sub_resource type="Animation" id="Animation_teupk"]
+resource_name = "CloseBonnet"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("car/Bonnet:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.2217305, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nvouk"]
+resource_name = "OpenBonnet"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("car/Bonnet:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.43117, 0, 0), Vector3(-1.2217305, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qmdri"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("car/Bonnet:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_teupk"]
+_data = {
+&"CloseBonnet": SubResource("Animation_teupk"),
+&"OpenBonnet": SubResource("Animation_nvouk"),
+&"RESET": SubResource("Animation_qmdri")
+}
+
+[sub_resource type="Animation" id="Animation_7o0w0"]
+resource_name = "CloseTrunk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("car/Trunk:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.63529986, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_shtqc"]
+resource_name = "OpenTrunk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("car/Trunk:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.63529986, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5gu4x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("car/Trunk:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5gu4x"]
+_data = {
+&"CloseTrunk": SubResource("Animation_7o0w0"),
+&"OpenTrunk": SubResource("Animation_shtqc"),
+&"RESET": SubResource("Animation_5gu4x")
+}
+
+[node name="Car" type="Node3D" unique_id=692323571 node_paths=PackedStringArray("wheel_fl", "wheel_fr", "wheel_rl", "wheel_rr", "steering_wheel")]
+script = ExtResource("1_5flew")
+wheel_fl = NodePath("car/Wheel")
+wheel_fr = NodePath("car/Wheel_003")
+wheel_rl = NodePath("car/Wheel_001")
+wheel_rr = NodePath("car/Wheel_002")
+steering_wheel = NodePath("car/WheelRoot/Wheel_004")
+
+[node name="car" parent="." unique_id=1388485350 instance=ExtResource("1_fc0a6")]
+
+[node name="Wheel" parent="car" index="19" unique_id=1019545832]
+transform = Transform3D(3.138549e-07, 0.99997705, 0, -0.9998039, 3.1390928e-07, 0, 0, 0, 0.99978757, 1.3317661, -0.14573768, 1.2227215)
+
+[node name="Wheel_001" parent="car" index="20" unique_id=1564195034]
+transform = Transform3D(1.4000433e-07, 0.82776296, 0, 0.4421531, -2.5760934e-07, 0.057313748, 0.057313748, -3.3391736e-08, -0.4421531, 1.3317661, -0.14573768, -2.5532246)
+
+[node name="Wheel_002" parent="car" index="21" unique_id=1385004686]
+transform = Transform3D(1.7899423e-07, -0.82776296, -6.734297e-08, 0.43752697, 3.5003958e-07, -0.08610973, 0.08610973, -5.8473802e-08, 0.43752697, -1.2991228, -0.14573768, -2.5532246)
+
+[node name="Wheel_003" parent="car" index="22" unique_id=521710626]
+transform = Transform3D(1.7896838e-07, -0.8277386, -6.733284e-08, -0.44592786, -3.32204e-07, -8.682487e-08, 8.682535e-08, 1.249851e-07, -0.44592527, -1.2991228, -0.14573768, 1.2296493)
+
+[node name="Turret2" parent="." unique_id=1363810353 instance=ExtResource("2_d2dsr")]
+transform = Transform3D(0.31, 0, 0, 0, 0.1, 0, 0, 0, 0.31, 0.079610944, 0.9711216, -2.6886687)
+
+[node name="rotary_cannon" parent="Turret2" unique_id=1866775148 instance=ExtResource("3_cf4qq")]
+transform = Transform3D(1.2580646, 0, 0, 0, 3.8999999, 0, 0, 0, 1.2580646, 0.0090608895, 10.142628, 6.2415433)
+
+[node name="DoorAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1438930426]
+libraries/ = SubResource("AnimationLibrary_mxe4m")
+
+[node name="BonnetAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1108241511]
+libraries/ = SubResource("AnimationLibrary_teupk")
+
+[node name="TrunkAnimationPlayer" type="AnimationPlayer" parent="." unique_id=483395453]
+libraries/ = SubResource("AnimationLibrary_5gu4x")
+
+[editable path="car"]

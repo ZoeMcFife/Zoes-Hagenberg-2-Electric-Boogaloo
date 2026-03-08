@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bf8lt1kueyjr8"
+path="res://.godot/imported/Free Bird.wav-228d496b0887f7e6481f424aaf1a35bc.sample"
+
+[deps]
+
+source_file="res://resources/audio/music/Free Bird.wav"
+dest_files=["res://.godot/imported/Free Bird.wav-228d496b0887f7e6481f424aaf1a35bc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
