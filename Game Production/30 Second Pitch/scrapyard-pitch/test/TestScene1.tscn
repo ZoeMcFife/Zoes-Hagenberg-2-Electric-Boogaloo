@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bn7bvfvd6pfd5" path="res://fox/Fox.tscn" id="2_s6v7x"]
 [ext_resource type="PackedScene" uid="uid://4ef5lylpy67w" path="res://explosion/Explosion.tscn" id="3_2h02m"]
 [ext_resource type="AudioStream" uid="uid://bat3geajfoh0w" path="res://resources/audio/sfx/blipSelectSoft.wav" id="4_maid2"]
+[ext_resource type="PackedScene" uid="uid://b7uihdis3h0cv" path="res://objects/environment/Environment.tscn" id="5_hbkkm"]
+[ext_resource type="PackedScene" uid="uid://bw2acqv81l7jl" path="res://objects/car/Car.tscn" id="6_h8rn5"]
+[ext_resource type="AudioStream" uid="uid://bf8lt1kueyjr8" path="res://resources/audio/music/Free Bird.wav" id="7_g8372"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oq0pg"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -22,7 +25,7 @@ glow_enabled = true
 size = Vector3(10, 10, 10)
 
 [sub_resource type="Animation" id="Animation_2h02m"]
-length = 0.001
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -83,10 +86,58 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Fox:fox_img")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Car:door_open")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Car:bonnet_open")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Car:trunk_open")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_s6v7x"]
 resource_name = "new_animation"
-length = 10.0
+length = 30.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -94,10 +145,10 @@ tracks/0/path = NodePath("CanvasLayer/Fox:say_anim")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.7, 6.9),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.7, 6.9, 14.033334),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, true]
+"values": [true, true, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -106,10 +157,10 @@ tracks/1/path = NodePath("CanvasLayer/Fox:text")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.5, 5.766667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.5, 5.766667, 13.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": ["Hi everyone!", "You should download htis game NOW"]
+"values": ["Hi everyone!", "You should download htis game NOW", "woah cool car (i wanna explode)"]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -130,10 +181,10 @@ tracks/3/path = NodePath("CanvasLayer/Explosion:explode_anim")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(9.133333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(9.133333, 17.666666),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [true, true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -146,6 +197,66 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Car:turning_right")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.1333334, 6.9333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Car:trunk_open")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3.2333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Car:bonnet_open")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(5.5666666),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Car:door_open")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(7.8333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer/Fox:fox_img")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(13.166667, 19.766666, 20.933332),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 8, 9]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2h02m"]
@@ -194,11 +305,11 @@ position = Vector2(513, 242.00003)
 scale = Vector2(0.835, 0.835)
 fox_img = 7
 text = "Anja will explode soon"
-say_anim = null
 
 [node name="Explosion" parent="CanvasLayer" unique_id=1031561749 instance=ExtResource("3_2h02m")]
 position = Vector2(338, 168)
 scale = Vector2(4.5, 4.5)
+explode_anim = false
 
 [node name="Fox2" parent="CanvasLayer" unique_id=1578556355 instance=ExtResource("2_s6v7x")]
 position = Vector2(463.00003, 230)
@@ -210,3 +321,15 @@ sound = ExtResource("4_maid2")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2049471240]
 libraries/ = SubResource("AnimationLibrary_2h02m")
 script = SubResource("GDScript_2h02m")
+
+[node name="Environment" parent="." unique_id=515845763 instance=ExtResource("5_hbkkm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.0707474, 0)
+
+[node name="Car" parent="." unique_id=692323571 instance=ExtResource("6_h8rn5")]
+transform = Transform3D(0.9937913, -0.054472756, -0.09701377, -0.027345773, 0.7256165, -0.6875554, 0.10784784, 0.6859395, 0.71962184, 4.516403, 3.0048733, 10.533413)
+wheel_speed = 26.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2078533142]
+stream = ExtResource("7_g8372")
+volume_db = -7.879
+autoplay = true

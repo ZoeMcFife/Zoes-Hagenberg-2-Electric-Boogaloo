@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b7uihdis3h0cv"]
+
+[ext_resource type="PackedScene" uid="uid://d0i8x7yte31lu" path="res://objects/environment/mesh/environment.glb" id="1_o5ecv"]
+
+[node name="Environment" type="Node3D" unique_id=515845763]
+
+[node name="environment" parent="." unique_id=978979535 instance=ExtResource("1_o5ecv")]
