@@ -88,6 +88,11 @@ var max_pitch : float = 0 :
 @export_tool_button("Start Animation", "Callable")
 var say_callable : Callable = say_text
 
+@export
+var say_anim : bool :
+	set(value):
+		say_text()
+
 func _ready():
 	animation_tree.set("parameters/Blend/blend_amount", 0)
 	
@@ -105,8 +110,6 @@ func _ready():
 		text_box.text_started.connect(_on_text_box_text_started)
 		text_box.text_finished.connect(_on_text_box_text_finished)
 	
-	say_text()
-
 func say_text() -> void:
 	say(text)
 

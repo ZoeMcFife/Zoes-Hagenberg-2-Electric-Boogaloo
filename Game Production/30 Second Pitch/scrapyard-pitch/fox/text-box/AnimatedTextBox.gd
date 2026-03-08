@@ -18,6 +18,9 @@ var time_per_letter : float = 0
 @export_range(0, 1, 0.01, "suffix:s")
 var random_time_variation : float = 0
 
+@export_range(0, 2, 0.1, "suffix:s")
+var wait_time_before_text : float = 0
+
 @export_range(0, 5, 0.1, "suffix:s")
 var wait_time_before_end : float = 0
 
@@ -46,6 +49,9 @@ var text_label : RichTextLabel
 
 @export
 var audio_player : AudioStreamPlayer
+
+@export
+var start_text_timer : Timer
 
 @export_category("Tool")
 
@@ -78,11 +84,16 @@ func start_animation() -> void:
 	lock = true
 	text_label.visible_characters = 0
 	sprite.play("start")
-
+	
+	if wait_time_before_text != 0:
+		await get_tree().create_timer(wait_time_before_text).timeout
+		show_letters()
+		
 func _on_sprite_animation_finished() -> void:
 	if sprite.animation == "start":
 		sprite.play("loop")
-		show_letters()
+		if wait_time_before_text == 0:
+			show_letters()
 		return
 	
 	if sprite.animation == "end":

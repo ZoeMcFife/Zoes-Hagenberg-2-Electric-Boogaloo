@@ -33,6 +33,7 @@ script = ExtResource("1_058s5")
 text = "Hello World"
 time_per_letter = 0.1
 random_time_variation = 0.05
+wait_time_before_text = 0.7
 wait_time_before_end = 1.5
 sound = ExtResource("2_wp4c6")
 min_pitch = 0.7
@@ -79,3 +80,5 @@ visible_ratio = 0.0
 stream = ExtResource("2_wp4c6")
 volume_db = -5.0
 pitch_scale = 2.527076
+
+[node name="Timer" type="Timer" parent="." unique_id=584459280]

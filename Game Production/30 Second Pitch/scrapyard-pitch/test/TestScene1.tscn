@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dfhiu8lvnkjqr" path="res://tools/PreviewRect.gd" id="1_s6v7x"]
 [ext_resource type="PackedScene" uid="uid://bn7bvfvd6pfd5" path="res://fox/Fox.tscn" id="2_s6v7x"]
+[ext_resource type="PackedScene" uid="uid://4ef5lylpy67w" path="res://explosion/Explosion.tscn" id="3_2h02m"]
+[ext_resource type="AudioStream" uid="uid://bat3geajfoh0w" path="res://resources/audio/sfx/blipSelectSoft.wav" id="4_maid2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oq0pg"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -18,6 +20,149 @@ glow_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_oq0pg"]
 size = Vector3(10, 10, 10)
+
+[sub_resource type="Animation" id="Animation_2h02m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Fox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(513, 242.00003)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Fox:say_anim")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Fox:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Anja will explode soon"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Explosion:explode_anim")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Fox2:say_anim")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_s6v7x"]
+resource_name = "new_animation"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Fox:say_anim")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.7, 6.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Fox:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 5.766667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["Hi everyone!", "You should download htis game NOW"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Fox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 8.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(332.00006, 172.00003), Vector2(285.185, 156.18)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Explosion:explode_anim")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(9.133333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Fox2:say_anim")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4.5666666),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2h02m"]
+_data = {
+&"RESET": SubResource("Animation_2h02m"),
+&"new_animation": SubResource("Animation_s6v7x")
+}
+
+[sub_resource type="GDScript" id="GDScript_2h02m"]
+resource_name = "dsgfdgsgh"
+script/source = "extends AnimationPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	play(\"new_animation\")
+"
 
 [node name="TestScene1" type="Node3D" unique_id=79769826]
 
@@ -48,4 +193,20 @@ metadata/_custom_type_script = "uid://dfhiu8lvnkjqr"
 position = Vector2(513, 242.00003)
 scale = Vector2(0.835, 0.835)
 fox_img = 7
-text = "You Smell"
+text = "Anja will explode soon"
+say_anim = null
+
+[node name="Explosion" parent="CanvasLayer" unique_id=1031561749 instance=ExtResource("3_2h02m")]
+position = Vector2(338, 168)
+scale = Vector2(4.5, 4.5)
+
+[node name="Fox2" parent="CanvasLayer" unique_id=1578556355 instance=ExtResource("2_s6v7x")]
+position = Vector2(463.00003, 230)
+scale = Vector2(0.835, 0.835)
+fox_img = 6
+text = "KILL YOURSELF"
+sound = ExtResource("4_maid2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2049471240]
+libraries/ = SubResource("AnimationLibrary_2h02m")
+script = SubResource("GDScript_2h02m")
