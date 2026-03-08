@@ -5,7 +5,59 @@ extends Node3D
 
 @export_category("Doors")
 
+@onready var door_animation_player: AnimationPlayer = $DoorAnimationPlayer
+@onready var bonnet_animation_player: AnimationPlayer = $BonnetAnimationPlayer
+@onready var trunk_animation_player: AnimationPlayer = $TrunkAnimationPlayer
 
+@export
+var door_open: bool = false:
+	set(value):
+		if value == door_open:
+			return
+		
+		door_open = value
+		
+		if not is_node_ready():
+			return
+		
+		if value:
+			door_animation_player.play("OpenDoor")
+		else:
+			door_animation_player.play("CloseDoor")
+
+
+@export
+var bonnet_open: bool = false:
+	set(value):
+		if value == bonnet_open:
+			return
+		
+		bonnet_open = value
+		
+		if not is_node_ready():
+			return
+		
+		if value:
+			bonnet_animation_player.play("OpenBonnet")
+		else:
+			bonnet_animation_player.play("CloseBonnet")
+
+
+@export
+var trunk_open: bool = false:
+	set(value):
+		if value == trunk_open:
+			return
+		
+		trunk_open = value
+		
+		if not is_node_ready():
+			return
+		
+		if value:
+			trunk_animation_player.play("OpenTrunk")
+		else:
+			trunk_animation_player.play("CloseTrunk")
 
 @export_category("Wheels")
 
