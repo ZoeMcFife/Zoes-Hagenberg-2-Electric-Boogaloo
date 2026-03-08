@@ -165,25 +165,26 @@ _data = {
 
 [node name="Car" type="Node3D" unique_id=692323571 node_paths=PackedStringArray("wheel_fl", "wheel_fr", "wheel_rl", "wheel_rr", "steering_wheel")]
 script = ExtResource("1_5flew")
+wheel_speed = 8.0
 wheel_fl = NodePath("car/Wheel")
 wheel_fr = NodePath("car/Wheel_003")
 wheel_rl = NodePath("car/Wheel_001")
 wheel_rr = NodePath("car/Wheel_002")
 steering_wheel = NodePath("car/WheelRoot/Wheel_004")
 
-[node name="car" parent="." unique_id=1388485350 instance=ExtResource("1_fc0a6")]
+[node name="car" parent="." unique_id=1781108070 instance=ExtResource("1_fc0a6")]
 
-[node name="Wheel" parent="car" index="19" unique_id=1019545832]
-transform = Transform3D(3.138549e-07, 0.99997705, 0, -0.9998039, 3.1390928e-07, 0, 0, 0, 0.99978757, 1.3317661, -0.14573768, 1.2227215)
+[node name="Wheel" parent="car" index="19" unique_id=1156265499]
+transform = Transform3D(1, 0, 0, 0, 0.82887375, 0.55948526, 0, -0.55948526, 0.82887375, 1.3317661, -0.14573768, 1.2227215)
 
-[node name="Wheel_001" parent="car" index="20" unique_id=1564195034]
-transform = Transform3D(1.4000433e-07, 0.82776296, 0, 0.4421531, -2.5760934e-07, 0.057313748, 0.057313748, -3.3391736e-08, -0.4421531, 1.3317661, -0.14573768, -2.5532246)
+[node name="Wheel_001" parent="car" index="20" unique_id=788943118]
+transform = Transform3D(1.0000014, 0, 0, 0, 0.65332353, -0.7571678, 0, 0.75716966, 0.6533273, 1.3317661, -0.14573768, -2.5532246)
 
-[node name="Wheel_002" parent="car" index="21" unique_id=1385004686]
-transform = Transform3D(1.7899423e-07, -0.82776296, -6.734297e-08, 0.43752697, 3.5003958e-07, -0.08610973, 0.08610973, -5.8473802e-08, 0.43752697, -1.2991228, -0.14573768, -2.5532246)
+[node name="Wheel_002" parent="car" index="21" unique_id=1865111135]
+transform = Transform3D(1.0000014, 0, 0, 0, 0.65332353, -0.7571678, 0, 0.75716966, 0.6533273, -1.2991228, -0.14573768, -2.5532246)
 
-[node name="Wheel_003" parent="car" index="22" unique_id=521710626]
-transform = Transform3D(1.7896838e-07, -0.8277386, -6.733284e-08, -0.44592786, -3.32204e-07, -8.682487e-08, 8.682535e-08, 1.249851e-07, -0.44592527, -1.2991228, -0.14573768, 1.2296493)
+[node name="Wheel_003" parent="car" index="22" unique_id=1370774329]
+transform = Transform3D(1, 0, 0, 0, 0.82887375, 0.55948526, 0, -0.55948526, 0.82887375, -1.2991228, -0.14573768, 1.2296493)
 
 [node name="Turret2" parent="." unique_id=1363810353 instance=ExtResource("2_d2dsr")]
 transform = Transform3D(0.31, 0, 0, 0, 0.1, 0, 0, 0, 0.31, 0.079610944, 0.9711216, -2.6886687)

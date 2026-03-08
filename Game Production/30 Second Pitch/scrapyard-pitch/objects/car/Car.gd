@@ -3,6 +3,10 @@ class_name Car
 
 extends Node3D
 
+@export_category("Doors")
+
+
+
 @export_category("Wheels")
 
 @export_range(0, 100, 1)
@@ -52,23 +56,37 @@ func _process(delta: float) -> void:
 	rotate_wheels(wheel_speed, delta)
 	
 
-func rotate_wheels(speed : float, delta : float) -> void:
-	wheel_fl.rotate_x(speed * delta)
-	wheel_rl.rotate_x(speed * delta)
-	wheel_fr.rotate_x(speed * delta)
-	wheel_rr.rotate_x(speed * delta)
+var steer_angle: float = 0.0
+
+
+func rotate_wheels(speed: float, delta: float) -> void:
+	var spin: float = speed * delta
+
+	wheel_fl.rotate_object_local(Vector3.RIGHT, spin)
+	wheel_fr.rotate_object_local(Vector3.RIGHT, spin)
+	wheel_rl.rotate_object_local(Vector3.RIGHT, spin)
+	wheel_rr.rotate_object_local(Vector3.RIGHT, spin)
+
+
+func apply_steering(angle_deg: float) -> void:
+	var angle_rad: float = deg_to_rad(angle_deg)
+	steer_angle = angle_rad
+
+	var fl_basis: Basis = Basis(Vector3.UP, angle_rad)
+	var fr_basis: Basis = Basis(Vector3.UP, angle_rad)
+
+	wheel_fl.transform.basis = fl_basis
+	wheel_fr.transform.basis = fr_basis
+
+	var steering_angle_rad: float = deg_to_rad(angle_deg * 1.6)
+	steering_wheel.transform.basis = Basis(Vector3.UP, steering_angle_rad)
+
 
 func turn_straight() -> void:
-	wheel_fl.rotation.y = 0
-	wheel_fr.rotation.y = -180
-	steering_wheel.rotation.y = 0
+	apply_steering(0.0)
 
 func turn_right() -> void:
-	wheel_fl.rotation.y = -30
-	wheel_fr.rotation.y = -180 - 30
-	steering_wheel.rotation.y = -50
+	apply_steering(-30.0)
 
 func turn_left() -> void:
-	wheel_fl.rotation.y = 30
-	wheel_fr.rotation.y = -180 + 30
-	steering_wheel.rotation.y = 50
+	apply_steering(30.0)
