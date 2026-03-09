@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bniabnc6q47f"
 path.s3tc="res://.godot/imported/furry_1.png-b9b3893a24cff8540f65eaae03de93cf.s3tc.ctex"
+path.etc2="res://.godot/imported/furry_1.png-b9b3893a24cff8540f65eaae03de93cf.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://objects/furry-sprites/furry_1.png"
-dest_files=["res://.godot/imported/furry_1.png-b9b3893a24cff8540f65eaae03de93cf.s3tc.ctex"]
+dest_files=["res://.godot/imported/furry_1.png-b9b3893a24cff8540f65eaae03de93cf.s3tc.ctex", "res://.godot/imported/furry_1.png-b9b3893a24cff8540f65eaae03de93cf.etc2.ctex"]
 
 [params]
 
