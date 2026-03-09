@@ -101,7 +101,15 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("shoot_car"):
 		car.shoot()
-	
+		
+	if Input.is_action_just_pressed("switch_car_cam"):
+		if $Camera3D.current == true:
+			$Camera3D2.current = true
+			$Camera3D.current = false
+		else:
+			$Camera3D2.current = false
+			$Camera3D.current = true
+			
 func _apply_suspension(delta):
 	for ray in suspension_rays:
 

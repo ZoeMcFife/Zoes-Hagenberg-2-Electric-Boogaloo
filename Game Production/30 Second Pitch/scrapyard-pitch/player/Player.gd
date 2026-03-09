@@ -27,6 +27,9 @@ extends CharacterBody3D
 @onready var projectile_start : Marker3D = $Camera3D/ProjectileStart
 @onready var projectile_sound : AudioStreamPlayer = $TurretSound
 
+@export
+var item_list : Array[PackedScene]
+
 var controlling_car := false
 
 var look_x := 0.0
@@ -40,12 +43,8 @@ var base_camera_pos : Vector3
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	base_camera_pos = camera.position
-	print("help?")
-	
 
 func _input(event):
-	print(event)
-
 	if event is InputEventMouseMotion and not controlling_car:
 		target_look_x -= event.relative.x * mouse_sensitivity
 		target_look_y -= event.relative.y * mouse_sensitivity
@@ -63,8 +62,13 @@ func _input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-
+	
+	if Input.is_action_just_pressed("spawn_item"):
+		var item : Node3D = item_list.pick_random().instantiate()
+		get_parent_node_3d().add_child(item)
+		item.global_position = $Camera3D/SpawnItemPosition.global_position
+		
+		
 func _physics_process(delta):
 
 	if controlling_car:
@@ -137,7 +141,7 @@ func toggle_car():
 		visible = false
 	else:
 		car.active = false
-		global_position = car.global_position + Vector3(2,0,0)
+		global_position = car.global_position + Vector3(2.4,0,0) * car.global_basis.inverse()
 		visible = true
 		camera.current = true
 

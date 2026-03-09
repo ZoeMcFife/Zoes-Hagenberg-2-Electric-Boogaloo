@@ -1,12 +1,15 @@
 [gd_scene format=4 uid="uid://dh7scqnusqa3s"]
 
 [ext_resource type="PackedScene" uid="uid://b7uihdis3h0cv" path="res://objects/environment/Environment.tscn" id="1_armln"]
+[ext_resource type="Script" uid="uid://b05828mds7gbt" path="res://main/main_scene.gd" id="1_jiffm"]
 [ext_resource type="PackedScene" uid="uid://b81e2v3fvlhg1" path="res://objects/Wreck/Wreck.tscn" id="2_swr24"]
 [ext_resource type="AudioStream" uid="uid://bf8lt1kueyjr8" path="res://resources/audio/music/Free Bird.wav" id="3_ixvwh"]
 [ext_resource type="PackedScene" uid="uid://bw2acqv81l7jl" path="res://objects/car/Car.tscn" id="3_u8god"]
 [ext_resource type="PackedScene" uid="uid://bkwaq5ke67eyo" path="res://objects/car/CarControl.tscn" id="4_enypl"]
 [ext_resource type="Script" uid="uid://cu3jvyap83e2a" path="res://objects/car/EnemyCar.gd" id="4_k6d16"]
 [ext_resource type="PackedScene" uid="uid://b1x0eqksf61lq" path="res://player/Player.tscn" id="5_u8god"]
+[ext_resource type="PackedScene" uid="uid://cemt7o80ced6b" path="res://objects/furry-sprites/Furry1.tscn" id="6_v2sxc"]
+[ext_resource type="PackedScene" uid="uid://dync0i824ella" path="res://objects/furry-sprites/Furry2.tscn" id="7_tne3r"]
 [ext_resource type="Script" uid="uid://dfhiu8lvnkjqr" path="res://tools/PreviewRect.gd" id="8_jhc86"]
 [ext_resource type="PackedScene" uid="uid://bn7bvfvd6pfd5" path="res://fox/Fox.tscn" id="9_jiffm"]
 [ext_resource type="PackedScene" uid="uid://4ef5lylpy67w" path="res://explosion/Explosion.tscn" id="10_v3w0n"]
@@ -45,6 +48,7 @@ data = PackedByteArray("cW9hZgAACzIBAKxECzIEmAAAAAAAAAAAAAAAAOAAQAD9yCCA0GASmGxp
 format = 3
 
 [node name="MainScene" type="Node3D" unique_id=193479558]
+script = ExtResource("1_jiffm")
 
 [node name="Environment" parent="." unique_id=515845763 instance=ExtResource("1_armln")]
 
@@ -86,6 +90,21 @@ script = ExtResource("4_k6d16")
 transform = Transform3D(-0.9466268, 0.100429595, 0.3062869, 0, 0.9502225, -0.31157213, -0.32233176, -0.29494253, -0.89950603, 143.95879, 4.3299923, 114.11826)
 script = ExtResource("4_k6d16")
 
+[node name="Wreck6" parent="Environment" unique_id=1584055176 instance=ExtResource("2_swr24")]
+transform = Transform3D(0.34110153, 0, -0.94002646, 0, 1, 0, 0.94002646, 0, 0.34110153, -18.620138, -1.0394568, -144.54669)
+
+[node name="Furry1" parent="Environment" unique_id=910024799 instance=ExtResource("6_v2sxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.174127, 2.4490392, -138.84859)
+
+[node name="Furry2" parent="Environment" unique_id=228106019 instance=ExtResource("6_v2sxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.193165, 2.5017407, -137.86194)
+
+[node name="Furry3" parent="Environment" unique_id=290753847 instance=ExtResource("6_v2sxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.523079, 2.2613711, -136.43642)
+
+[node name="Furry4" parent="Environment" unique_id=1435025369 instance=ExtResource("7_tne3r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.864609, 2.1073358, -137.88765)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=652258902]
 environment = SubResource("Environment_u8akb")
 
@@ -100,9 +119,6 @@ autoplay = true
 [node name="CarControl" parent="." unique_id=1822300890 instance=ExtResource("4_enypl")]
 transform = Transform3D(0.5539438, 0, 0.8325541, 0, 1, 0, -0.8325541, 0, 0.5539438, 48.865685, 8.896463, 23.174673)
 active = false
-
-[node name="Camera3D2" type="Camera3D" parent="CarControl" unique_id=1551015224]
-transform = Transform3D(0.8008568, -0.16258387, 0.57636344, -1.4901161e-08, 0.962441, 0.27149084, -0.59885585, -0.2174253, 0.77077746, 11.295266, 4.5636873, 12.858852)
 
 [node name="Player" parent="." unique_id=926047054 node_paths=PackedStringArray("car") instance=ExtResource("5_u8god")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.33983, 4.6348057, -33.35939)

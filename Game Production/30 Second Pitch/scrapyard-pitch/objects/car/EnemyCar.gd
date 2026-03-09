@@ -1,12 +1,17 @@
 extends Car
 
+@onready
+var t : Timer = Timer.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$TurretSound.volume_db = -60
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+	add_child(t)
+	t.timeout.connect(_on_timeout)
+	t.wait_time = 1
+	t.start()
+	
+func _on_timeout() -> void:
 	shoot()
 	
-	await get_tree().create_timer(2).timeout
+	t.start()
