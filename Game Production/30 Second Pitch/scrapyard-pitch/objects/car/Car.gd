@@ -111,6 +111,9 @@ var projectile_start : Marker3D
 @export
 var projectile_sound : AudioStreamPlayer
 
+@export
+var furry : Sprite3D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	door_open = false
@@ -124,15 +127,18 @@ func _process(delta: float) -> void:
 	
 
 var steer_angle: float = 0.0
-
+var wheel_spin: float = 0.0
 
 func rotate_wheels(speed: float, delta: float) -> void:
-	var spin: float = speed * delta
+	wheel_spin += speed * delta
 
-	wheel_fl.rotate_object_local(Vector3.RIGHT, spin)
-	wheel_fr.rotate_object_local(Vector3.RIGHT, spin)
-	wheel_rl.rotate_object_local(Vector3.RIGHT, spin)
-	wheel_rr.rotate_object_local(Vector3.RIGHT, spin)
+	#wheel_fl.rotate_object_local(Vector3.RIGHT, spin)
+	#wheel_fr.rotate_object_local(Vector3.RIGHT, spin)
+	#wheel_rl.rotate_object_local(Vector3.RIGHT, spin)
+	#wheel_rr.rotate_object_local(Vector3.RIGHT, spin)
+
+	update_front_wheels()
+	update_rear_wheels()
 
 func shoot() -> void:
 	var projectile : RigidBody3D = projectile_scene.instantiate()
@@ -143,17 +149,29 @@ func shoot() -> void:
 	projectile_sound.play()
 	
 func apply_steering(angle_deg: float) -> void:
-	var angle_rad: float = deg_to_rad(angle_deg)
-	steer_angle = angle_rad
+	steer_angle = deg_to_rad(angle_deg)
 
-	var fl_basis: Basis = Basis(Vector3.UP, angle_rad)
-	var fr_basis: Basis = Basis(Vector3.UP, angle_rad)
-
-	wheel_fl.transform.basis = fl_basis
-	wheel_fr.transform.basis = fr_basis
+	update_front_wheels()
 
 	var steering_angle_rad: float = deg_to_rad(angle_deg * 1.6)
 	steering_wheel.transform.basis = Basis(Vector3.UP, steering_angle_rad)
+
+
+func update_front_wheels() -> void:
+	var steer_basis := Basis(Vector3.UP, steer_angle)
+	var spin_basis := Basis(Vector3.RIGHT, wheel_spin)
+
+	var final_basis := steer_basis * spin_basis
+
+	wheel_fl.transform.basis = final_basis
+	wheel_fr.transform.basis = final_basis
+
+
+func update_rear_wheels() -> void:
+	var spin_basis := Basis(Vector3.RIGHT, wheel_spin)
+
+	wheel_rl.transform.basis = spin_basis
+	wheel_rr.transform.basis = spin_basis
 
 func turn_straight() -> void:
 	apply_steering(0.0)

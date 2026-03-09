@@ -139,13 +139,15 @@ func toggle_car():
 		car.active = true
 		camera.current = false
 		visible = false
+		$Furry1.hide()
 	else:
 		car.active = false
 		global_position = car.global_position + Vector3(2.4,0,0) * car.global_basis.inverse()
 		visible = true
 		camera.current = true
-
-
+		car.car.furry.hide()
+		$Furry1.show()
+		
 func shoot():
 
 	var projectile : RigidBody3D = projectile_scene.instantiate()

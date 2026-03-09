@@ -94,13 +94,13 @@ script = ExtResource("4_k6d16")
 transform = Transform3D(0.34110153, 0, -0.94002646, 0, 1, 0, 0.94002646, 0, 0.34110153, -18.620138, -1.0394568, -144.54669)
 
 [node name="Furry1" parent="Environment" unique_id=910024799 instance=ExtResource("6_v2sxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.174127, 2.4490392, -138.84859)
+transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, -12.174127, 2.6911132, -138.84859)
 
 [node name="Furry2" parent="Environment" unique_id=228106019 instance=ExtResource("6_v2sxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.193165, 2.5017407, -137.86194)
+transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, -13.193165, 2.7438147, -137.86194)
 
 [node name="Furry3" parent="Environment" unique_id=290753847 instance=ExtResource("6_v2sxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.523079, 2.2613711, -136.43642)
+transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, -12.523079, 2.5034451, -136.43642)
 
 [node name="Furry4" parent="Environment" unique_id=1435025369 instance=ExtResource("7_tne3r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.864609, 2.1073358, -137.88765)

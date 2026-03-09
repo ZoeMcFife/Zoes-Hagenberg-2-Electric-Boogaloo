@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cub7g2c7iluvy" path="res://objects/loot/FuelCan.tscn" id="5_ndjxb"]
 [ext_resource type="PackedScene" uid="uid://c5jpp4pm53bsd" path="res://objects/loot/Sandwich.tscn" id="6_5qrx2"]
 [ext_resource type="PackedScene" uid="uid://hgycgll81dfw" path="res://objects/loot/Wrench.tscn" id="6_06mnu"]
+[ext_resource type="PackedScene" uid="uid://cemt7o80ced6b" path="res://objects/furry-sprites/Furry1.tscn" id="9_mhpjh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulp21"]
 
@@ -38,3 +39,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.031398356, -0.22945571, -1
 [node name="TurretSound" type="AudioStreamPlayer" parent="." unique_id=2029051654]
 stream = ExtResource("4_83hs8")
 volume_db = 0.17
+
+[node name="Furry1" parent="." unique_id=910024799 instance=ExtResource("9_mhpjh")]
+transform = Transform3D(1.345, 0, 0, 0, 1.345, 0, 0, 0, 1.345, 0, -0.016595542, 0)

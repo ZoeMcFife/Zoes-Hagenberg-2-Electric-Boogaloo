@@ -38,7 +38,7 @@ autoplay = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.67903, 0, -30.428692)
 active = false
 
-[node name="Camera3D2" type="Camera3D" parent="CarControl" unique_id=1901341966]
+[node name="Camera3D3" type="Camera3D" parent="CarControl" unique_id=1901341966]
 transform = Transform3D(0.8008568, -0.16258387, 0.57636344, -1.4901161e-08, 0.962441, 0.27149084, -0.59885585, -0.2174253, 0.77077746, 11.295266, 4.5636873, 12.858852)
 
 [node name="Player" parent="." unique_id=926047054 node_paths=PackedStringArray("car") instance=ExtResource("4_wfvit")]

@@ -106,9 +106,11 @@ func _physics_process(delta: float) -> void:
 		if $Camera3D.current == true:
 			$Camera3D2.current = true
 			$Camera3D.current = false
+			car.furry.show()
 		else:
 			$Camera3D2.current = false
 			$Camera3D.current = true
+			car.furry.hide()
 			
 func _apply_suspension(delta):
 	for ray in suspension_rays:
