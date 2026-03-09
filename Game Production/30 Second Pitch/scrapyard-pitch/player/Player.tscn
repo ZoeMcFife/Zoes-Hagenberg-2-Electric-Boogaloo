@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://b1x0eqksf61lq"]
+
+[ext_resource type="Script" uid="uid://pk2ka22xv8ud" path="res://player/Player.gd" id="1_ulp21"]
+[ext_resource type="PackedScene" uid="uid://cr2dis0xt4kst" path="res://player/gun.glb" id="2_3c3w1"]
+[ext_resource type="PackedScene" uid="uid://crxnifd2dwpxa" path="res://objects/car/Projectile.tscn" id="2_wnvi2"]
+[ext_resource type="AudioStream" uid="uid://dadbna0f34vq3" path="res://resources/audio/sfx/ciws_single_shot.wav" id="4_83hs8"]
+[ext_resource type="PackedScene" uid="uid://dc716ogs55j17" path="res://objects/loot/GodotPlushie.tscn" id="4_mhpjh"]
+[ext_resource type="PackedScene" uid="uid://cub7g2c7iluvy" path="res://objects/loot/FuelCan.tscn" id="5_ndjxb"]
+[ext_resource type="PackedScene" uid="uid://c5jpp4pm53bsd" path="res://objects/loot/Sandwich.tscn" id="6_5qrx2"]
+[ext_resource type="PackedScene" uid="uid://hgycgll81dfw" path="res://objects/loot/Wrench.tscn" id="6_06mnu"]
+[ext_resource type="PackedScene" uid="uid://cemt7o80ced6b" path="res://objects/furry-sprites/Furry1.tscn" id="9_mhpjh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulp21"]
+
+[node name="Player" type="CharacterBody3D" unique_id=926047054]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_ulp21")
+projectile_scene = ExtResource("2_wnvi2")
+recoil_strength = 0.0
+item_list = Array[PackedScene]([ExtResource("4_mhpjh"), ExtResource("5_ndjxb"), ExtResource("6_5qrx2"), ExtResource("6_06mnu")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2120031563]
+shape = SubResource("CapsuleShape3D_ulp21")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=70363311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75846326, 0)
+current = true
+
+[node name="gun" parent="Camera3D" unique_id=1030049756 instance=ExtResource("2_3c3w1")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.48, -0.333, -0.466)
+
+[node name="ProjectileStart" type="Marker3D" parent="Camera3D" unique_id=1366892174]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5261225, -0.24699873, -1.3138864)
+
+[node name="SpawnItemPosition" type="Marker3D" parent="Camera3D" unique_id=1038368182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.031398356, -0.22945571, -1.3276988)
+
+[node name="TurretSound" type="AudioStreamPlayer" parent="." unique_id=2029051654]
+stream = ExtResource("4_83hs8")
+volume_db = 0.17
+
+[node name="Furry1" parent="." unique_id=910024799 instance=ExtResource("9_mhpjh")]
+transform = Transform3D(1.345, 0, 0, 0, 1.345, 0, 0, 0, 1.345, 0, -0.016595542, 0)

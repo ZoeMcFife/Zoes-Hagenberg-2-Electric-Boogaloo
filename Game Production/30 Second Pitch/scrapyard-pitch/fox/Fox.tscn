@@ -1,0 +1,205 @@
+[gd_scene format=4 uid="uid://bn7bvfvd6pfd5"]
+
+[ext_resource type="Script" uid="uid://b05njcc4cm0w0" path="res://fox/Fox.gd" id="1_61nps"]
+[ext_resource type="Texture2D" uid="uid://bfoosnn84iwl5" path="res://fox/sprites/fox1.png" id="1_k1i65"]
+[ext_resource type="PackedScene" uid="uid://cdagv7jp6bqdl" path="res://fox/text-box/TextBox.tscn" id="3_qtiji"]
+
+[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_qtiji"]
+data = PackedByteArray("cW9hZgAACzIBAKxECzIEmAAAAAAAAAAAAAAAAOAAQAD9yCCA0GASmGxpCZRKYIKsPtD4Egj5MgEymmmiCCNymjI3aAlaErQnNToTqdCdT7rg0GAQQQSsP92pTTRIIIIITgOMotFoMok7CSaiSwzw2zrrddLoc5BJMHdAiMgHdCUwd0dxudRKd/BIBKYKzagKjmMpgEEEEEE0m4fjY14HYzB+6LL85ddtN92uttl7gNM08yjvGN4xukMolEoCqTMs0gNErbrZEghOiqg58bLLDTy8NhsJsJH1MEnxsml02us7TW2WSTuiCDjKalTUoO63MjdTqUSndT7yAcqlCiCCCH8IIIDRIIIDTMoloFgA2MEwxwWW23W6aTbLD3DTAEZBMbo7yqMndSgzuNxuJd0ruv06UTRBBKYBXVNNMBxkBokwBUV0CD0QWTPDbbrrrbbZOUsNNHeMHVMxvLmRKDupRPIBIBIIBI080YIAkEAkAkF8ySmmAQQSATJRoAJ8YZLPNmnm2ut2cUk2CDuiVKmNQzGoeZlBjEp34EgEEgHahYKPmiQCGiCQCTwXzsLRsK6KM+NE9MMstvsv///9/eKGGjjBI1VRzJ1DPUGMSh6pUS7yASCFg0MQCF3TcsqIIDTRNr4tFeNeFHoyCemC2aa3XTdbbZZJIOqqMjVM5kjUPVM4xKJQ9dxKlfBIGnhxABBBfMkggNNEEgNMSC0QwAWQCDtDVFNbrtddNtlsMPVMgag2jqHmGN4CXjqTMqVQYl3E87VDIEFMAgmNZUQQSCAQSDM6K6KPRBJ4Nhtt1111tts2GDGGAcwwczDGquYeoeol4EgEEgpgEbXkMkSAQQCQQUSUs+oAYDRVNFeNHpolnhk26667a222WDlDBBzDA1DUNh6h5hMvMJjwSCmCARpUcGmMIIIIaaIIPoOfNoLoWNE/HHQQSxyy2zddNdLbJjLJMAahgahjMmMw8xcwmZUmZfBIKYGlCUaBW1apohppokE0bBY2ivCunDY6YJLPNLrrO101symggnU0yjqqo1cyYzTjCYTCZjMq8Eg7VDBEAglsEKiCCQUwQT3jVTaAHTRHNVMMt9012vk62q2ySCIw00jBCJJjBRKYN6hNKhMJ7hPhMQIo0QCQQUyTDTTQYDRIMWOdOHoonpo2WWX3S3W5WzZYaaeYJEJJNRh6q5h6hMPgSAQSAQQTMsqWgTTTAIIIPlUqwWfMpzowKmh0QHQ0yydvvv/9ttpoNgiMMA5hnVMxqHqrqlUqlfBIKYIBB28OnJJpgEEEEEE4HGUWA0WnOjKPRTDpYLbbN12utttkkk46mQNVUcw4STOZlT1CYTCq8EgpgjaoZFGYwSAQQSAQQTNwaLRVBXjjPpxh8MNmt1066222WGISwTUYYGYqhL1VPNXVBhEphMLyAQ9iDkAACVqiIIaaJDQaOlMgqgLpx0k0Szyya66+6zdbbLEZZBGaOg4ljMXMPMo2rmZUqgZTKPB2aOzTAIBIX6hMEEAhokE50GCh046SmT4YbattYrPnOdeeBgtBAioygCMxQDmHCWBTAIIAIaI0W3goAAAAAAA=")
+format = 3
+
+[sub_resource type="Animation" id="Animation_61nps"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.045]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:scale:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.045]
+}
+
+[sub_resource type="Animation" id="Animation_g8853"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:x")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, -2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:y")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4666666, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-2.0, 2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale:x")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.05, 0.95]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale:y")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4666666, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.95, 1.05]
+}
+
+[sub_resource type="Animation" id="Animation_qtiji"]
+resource_name = "talk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.08726646259971647, -0.08726646259971647]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g8853"]
+_data = {
+&"RESET": SubResource("Animation_61nps"),
+&"idle": SubResource("Animation_g8853"),
+&"talk": SubResource("Animation_qtiji")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_61nps"]
+animation = &"talk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qtiji"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_g8853"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_dcx4t"]
+graph_offset = Vector2(-458.24268, -12.747589)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_qtiji")
+nodes/Animation/position = Vector2(-120, 60)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_61nps")
+"nodes/Animation 2/position" = Vector2(-108.13401, 306.46597)
+nodes/Blend/node = SubResource("AnimationNodeBlend2_g8853")
+nodes/Blend/position = Vector2(80, 160)
+node_connections = [&"output", 0, &"Blend", &"Blend", 0, &"Animation", &"Blend", 1, &"Animation 2"]
+
+[node name="Fox" type="Node2D" unique_id=234536592 node_paths=PackedStringArray("fox_container", "sprite", "animation_tree", "text_box")]
+script = ExtResource("1_61nps")
+fox_container = NodePath("FoxContainer")
+sprite = NodePath("FoxContainer/Sprite2D")
+animation_tree = NodePath("FoxContainer/Sprite2D/AnimationTree")
+text_box = NodePath("FoxContainer/TextBox")
+text = "You smell!!!"
+time_per_letter = 0.05
+random_time_variation = 0.05
+wait_time_before_end = 1.5
+sound = SubResource("AudioStreamWAV_qtiji")
+min_pitch = 0.7
+max_pitch = 4.1
+
+[node name="FoxContainer" type="Node2D" parent="." unique_id=249255198]
+
+[node name="Sprite2D" type="Sprite2D" parent="FoxContainer" unique_id=1661323132]
+texture_filter = 1
+scale = Vector2(1.045, 1.045)
+texture = ExtResource("1_k1i65")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FoxContainer/Sprite2D" unique_id=1656232073]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_g8853")
+
+[node name="AnimationTree" type="AnimationTree" parent="FoxContainer/Sprite2D" unique_id=1866803207]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeBlendTree_dcx4t")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Blend/blend_amount = 0.0
+
+[node name="TextBox" parent="FoxContainer" unique_id=751139174 instance=ExtResource("3_qtiji")]
+position = Vector2(-43, -111)
+scale = Vector2(0.495, 0.495)
+text = "You smell!!!"
+time_per_letter = 0.05
+sound = SubResource("AudioStreamWAV_qtiji")

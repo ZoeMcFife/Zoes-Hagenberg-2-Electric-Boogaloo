@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ceav5eq5hsufq"]
+
+[ext_resource type="Texture2D" uid="uid://35wk334qtc4l" path="res://objects/environment/mesh/environment_SandBake.png" id="1_hcjwk"]
+
+[resource]
+albedo_texture = ExtResource("1_hcjwk")
+metallic_specular = 0.13

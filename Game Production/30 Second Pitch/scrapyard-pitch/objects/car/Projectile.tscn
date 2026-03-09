@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://crxnifd2dwpxa"]
+
+[sub_resource type="GDScript" id="GDScript_q6myy"]
+resource_name = "Projectile"
+script/source = "extends RigidBody3D
+
+
+func _ready() -> void:
+	await get_tree().create_timer(3).timeout
+	
+	queue_free()
+
+func _on_body_entered(body: Node) -> void:
+	queue_free()
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6myy"]
+albedo_color = Color(0.9739805, 0.7096362, 7.70092e-07, 1)
+emission_enabled = true
+emission = Color(0.9999998, 0.94719464, 0.3119941, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nma4s"]
+material = SubResource("StandardMaterial3D_q6myy")
+size = Vector3(0.345, 0.1, 0.1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nma4s"]
+points = PackedVector3Array(-0.16601503, -0.049999997, -0.049999997, 0.17082705, 0.049999997, 0.049999997, 0.16601503, 0.04857143, -0.049999997, -0.17082705, 0.049999997, 0.049999997, 0.16601503, -0.049999997, 0.04857143, -0.16601503, -0.049999997, 0.04857143, -0.16601503, 0.04857143, -0.049999997, 0.16601503, -0.049999997, -0.049999997)
+
+[node name="Projectile" type="RigidBody3D" unique_id=2104796064]
+collision_layer = 5
+collision_mask = 5
+script = SubResource("GDScript_q6myy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1986353191]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_nma4s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=138469390]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_nma4s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

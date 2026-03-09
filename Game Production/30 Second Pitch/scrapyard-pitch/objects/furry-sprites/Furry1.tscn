@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cemt7o80ced6b"]
+
+[ext_resource type="Texture2D" uid="uid://bniabnc6q47f" path="res://objects/furry-sprites/furry_1.png" id="1_mbi4i"]
+
+[node name="Furry1" type="Sprite3D" unique_id=910024799]
+billboard = 2
+texture_filter = 0
+texture = ExtResource("1_mbi4i")

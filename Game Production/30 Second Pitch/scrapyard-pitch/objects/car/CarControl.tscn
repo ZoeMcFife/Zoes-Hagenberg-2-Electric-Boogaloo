@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://bkwaq5ke67eyo"]
+
+[ext_resource type="Script" uid="uid://dx20xo4qlaotb" path="res://objects/car/CarControl.gd" id="1_n27yf"]
+[ext_resource type="PackedScene" uid="uid://bw2acqv81l7jl" path="res://objects/car/Car.tscn" id="1_tclw8"]
+[ext_resource type="AudioStream" uid="uid://bw4r7xg68e3dy" path="res://resources/audio/sfx/engine_vroom.wav" id="3_ucx2h"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tclw8"]
+bounce = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tclw8"]
+size = Vector3(1, 0.92041016, 6.031006)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n27yf"]
+size = Vector3(1, 0.7077637, 3.9243164)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tclw8"]
+height = 2.9648438
+radius = 0.44677734
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ucx2h"]
+size = Vector3(2.97, 0.045, 4.16)
+
+[node name="CarControl" type="RigidBody3D" unique_id=1822300890 node_paths=PackedStringArray("car", "ground_ray_cast")]
+collision_layer = 2
+collision_mask = 2
+mass = 2000.0
+physics_material_override = SubResource("PhysicsMaterial_tclw8")
+gravity_scale = 1.5
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -1, 0)
+script = ExtResource("1_n27yf")
+car = NodePath("Car")
+acceleration_force = 40000.0
+brake_force = 35000.0
+turn_force = 12000.0
+sideways_friction = 30.0
+air_control = 0.025
+ground_ray_cast = NodePath("ShapeCast3D")
+
+[node name="Car" parent="." unique_id=692323571 instance=ExtResource("1_tclw8")]
+
+[node name="Furry1" parent="Car" index="8" unique_id=910024799]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=218985444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41445136, -0.9302744)
+shape = SubResource("BoxShape3D_tclw8")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1031761510]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2359504, -1.3942637)
+shape = SubResource("BoxShape3D_n27yf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=1404319710]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.091796875, -0.1546371, 1.2274313)
+shape = SubResource("CylinderShape3D_tclw8")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="." unique_id=541801868]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.005859375, -0.1546371, -2.5418458)
+shape = SubResource("CylinderShape3D_tclw8")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=705398014]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.81954813, 1.1310372, -0.24914885)
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=602841689]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40970874, -0.67594635)
+shape = SubResource("BoxShape3D_ucx2h")
+margin = 5.3
+collision_mask = 4
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1927512309]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3725251, 0.2217398, 1.2066815)
+collision_mask = 4
+
+[node name="RayCast3D2" type="RayCast3D" parent="." unique_id=937105028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3725251, 0.2217398, -2.5905762)
+collision_mask = 4
+
+[node name="RayCast3D3" type="RayCast3D" parent="." unique_id=828708372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2404448, 0.2217398, -2.5905762)
+collision_mask = 4
+
+[node name="RayCast3D4" type="RayCast3D" parent="." unique_id=1289918686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2404448, 0.2217398, 1.2881916)
+collision_mask = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=197811176]
+stream = ExtResource("3_ucx2h")
+
+[node name="Camera3D2" type="Camera3D" parent="." unique_id=1440264418]
+transform = Transform3D(0.8008568, -0.16258387, 0.57636344, -1.4901161e-08, 0.962441, 0.27149084, -0.59885585, -0.2174253, 0.77077746, 4.0754995, 2.4969664, 4.0082245)
+
+[editable path="Car"]
+[editable path="Car/car"]

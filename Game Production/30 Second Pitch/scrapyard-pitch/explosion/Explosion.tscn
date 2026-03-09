@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://4ef5lylpy67w"]
+
+[ext_resource type="SpriteFrames" uid="uid://bap5nep0ofb50" path="res://explosion/ExplosionSprites.tres" id="1_axf1i"]
+[ext_resource type="Script" uid="uid://b5pvcq7gt6tj1" path="res://explosion/Explosion.gd" id="1_dq18p"]
+[ext_resource type="AudioStream" uid="uid://ds7sq8jqmocls" path="res://resources/audio/sfx/deltarune-explosion.mp3" id="2_ars7t"]
+
+[node name="Explosion" type="Node2D" unique_id=1031561749 node_paths=PackedStringArray("sprite", "audio_player")]
+script = ExtResource("1_dq18p")
+sprite = NodePath("AnimatedSprite2D")
+audio_player = NodePath("AudioStreamPlayer")
+explode_anim = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=490086057]
+position = Vector2(-1, -1)
+sprite_frames = ExtResource("1_axf1i")
+animation = &"explode"
+frame = 19
+frame_progress = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1131666349]
+stream = ExtResource("2_ars7t")

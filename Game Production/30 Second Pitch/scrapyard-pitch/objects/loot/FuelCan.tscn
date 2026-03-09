@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cub7g2c7iluvy"]
+
+[ext_resource type="PackedScene" uid="uid://c01bpen5j1450" path="res://objects/loot/fuel_tank.glb" id="1_ph6n8"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vq8lt"]
+points = PackedVector3Array(28.047266, 31.967955, -4.1152234, -23.167734, -37.06262, -1.8988588, -23.678688, -37.736595, 0.39072672, 29.376545, -37.769554, -6.378769, 14.470564, 31.581467, -25.163858, -12.267587, 20.728477, 18.264969, 18.039541, -37.67459, -25.517706, -14.198259, 31.307308, -10.014543, -7.7655487, -38.48999, 17.096052, 2.2471678, 33.655636, 13.478285, -23.533007, 19.669687, 0.36904898, 18.880024, 27.113413, -25.13576, 10.997899, -36.518456, -23.701185, 22.658918, -35.976963, 0.19222155, -13.3471365, -36.247765, 18.214457, -3.6238818, 34.840843, -15.891113, 29.236685, 29.809265, -7.487522, 17.05373, -39.158405, -24.591995, 15.173208, 34.840843, 5.2555704, -14.950121, -36.180843, -8.403146, -13.02513, 33.655636, -6.4886, 15.86049, 33.488564, -24.507524, -0.9359573, -36.20561, 14.242509, -15.760245, 26.537008, 7.1472673, 28.793709, -33.686203, -8.522098, -11.370983, -39.146515, 17.475523, 27.221807, -39.058502, -4.122046, -21.342585, -38.75906, -2.996528, -2.4507532, 33.655636, -17.06643, -15.401264, 17.127764, 14.680411, -23.114433, 19.31362, -1.9022529, -8.653838, -36.702244, 17.796423)
+
+[node name="FuelCan" type="RigidBody3D" unique_id=362442957]
+collision_layer = 4
+collision_mask = 4
+
+[node name="Sketchfab_Scene" parent="." unique_id=957750717 instance=ExtResource("1_ph6n8")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+
+[node name="Sketchfab_model" parent="Sketchfab_Scene" index="0" unique_id=178250276]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="GLTF_SceneRootNode" parent="Sketchfab_Scene/Sketchfab_model/root" parent_id_path=PackedInt32Array(957750717, 311930392) index="0" unique_id=1402737045]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+
+[node name="tank_0" parent="Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode" index="0" unique_id=1044402658]
+transform = Transform3D(0.8571728, 0, -0.51502895, 0, 1, 0, 0.51502895, 0, 0.8571728, 0, 0.3997655, 0.026206719)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=291668917]
+transform = Transform3D(0.008571728, 0, -0.0051502893, 0, 0.01, 0, 0.0051502893, 0, 0.008571728, 0, 0.26651034, 0.017471146)
+shape = SubResource("ConvexPolygonShape3D_vq8lt")
+
+[editable path="Sketchfab_Scene"]
