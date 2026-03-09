@@ -100,6 +100,17 @@ var turning_left : bool :
 			if !turning_right:
 				turn_straight()
 
+@export_category("Projectile")
+
+@export
+var projectile_scene : PackedScene
+
+@export
+var projectile_start : Marker3D
+
+@export
+var projectile_sound : AudioStreamPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	door_open = false
@@ -123,7 +134,14 @@ func rotate_wheels(speed: float, delta: float) -> void:
 	wheel_rl.rotate_object_local(Vector3.RIGHT, spin)
 	wheel_rr.rotate_object_local(Vector3.RIGHT, spin)
 
-
+func shoot() -> void:
+	var projectile : RigidBody3D = projectile_scene.instantiate()
+	get_parent_node_3d().get_parent_node_3d().add_child(projectile)
+	projectile.global_position = projectile_start.global_position
+	projectile.global_rotation = projectile_start.global_rotation
+	projectile.apply_impulse(projectile.global_transform.basis.z * 100)
+	projectile_sound.play()
+	
 func apply_steering(angle_deg: float) -> void:
 	var angle_rad: float = deg_to_rad(angle_deg)
 	steer_angle = angle_rad
