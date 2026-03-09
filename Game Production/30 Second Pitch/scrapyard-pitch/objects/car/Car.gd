@@ -1,4 +1,3 @@
-#@tool
 class_name Car
 
 extends Node3D
@@ -61,7 +60,7 @@ var trunk_open: bool = false:
 
 @export_category("Wheels")
 
-@export_range(0, 100, 1)
+@export_range(0, 100, 1, "or_greater", "or_less")
 var wheel_speed : float
 
 @export
@@ -87,7 +86,8 @@ var turning_right : bool :
 		if value:
 			turn_right()
 		else:
-			turn_straight()
+			if !turning_left:
+				turn_straight()
 
 @export
 var turning_left : bool :
@@ -97,7 +97,8 @@ var turning_left : bool :
 		if value:
 			turn_left()
 		else:
-			turn_straight()
+			if !turning_right:
+				turn_straight()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -135,7 +136,6 @@ func apply_steering(angle_deg: float) -> void:
 
 	var steering_angle_rad: float = deg_to_rad(angle_deg * 1.6)
 	steering_wheel.transform.basis = Basis(Vector3.UP, steering_angle_rad)
-
 
 func turn_straight() -> void:
 	apply_steering(0.0)

@@ -206,17 +206,11 @@ shape = SubResource("ConcavePolygonShape3D_mxe4m")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="car/trunk box/StaticBody3D" unique_id=1091112953]
 shape = SubResource("ConcavePolygonShape3D_0jonp")
 
-[node name="Wheel" parent="car" index="19" unique_id=1156265499]
-transform = Transform3D(1, 0, 0, 0, 0.6236002, -0.78181624, 0, 0.78181624, 0.6236002, 1.3317661, -0.14573768, 1.2227215)
-
 [node name="Wheel_001" parent="car" index="20" unique_id=788943118]
 transform = Transform3D(1.0000014, 0, 0, 0, -0.6700303, -0.74268883, 0, 0.7426908, -0.6700257, 1.3317661, -0.14573768, -2.5532246)
 
 [node name="Wheel_002" parent="car" index="21" unique_id=1865111135]
 transform = Transform3D(1.0000014, 0, 0, 0, -0.6700303, -0.74268883, 0, 0.7426908, -0.6700257, -1.2991228, -0.14573768, -2.5532246)
-
-[node name="Wheel_003" parent="car" index="22" unique_id=1370774329]
-transform = Transform3D(1, 0, 0, 0, 0.6236002, -0.78181624, 0, 0.78181624, 0.6236002, -1.2991228, -0.14573768, 1.2296493)
 
 [node name="Turret2" parent="." unique_id=1363810353 instance=ExtResource("2_d2dsr")]
 transform = Transform3D(0.31, 0, 0, 0, 0.1, 0, 0, 0, 0.31, 0.079610944, 0.9711216, -2.6886687)

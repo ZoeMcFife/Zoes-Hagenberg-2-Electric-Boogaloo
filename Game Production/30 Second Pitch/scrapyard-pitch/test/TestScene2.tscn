@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://2n01pnvllckt"]
+
+[ext_resource type="PackedScene" uid="uid://b7uihdis3h0cv" path="res://objects/environment/Environment.tscn" id="1_efvyr"]
+[ext_resource type="AudioStream" uid="uid://bf8lt1kueyjr8" path="res://resources/audio/music/Free Bird.wav" id="2_wfvit"]
+[ext_resource type="PackedScene" uid="uid://bkwaq5ke67eyo" path="res://objects/car/CarControl.tscn" id="3_euhf4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wr418"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_i3ke5"]
+sky_material = SubResource("ProceduralSkyMaterial_wr418")
+
+[sub_resource type="Environment" id="Environment_svsrb"]
+background_mode = 2
+sky = SubResource("Sky_i3ke5")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="TestScene2" type="Node3D" unique_id=283690860]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1099278083]
+environment = SubResource("Environment_svsrb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1933677583]
+transform = Transform3D(0.91455066, 0.399926, 0.06046878, -0.37376952, 0.7784977, 0.50422007, 0.15457591, -0.48373643, 0.8614555, 0, 0, 0)
+
+[node name="Environment" parent="." unique_id=515845763 instance=ExtResource("1_efvyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.0707474, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=875972665]
+stream = ExtResource("2_wfvit")
+volume_db = -8.667
+autoplay = true
+
+[node name="CarControl" parent="." unique_id=1822300890 instance=ExtResource("3_euhf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.67903, 0, -30.428692)
+active = true
