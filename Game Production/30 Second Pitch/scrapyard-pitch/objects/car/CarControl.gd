@@ -5,6 +5,7 @@ extends RigidBody3D
 
 @export var active : bool = true :
 	set(value):
+		active = value
 		$Camera3D.current = active
 		
 @export var car : Car
@@ -30,12 +31,20 @@ func _process(delta: float) -> void:
 	_apply_suspension(delta)
 
 func _physics_process(delta: float) -> void:
+	
+		# -------- INTERACTIONS --------
+	if Input.is_action_just_pressed("open_bonnet"):
+		car.bonnet_open = !car.bonnet_open
+
+	if Input.is_action_just_pressed("open_door"):
+		car.door_open = !car.door_open
+
+	if Input.is_action_just_pressed("open_trunk"):
+		car.trunk_open = !car.trunk_open
+		
 	if !active:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		return
 	
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
 	var forward : Vector3 = global_transform.basis.z
 	var right : Vector3 = global_transform.basis.x
 
@@ -89,17 +98,6 @@ func _physics_process(delta: float) -> void:
 	if grounded:
 		var sideways_force = -right * sideways_speed * sideways_friction
 		apply_central_force(sideways_force)
-
-
-	# -------- INTERACTIONS --------
-	if Input.is_action_just_pressed("open_bonnet"):
-		car.bonnet_open = !car.bonnet_open
-
-	if Input.is_action_just_pressed("open_door"):
-		car.door_open = !car.door_open
-
-	if Input.is_action_just_pressed("open_trunk"):
-		car.trunk_open = !car.trunk_open
 	
 	if Input.is_action_just_pressed("shoot_car"):
 		car.shoot()

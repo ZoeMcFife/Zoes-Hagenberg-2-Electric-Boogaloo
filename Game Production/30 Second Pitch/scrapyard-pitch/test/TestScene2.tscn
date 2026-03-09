@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b7uihdis3h0cv" path="res://objects/environment/Environment.tscn" id="1_efvyr"]
 [ext_resource type="AudioStream" uid="uid://bf8lt1kueyjr8" path="res://resources/audio/music/Free Bird.wav" id="2_wfvit"]
 [ext_resource type="PackedScene" uid="uid://bkwaq5ke67eyo" path="res://objects/car/CarControl.tscn" id="3_euhf4"]
+[ext_resource type="PackedScene" uid="uid://b1x0eqksf61lq" path="res://player/Player.tscn" id="4_wfvit"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wr418"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -35,6 +36,11 @@ autoplay = true
 
 [node name="CarControl" parent="." unique_id=1822300890 instance=ExtResource("3_euhf4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.67903, 0, -30.428692)
+active = false
 
 [node name="Camera3D2" type="Camera3D" parent="CarControl" unique_id=1901341966]
 transform = Transform3D(0.8008568, -0.16258387, 0.57636344, -1.4901161e-08, 0.962441, 0.27149084, -0.59885585, -0.2174253, 0.77077746, 11.295266, 4.5636873, 12.858852)
+
+[node name="Player" parent="." unique_id=926047054 node_paths=PackedStringArray("car") instance=ExtResource("4_wfvit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.33983, -10.589039, -33.35939)
+car = NodePath("../CarControl")
