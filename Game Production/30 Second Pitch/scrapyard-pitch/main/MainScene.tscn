@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bn7bvfvd6pfd5" path="res://fox/Fox.tscn" id="9_jiffm"]
 [ext_resource type="PackedScene" uid="uid://4ef5lylpy67w" path="res://explosion/Explosion.tscn" id="10_v3w0n"]
 [ext_resource type="AudioStream" uid="uid://bat3geajfoh0w" path="res://resources/audio/sfx/blipSelectSoft.wav" id="11_v2sxc"]
+[ext_resource type="Texture2D" uid="uid://qs03jac3jnfj" path="res://logo.png" id="15_tne3r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixvwh"]
 albedo_color = Color(0.20239547, 0.10594896, 0.03726851, 1)
@@ -46,6 +47,67 @@ volumetric_fog_length = 99.62
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_tne3r"]
 data = PackedByteArray("cW9hZgAACzIBAKxECzIEmAAAAAAAAAAAAAAAAOAAQAD9yCCA0GASmGxpCZRKYIKsPtD4Egj5MgEymmmiCCNymjI3aAlaErQnNToTqdCdT7rg0GAQQQSsP92pTTRIIIIITgOMotFoMok7CSaiSwzw2zrrddLoc5BJMHdAiMgHdCUwd0dxudRKd/BIBKYKzagKjmMpgEEEEEE0m4fjY14HYzB+6LL85ddtN92uttl7gNM08yjvGN4xukMolEoCqTMs0gNErbrZEghOiqg58bLLDTy8NhsJsJH1MEnxsml02us7TW2WSTuiCDjKalTUoO63MjdTqUSndT7yAcqlCiCCCH8IIIDRIIIDTMoloFgA2MEwxwWW23W6aTbLD3DTAEZBMbo7yqMndSgzuNxuJd0ruv06UTRBBKYBXVNNMBxkBokwBUV0CD0QWTPDbbrrrbbZOUsNNHeMHVMxvLmRKDupRPIBIBIIBI080YIAkEAkAkF8ySmmAQQSATJRoAJ8YZLPNmnm2ut2cUk2CDuiVKmNQzGoeZlBjEp34EgEEgHahYKPmiQCGiCQCTwXzsLRsK6KM+NE9MMstvsv///9/eKGGjjBI1VRzJ1DPUGMSh6pUS7yASCFg0MQCF3TcsqIIDTRNr4tFeNeFHoyCemC2aa3XTdbbZZJIOqqMjVM5kjUPVM4xKJQ9dxKlfBIGnhxABBBfMkggNNEEgNMSC0QwAWQCDtDVFNbrtddNtlsMPVMgag2jqHmGN4CXjqTMqVQYl3E87VDIEFMAgmNZUQQSCAQSDM6K6KPRBJ4Nhtt1111tts2GDGGAcwwczDGquYeoeol4EgEEgpgEbXkMkSAQQCQQUSUs+oAYDRVNFeNHpolnhk26667a222WDlDBBzDA1DUNh6h5hMvMJjwSCmCARpUcGmMIIIIaaIIPoOfNoLoWNE/HHQQSxyy2zddNdLbJjLJMAahgahjMmMw8xcwmZUmZfBIKYGlCUaBW1apohppokE0bBY2ivCunDY6YJLPNLrrO101symggnU0yjqqo1cyYzTjCYTCZjMq8Eg7VDBEAglsEKiCCQUwQT3jVTaAHTRHNVMMt9012vk62q2ySCIw00jBCJJjBRKYN6hNKhMJ7hPhMQIo0QCQQUyTDTTQYDRIMWOdOHoonpo2WWX3S3W5WzZYaaeYJEJJNRh6q5h6hMPgSAQSAQQTMsqWgTTTAIIIPlUqwWfMpzowKmh0QHQ0yydvvv/9ttpoNgiMMA5hnVMxqHqrqlUqlfBIKYIBB28OnJJpgEEEEEE4HGUWA0WnOjKPRTDpYLbbN12utttkkk46mQNVUcw4STOZlT1CYTCq8EgpgjaoZFGYwSAQQSAQQTNwaLRVBXjjPpxh8MNmt1066222WGISwTUYYGYqhL1VPNXVBhEphMLyAQ9iDkAACVqiIIaaJDQaOlMgqgLpx0k0Szyya66+6zdbbLEZZBGaOg4ljMXMPMo2rmZUqgZTKPB2aOzTAIBIX6hMEEAhokE50GCh046SmT4YbattYrPnOdeeBgtBAioygCMxQDmHCWBTAIIAIaI0W3goAAAAAAA=")
 format = 3
+
+[sub_resource type="Animation" id="Animation_yxgj4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Explosion:explode_anim")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tne3r"]
+resource_name = "start"
+length = 0.43333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Sprite2D:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.43333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Explosion:explode_anim")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yxgj4"]
+_data = {
+&"RESET": SubResource("Animation_yxgj4"),
+&"start": SubResource("Animation_tne3r")
+}
 
 [node name="MainScene" type="Node3D" unique_id=193479558]
 script = ExtResource("1_jiffm")
@@ -117,11 +179,11 @@ volume_db = -8.667
 autoplay = true
 
 [node name="CarControl" parent="." unique_id=1822300890 instance=ExtResource("4_enypl")]
-transform = Transform3D(0.5539438, 0, 0.8325541, 0, 1, 0, -0.8325541, 0, 0.5539438, 48.865685, 8.896463, 23.174673)
+transform = Transform3D(0.5539438, 0, 0.8325541, 0, 1, 0, -0.8325541, 0, 0.5539438, 24.112831, -2.5718265, 20.47965)
 active = false
 
 [node name="Player" parent="." unique_id=926047054 node_paths=PackedStringArray("car") instance=ExtResource("5_u8god")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.33983, 4.6348057, -33.35939)
+transform = Transform3D(-0.8366209, 0, 0.54778224, 0, 1, 0, -0.54778224, 0, -0.8366209, 25.203798, -2.5806592, 16.520405)
 car = NodePath("../CarControl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1208738610]
@@ -134,21 +196,54 @@ color = Color(1, 1, 1, 0.1)
 script = ExtResource("8_jhc86")
 metadata/_custom_type_script = "uid://dfhiu8lvnkjqr"
 
-[node name="Fox" parent="CanvasLayer" unique_id=234536592 instance=ExtResource("9_jiffm")]
-position = Vector2(513, 242.00003)
-scale = Vector2(0.835, 0.835)
-fox_img = 7
-text = "Anja will explode soon"
+[node name="Fox1" parent="CanvasLayer" unique_id=234536592 instance=ExtResource("9_jiffm")]
+visible = false
+position = Vector2(536, 266)
+text = "Explore the Wastelands"
 sound = SubResource("AudioStreamWAV_tne3r")
 
-[node name="Explosion" parent="CanvasLayer" unique_id=1031561749 instance=ExtResource("10_v3w0n")]
-position = Vector2(338, 168)
-scale = Vector2(4.5, 4.5)
+[node name="Fox2" parent="CanvasLayer" unique_id=498735544 instance=ExtResource("9_jiffm")]
+visible = false
+position = Vector2(181, 151)
+flip_sprite = true
+fox_img = 6
+text = "Scavenge Ship Wrecks!"
+sound = ExtResource("11_v2sxc")
+
+[node name="Fox3" parent="CanvasLayer" unique_id=1546483397 instance=ExtResource("9_jiffm")]
+visible = false
+position = Vector2(157.00006, 277)
+fox_img = 4
+text = "Fight other Survivors!"
+sound = SubResource("AudioStreamWAV_tne3r")
+
+[node name="Fox4" parent="CanvasLayer" unique_id=1451777415 instance=ExtResource("9_jiffm")]
+visible = false
+position = Vector2(203, 285)
+fox_img = 8
+text = "Help your Tribe!"
+sound = SubResource("AudioStreamWAV_tne3r")
+
+[node name="FoxExplosion" parent="CanvasLayer" unique_id=1031561749 instance=ExtResource("10_v3w0n")]
+position = Vector2(543, 287)
+scale = Vector2(2.805, 2.805)
 explode_anim = false
 
-[node name="Fox2" parent="CanvasLayer" unique_id=498735544 instance=ExtResource("9_jiffm")]
-position = Vector2(336, 268)
-scale = Vector2(0.835, 0.835)
-fox_img = 6
-text = "KILL YOURSELF"
-sound = ExtResource("11_v2sxc")
+[node name="Explosion" parent="CanvasLayer" unique_id=2000138903 instance=ExtResource("10_v3w0n")]
+position = Vector2(312.00003, 193.00003)
+scale = Vector2(5, 5)
+explode_anim = false
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=1820230535]
+position = Vector2(321, 181)
+scale = Vector2(4.077778, 4.077778)
+texture = ExtResource("15_tne3r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1068649283]
+libraries/ = SubResource("AnimationLibrary_yxgj4")
+
+[node name="FurryTribe" type="Marker3D" parent="." unique_id=1591551289]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.786737, 2.5464694, -135.01265)
+
+[node name="FurryTribeCar" type="Marker3D" parent="." unique_id=137369596]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8376746, 2.9837525, -133.03517)

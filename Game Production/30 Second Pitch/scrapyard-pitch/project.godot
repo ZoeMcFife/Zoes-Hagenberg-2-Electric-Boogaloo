@@ -14,6 +14,8 @@ config/name="Scrapyard Pitch"
 run/main_scene="uid://c3go1auqqqjih"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/use_filter=false
+boot_splash/image="uid://qs03jac3jnfj"
 config/icon="res://icon.svg"
 
 [display]

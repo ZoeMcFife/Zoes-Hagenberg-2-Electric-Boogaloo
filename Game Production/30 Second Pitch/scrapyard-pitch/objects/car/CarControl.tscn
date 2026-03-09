@@ -39,6 +39,9 @@ ground_ray_cast = NodePath("ShapeCast3D")
 
 [node name="Car" parent="." unique_id=692323571 instance=ExtResource("1_tclw8")]
 
+[node name="Furry1" parent="Car" index="8" unique_id=910024799]
+visible = false
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=218985444]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41445136, -0.9302744)
 shape = SubResource("BoxShape3D_tclw8")
@@ -85,3 +88,6 @@ stream = ExtResource("3_ucx2h")
 
 [node name="Camera3D2" type="Camera3D" parent="." unique_id=1440264418]
 transform = Transform3D(0.8008568, -0.16258387, 0.57636344, -1.4901161e-08, 0.962441, 0.27149084, -0.59885585, -0.2174253, 0.77077746, 4.0754995, 2.4969664, 4.0082245)
+
+[editable path="Car"]
+[editable path="Car/car"]
