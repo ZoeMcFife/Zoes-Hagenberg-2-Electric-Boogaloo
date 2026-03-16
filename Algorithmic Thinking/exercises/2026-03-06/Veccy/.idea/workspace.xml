@@ -5,41 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="386762d3-0da1-4c4f-9ca5-d50b2b6e5f89" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/junit_jupiter.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Veccy.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/geometry/Circle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/geometry/Ellipse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/geometry/Line.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/geometry/Point.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/geometry/Polygon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/geometry/Rectangle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/geometry/Shape.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/geometry/Star.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/geometry/Triangle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/geometry/Vector2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/geometry/CircleTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/geometry/EllipseTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/geometry/LineTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/geometry/PointTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/geometry/RectangleTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/geometry/StarTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/geometry/TriangleTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/geometry/Vector2Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_S:/Github/Zoes-Hagenberg-2-Electric-Boogaloo/Algorithmic Thinking/exercises/2026-03-06/Veccy" value="3AcHKzshCCKyKfk059Gd2x4Jg98" />
+    </persistenceIdMap>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -51,15 +27,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
   </component>
-  <component name="JavaAutoRunManager">
-    <enabled-run-configurations>
-      <run-configuration type="JUnit" name="Vector2Test" />
-    </enabled-run-configurations>
-  </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -68,36 +39,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.CircleTest.testAreaAndPerimeter.executor": "Run",
-    "JUnit.CircleTest.testPerimeterWithZeroRadius.executor": "Run",
-    "JUnit.EllipseTest.executor": "Run",
-    "JUnit.EllipseTest.testPerimeter.executor": "Run",
-    "JUnit.LineTest.executor": "Run",
-    "JUnit.PointTest.executor": "Run",
-    "JUnit.RectangleTest.executor": "Run",
-    "JUnit.TriangleTest.executor": "Run",
-    "JUnit.Vector2Test.executor": "Run",
-    "JUnit.test.geometry in Veccy.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "16-algorithmic-thinking-1---exercise-3---javafx-drawing-composition",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "R:/GitHub/Zoes-Hagenberg-2-Electric-Boogaloo/Algorithmic Thinking/exercises/2026-03-06/Veccy",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.CircleTest.testAreaAndPerimeter.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CircleTest.testPerimeterWithZeroRadius.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EllipseTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EllipseTest.testPerimeter.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LineTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RectangleTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TriangleTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.Vector2Test.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.test.geometry in Veccy.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;R:/GitHub/Zoes-Hagenberg-2-Electric-Boogaloo/Algorithmic Thinking/exercises/2026-03-06/Veccy&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="JUnit.test.geometry in Veccy">
     <configuration name="CircleTest.testAreaAndPerimeter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Veccy" />
@@ -189,7 +162,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.31033.145" />
       </set>
     </attachedChunks>
   </component>
@@ -201,10 +175,21 @@
       <option name="presentableId" value="Default" />
       <updated>1772884878782</updated>
       <workItem from="1772890300760" duration="694000" />
+      <workItem from="1773318432118" duration="33000" />
+      <workItem from="1773318644349" duration="37000" />
+      <workItem from="1773319081400" duration="33000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>
