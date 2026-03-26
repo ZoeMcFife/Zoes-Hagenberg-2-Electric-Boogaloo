@@ -1,7 +1,7 @@
 package geometry;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import math.Vector2;
 
 public class Star extends Polygon
 {
@@ -28,13 +28,13 @@ public class Star extends Polygon
     }
 
     @Override
-    public double area()
+    public double getArea()
     {
         return getNumPoints() * getInnerRadius() * getOuterRadius() * Math.sin(Math.PI / getNumPoints());
     }
 
     @Override
-    public double perimeter()
+    public double getPerimeter()
     {
         return 2 * getNumPoints() * getEdgeLength();
     }
@@ -114,7 +114,7 @@ public class Star extends Polygon
     }
 
     @Override
-    public void draw(GraphicsContext gc, Color color)
+    public void draw(GraphicsContext gc)
     {
         double angleStep = 2 * Math.PI / getNumPoints();
         double[] xPoints = new double[getNumPoints() * 2];

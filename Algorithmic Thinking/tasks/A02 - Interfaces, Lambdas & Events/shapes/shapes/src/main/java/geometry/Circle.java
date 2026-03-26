@@ -1,7 +1,7 @@
 package geometry;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import math.Vector2;
 
 public class Circle extends Polygon
 {
@@ -30,13 +30,13 @@ public class Circle extends Polygon
     }
 
     @Override
-    public double area()
+    public double getArea()
     {
         return Math.PI * radius * radius;
     }
 
     @Override
-    public double perimeter()
+    public double getPerimeter()
     {
         return 2 * Math.PI * radius;
     }
@@ -73,7 +73,7 @@ public class Circle extends Polygon
     }
 
     @Override
-    public void draw(GraphicsContext gc, Color color)
+    public void draw(GraphicsContext gc)
     {
         gc.setFill(color);
         gc.fillOval(getPosition().x - radius, getPosition().y - radius, radius * 2, radius * 2);

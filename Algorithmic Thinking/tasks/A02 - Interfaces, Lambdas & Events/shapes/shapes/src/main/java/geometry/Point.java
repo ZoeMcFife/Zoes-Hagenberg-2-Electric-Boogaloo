@@ -1,7 +1,7 @@
 package geometry;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import math.Vector2;
 
 public class Point extends Polygon
 {
@@ -16,13 +16,13 @@ public class Point extends Polygon
     }
 
     @Override
-    public double area()
+    public double getArea()
     {
         return 0; // A point has no area
     }
 
     @Override
-    public double perimeter()
+    public double getPerimeter()
     {
         return 0; // A point has no perimeter
     }
@@ -44,11 +44,12 @@ public class Point extends Polygon
     }
 
     @Override
-    public void draw(GraphicsContext gc, Color color)
+    public void draw(GraphicsContext gc)
     {
+        super.draw(gc);
+
         double radius = 2.5;
 
-        gc.setFill(color);
         gc.fillOval(getPosition().x - radius / 2, getPosition().y - radius / 2, radius, radius);
     }
 }

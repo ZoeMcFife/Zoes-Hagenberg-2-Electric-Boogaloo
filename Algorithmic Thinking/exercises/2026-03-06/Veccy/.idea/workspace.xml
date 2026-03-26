@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="386762d3-0da1-4c4f-9ca5-d50b2b6e5f89" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="386762d3-0da1-4c4f-9ca5-d50b2b6e5f89" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,38 +37,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.CircleTest.testAreaAndPerimeter.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CircleTest.testPerimeterWithZeroRadius.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EllipseTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EllipseTest.testPerimeter.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LineTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PointTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RectangleTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TriangleTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.Vector2Test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.test.geometry in Veccy.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;R:/GitHub/Zoes-Hagenberg-2-Electric-Boogaloo/Algorithmic Thinking/exercises/2026-03-06/Veccy&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.CircleTest.testAreaAndPerimeter.executor": "Run",
+    "JUnit.CircleTest.testPerimeterWithZeroRadius.executor": "Run",
+    "JUnit.EllipseTest.executor": "Run",
+    "JUnit.EllipseTest.testPerimeter.executor": "Run",
+    "JUnit.LineTest.executor": "Run",
+    "JUnit.PointTest.executor": "Run",
+    "JUnit.RectangleTest.executor": "Run",
+    "JUnit.TriangleTest.executor": "Run",
+    "JUnit.Vector2Test.executor": "Run",
+    "JUnit.test.geometry in Veccy.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/starjumper/Github/Zoes-Hagenberg-2-Electric-Boogaloo/Algorithmic Thinking/tasks/A02 - Interfaces, Lambdas & Events/shapes/shapes",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="JUnit.test.geometry in Veccy">
     <configuration name="CircleTest.testAreaAndPerimeter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Veccy" />
@@ -162,8 +160,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.31033.145" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.32098.37" />
       </set>
     </attachedChunks>
   </component>
@@ -178,6 +176,7 @@
       <workItem from="1773318432118" duration="33000" />
       <workItem from="1773318644349" duration="37000" />
       <workItem from="1773319081400" duration="33000" />
+      <workItem from="1774537345421" duration="17000" />
     </task>
     <servers />
   </component>

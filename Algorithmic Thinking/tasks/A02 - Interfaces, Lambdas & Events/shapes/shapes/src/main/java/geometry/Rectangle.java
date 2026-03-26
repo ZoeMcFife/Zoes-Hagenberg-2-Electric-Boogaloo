@@ -1,7 +1,8 @@
 package geometry;
 
+import geometry.interfaces.Shape;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import math.Vector2;
 
 public class Rectangle extends Polygon implements Shape
 {
@@ -22,19 +23,24 @@ public class Rectangle extends Polygon implements Shape
         setHeight(height);
     }
 
+    public Rectangle(double minX, double minY, double width, double height)
+    {
+
+    }
+
     public double getDiagonalLength()
     {
         return Math.sqrt(getWidth() * getWidth() + getHeight() * getHeight());
     }
 
     @Override
-    public double area()
+    public double getArea()
     {
         return getWidth() * getHeight();
     }
 
     @Override
-    public double perimeter()
+    public double getPerimeter()
     {
         return 2 * (getWidth() + getHeight());
     }
@@ -88,9 +94,10 @@ public class Rectangle extends Polygon implements Shape
     }
 
     @Override
-    public void draw(GraphicsContext gc, Color color)
+    public void draw(GraphicsContext gc)
     {
-        gc.setFill(color);
+        super.draw(gc);
+
         gc.fillRect(getPosition().x - getWidth() / 2, getPosition().y - getHeight() / 2, getWidth(), getHeight());
     }
 }

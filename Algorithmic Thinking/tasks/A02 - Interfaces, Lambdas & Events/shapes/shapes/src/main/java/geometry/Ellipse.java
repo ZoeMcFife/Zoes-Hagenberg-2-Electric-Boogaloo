@@ -1,7 +1,7 @@
 package geometry;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import math.Vector2;
 
 public class Ellipse extends Polygon
 {
@@ -23,13 +23,13 @@ public class Ellipse extends Polygon
     }
 
     @Override
-    public double area()
+    public double getArea()
     {
         return Math.PI * semiMajorAxis * semiMinorAxis;
     }
 
     @Override
-    public double perimeter()
+    public double getPerimeter()
     {
         return Math.PI * (3 * (semiMajorAxis + semiMinorAxis) - Math.sqrt((3 * semiMajorAxis + semiMinorAxis) * (semiMajorAxis + 3 * semiMinorAxis)));
     }
@@ -83,7 +83,7 @@ public class Ellipse extends Polygon
     }
 
     @Override
-    public void draw(GraphicsContext gc, Color color)
+    public void draw(GraphicsContext gc)
     {
         gc.setFill(color);
         gc.fillOval(getPosition().x - semiMajorAxis, getPosition().y - semiMinorAxis, 2 * semiMajorAxis, 2 * semiMinorAxis);

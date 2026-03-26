@@ -1,4 +1,4 @@
-package geometry;
+package math;
 
 public class Vector2
 {
@@ -48,6 +48,28 @@ public class Vector2
     public double distanceTo(Vector2 other)
     {
         return this.subtract(other).magnitude();
+    }
+
+
+
+    public double getX()
+    {
+        return x;
+    }
+
+    public void setX(double x)
+    {
+        this.x = x;
+    }
+
+    public double getY()
+    {
+        return y;
+    }
+
+    public void setY(double y)
+    {
+        this.y = y;
     }
 
     @Override

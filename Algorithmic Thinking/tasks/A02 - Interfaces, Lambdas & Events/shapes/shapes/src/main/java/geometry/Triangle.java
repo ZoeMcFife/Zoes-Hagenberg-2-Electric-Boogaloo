@@ -1,7 +1,7 @@
 package geometry;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import math.Vector2;
 
 public class Triangle extends Polygon
 {
@@ -34,15 +34,15 @@ public class Triangle extends Polygon
     }
 
     @Override
-    public double area()
+    public double getArea()
     {
-        double s = perimeter() / 2;
+        double s = getPerimeter() / 2;
 
         return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
     @Override
-    public double perimeter()
+    public double getPerimeter()
     {
         return a + b + c;
     }
@@ -127,7 +127,7 @@ public class Triangle extends Polygon
     }
 
     @Override
-    public void draw(GraphicsContext gc, Color color)
+    public void draw(GraphicsContext gc)
     {
         gc.setFill(color);
         gc.fillPolygon(new double[]{getPosition().x, getPosition().x + a, getPosition().x + b * Math.cos(Math.toRadians(getAngleC()))},

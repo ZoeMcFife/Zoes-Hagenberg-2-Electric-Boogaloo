@@ -1,8 +1,19 @@
 package geometry;
 
-public abstract class Polygon implements Shape, Drawable
+import art.Drawable;
+import geometry.interfaces.Selectable;
+import geometry.interfaces.Shape;
+import geometry.interfaces.Transformable;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import math.Matrix3;
+import math.Vector2;
+import math.Vector3;
+
+public abstract class Polygon implements Shape, Drawable, Transformable, Selectable
 {
     private Vector2 position;
+    private Matrix3 transform;
 
     Polygon()
     {
@@ -24,6 +35,10 @@ public abstract class Polygon implements Shape, Drawable
         this.position = position;
     }
 
+    private Color fillColor = Color.PURPLE;
+    private Color strokeColor = Color.PURPLE;
+
+
     @Override
     public String toString()
     {
@@ -39,4 +54,103 @@ public abstract class Polygon implements Shape, Drawable
         Polygon other = (Polygon) obj;
         return getPosition().equals(other.getPosition());
     }
+
+    public double getX()
+    {
+        return position.getX();
+    }
+
+    public double getY()
+    {
+        return position.getY();
+    }
+
+    public Color getFillColor() {
+        return fillColor;
+    }
+
+    public void setFillColor(Color fillColor) {
+        this.fillColor = fillColor;
+    }
+
+    public Color getStrokeColor() {
+        return strokeColor;
+    }
+
+    public void setStrokeColor(Color strokeColor) {
+        this.strokeColor = strokeColor;
+    }
+
+    public void applyTransform(Matrix3 m)
+    {
+        this.transform = (this.transform == null) ? m :m.mult(this.transform);
+    }
+
+    protected Vector3[] transformed(Vector3[] points)
+    {
+        if (transform != null)
+        {
+            for (int i = 0; i < points.length; i++)
+            {
+                points[i] = transform.mult(points[i]);
+            }
+        }
+
+        return points;
+    }
+
+    public Rectangle getBoundingBox()
+    {
+        double[][] coords = getCoordinates();
+        double minX = coords[0][0], maxX = coords[0][0];
+        double minY = coords[1][0], maxY = coords[1][0];
+
+        for (int i = 1; i < coords[0].length; i++)
+        {
+            if (coords[0][i] < minX) minX = coords[0][i];
+            if (coords[0][i] > maxX) maxX = coords[0][i];
+            if (coords[1][i] < minY) minY = coords[1][i];
+            if (coords[1][i] > maxY) maxY = coords[1][i];
+        }
+        return new Rectangle(minX, minY, maxX - minX, maxY - minY);
+    }
+
+    // ========================================
+    // DRAW
+    // ========================================
+
+    // Draws a light-green bounding box if selected, then sets fill/stroke color.
+    // Subclasses call super.draw(gc) first, then draw their own geometry.
+    public void draw(GraphicsContext gc)
+    {
+        if (isSelected())
+        {
+            Rectangle bb = getBoundingBox();
+            gc.save();
+            gc.setStroke(Color.LIGHTGREEN);
+            gc.setLineWidth(2);
+            gc.strokeRect(bb.getX(), bb.getY(), bb.getWidth(), bb.getHeight());
+            bb.draw(gc);
+            gc.restore();
+        }
+        gc.setFill(fillColor);
+        gc.setStroke(strokeColor);
+    }
+
+    // ========================================
+    // HELPER
+    // ========================================
+
+    // Converts an array of Vector3 vertices to a double[2][n] coordinate array
+    static double[][] toCoordinates(Vector3[] transformed)
+    {
+        double[][] ret = new double[2][transformed.length];
+        for (int i = 0; i < transformed.length; i++)
+        {
+            ret[0][i] = transformed[i].getX();
+            ret[1][i] = transformed[i].getY();
+        }
+        return ret;
+    }
 }
+

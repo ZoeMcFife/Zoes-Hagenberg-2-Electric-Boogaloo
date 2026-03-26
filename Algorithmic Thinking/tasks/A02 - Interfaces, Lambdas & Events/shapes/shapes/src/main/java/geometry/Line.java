@@ -1,7 +1,7 @@
 package geometry;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import math.Vector2;
 
 public class Line extends Polygon
 {
@@ -27,13 +27,13 @@ public class Line extends Polygon
     }
 
     @Override
-    public double area()
+    public double getArea()
     {
         return 0;
     }
 
     @Override
-    public double perimeter()
+    public double getPerimeter()
     {
         return getLength();
     }
@@ -77,7 +77,7 @@ public class Line extends Polygon
     }
 
     @Override
-    public void draw(GraphicsContext gc, Color color)
+    public void draw(GraphicsContext gc)
     {
         gc.setStroke(color);
         gc.strokeLine(from.x, from.y, to.x, to.y);
