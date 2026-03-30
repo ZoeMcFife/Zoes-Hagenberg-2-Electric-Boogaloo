@@ -26,4 +26,34 @@ public class TransformerFactory
                         {0, 0, 1}
                 });
     }
+
+    public static Matrix3 createScaling(double fx, double fy)
+    {
+        return new Matrix3(new double[][]
+                {
+                        {fx, 0, 0},
+                        {0, fy, 0},
+                        {0, 0, 1}
+                });
+    }
+
+    public static Matrix3 createHorizontalMirroring()
+    {
+        return new Matrix3(new double[][]
+                {
+                        {1, 0, 0},
+                        {0, -1, 0},
+                        {0, 0, 1}
+                });
+    }
+
+    public static Matrix3 createVerticalMirroring()
+    {
+        return new Matrix3(new double[][]
+                {
+                        {-1, 0, 0},
+                        {0, 1, 0},
+                        {0, 0, 1}
+                });
+    }
 }
