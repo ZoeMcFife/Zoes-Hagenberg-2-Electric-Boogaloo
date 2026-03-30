@@ -181,7 +181,9 @@ public class Drawing {
         double dx = x - pressX;
         double dy = y - pressY;
         switch (mode) {
-            case CREATE_CIRCLE: {
+            case CREATE_CIRCLE:
+            {
+                IO.println("circle released at " + x + ", " + y);
                 double dist = Math.sqrt(dx * dx + dy * dy);
                 double radius = (dist < 5) ? 30 : dist;
                 addWithColors(new Circle(new Vector2(pressX, pressY), radius, currentFillColor));
@@ -195,7 +197,10 @@ public class Drawing {
                 addWithColors(new Rectangle(Math.min(pressX, x), Math.min(pressY, y), w, h, currentFillColor));
                 break;
             }
-            case CREATE_LINE: {
+            case CREATE_LINE:
+            {
+                IO.println("line released at " + x + ", " + y);
+
                 double len = Math.sqrt(dx * dx + dy * dy);
                 if (len < 5) {
                     addWithColors(new Line(new Vector2(pressX, pressY), new Vector2(pressX + 80, pressY), currentFillColor));

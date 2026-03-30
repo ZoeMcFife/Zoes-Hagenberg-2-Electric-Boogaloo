@@ -125,7 +125,9 @@ public class Rectangle extends Polygon implements Shape
 
         double[][] coords = getCoordinates();
 
-        gc.fillPolygon(coords[0], coords[1], coords.length);
-        gc.strokePolygon(coords[0], coords[1], coords.length);
+        IO.println("Coords: " + java.util.Arrays.deepToString(coords));
+
+        gc.fillPolygon(coords[0], coords[1], coords[0].length);
+        gc.strokePolygon(coords[0], coords[1], coords[0].length);
     }
 }

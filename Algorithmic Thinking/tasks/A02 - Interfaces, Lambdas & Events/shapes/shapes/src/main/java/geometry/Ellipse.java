@@ -53,10 +53,9 @@ public class Ellipse extends Polygon
 
         for (int i = 0; i < vertexCount; i++)
         {
-            double angle = Math.PI / vertexCount * i - Math.PI / 2;
-            double radius = i % 2 == 0 ? semiMajorAxis : semiMinorAxis;
-            double x = getPosition().x + radius * Math.cos(angle);
-            double y = getPosition().y + radius * Math.sin(angle);
+            double angle = 2 * Math.PI * i / vertexCount;
+            double x = getPosition().x + semiMajorAxis * Math.cos(angle);
+            double y = getPosition().y + semiMinorAxis * Math.sin(angle);
 
             vertices[i] = new Vector3(x, y);
         }
@@ -119,6 +118,7 @@ public class Ellipse extends Polygon
 
         double[][] coords = getCoordinates();
 
-        gc.fillPolygon(coords[0], coords[1], coords.length);
-        gc.strokePolygon(coords[0], coords[1], coords.length);    }
+        gc.fillPolygon(coords[0], coords[1], coords[0].length);
+        gc.strokePolygon(coords[0], coords[1], coords[0].length);
+    }
 }

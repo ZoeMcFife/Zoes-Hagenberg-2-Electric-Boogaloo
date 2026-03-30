@@ -107,7 +107,7 @@ public class Circle extends Polygon
 
         double[][] coords = getCoordinates();
 
-        gc.fillPolygon(coords[0], coords[1], coords.length);
-        gc.strokePolygon(coords[0], coords[1], coords.length);
+        gc.fillPolygon(coords[0], coords[1], coords[0].length);
+        gc.strokePolygon(coords[0], coords[1], coords[0].length);
     }
 }

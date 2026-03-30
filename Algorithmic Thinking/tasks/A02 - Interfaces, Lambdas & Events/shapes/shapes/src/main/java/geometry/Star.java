@@ -55,19 +55,33 @@ public class Star extends Polygon
     @Override
     public double[][] getCoordinates()
     {
-        Vector3[] vertices = new Vector3[numPoints];
+        Vector3[] vertices = new Vector3[getNumPoints() * 2];
 
-        for (int i = 0; i < numPoints; i++)
+        double angleStep = 2 * Math.PI / getNumPoints();
+        double[] xPoints = new double[getNumPoints() * 2];
+        double[] yPoints = new double[getNumPoints() * 2];
+
+        for (int i = 0; i < getNumPoints(); i++)
         {
-            double angle = Math.PI / numPoints * i - Math.PI / 2;
-            double radius = i % 2 == 0 ? getOuterRadius() : getInnerRadius();
-            double x = getPosition().x + radius * Math.cos(angle);
-            double y = getPosition().y + radius * Math.sin(angle);
-            vertices[i] = new Vector3(x, y);
+            double angle = i * angleStep;
+
+            xPoints[i * 2] = getPosition().x + getOuterRadius() * Math.cos(angle);
+            yPoints[i * 2] = getPosition().y + getOuterRadius() * Math.sin(angle);
+            xPoints[i * 2 + 1] = getPosition().x + getInnerRadius() * Math.cos(angle + angleStep / 2);
+            yPoints[i * 2 + 1] = getPosition().y + getInnerRadius() * Math.sin(angle + angleStep / 2);
+        }
+
+        // convert to vertices array
+
+        for (int i = 0; i < getNumPoints() * 2; i++)
+        {
+            vertices[i] = new Vector3(xPoints[i], yPoints[i]);
         }
 
         return toCoordinates(transformed(vertices));
     }
+
+
 
     private double getEdgeLength()
     {
@@ -150,7 +164,7 @@ public class Star extends Polygon
 
         double[][] coords = getCoordinates();
 
-        gc.fillPolygon(coords[0], coords[1], coords.length);
-        gc.strokePolygon(coords[0], coords[1], coords.length);
+        gc.fillPolygon(coords[0], coords[1], coords[0].length);
+        gc.strokePolygon(coords[0], coords[1], coords[0].length);
     }
 }

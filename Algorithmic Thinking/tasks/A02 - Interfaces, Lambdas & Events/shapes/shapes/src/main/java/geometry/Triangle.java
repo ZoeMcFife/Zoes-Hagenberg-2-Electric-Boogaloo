@@ -170,8 +170,8 @@ public class Triangle extends Polygon
         super.draw(gc);
         double[][] coords = getCoordinates();
 
-        gc.fillPolygon(coords[0], coords[1], coords.length);
-        gc.strokePolygon(coords[0], coords[1], coords.length);
+        gc.fillPolygon(coords[0], coords[1], coords[0].length);
+        gc.strokePolygon(coords[0], coords[1], coords[0].length);
 
     }
 }
