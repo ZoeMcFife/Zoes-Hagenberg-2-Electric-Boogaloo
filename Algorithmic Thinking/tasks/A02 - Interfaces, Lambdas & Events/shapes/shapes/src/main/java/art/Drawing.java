@@ -250,8 +250,10 @@ public class Drawing {
         {
             Rectangle bb = polygons[i].getBoundingBox();
 
-            boolean isXInBounds = x >= bb.getX() - bb.getWidth() / 2 && x <= bb.getX() + bb.getWidth() / 2;
-            boolean isYInBounds = y >= bb.getY() - bb.getHeight() / 2 && y <= bb.getY() + bb.getHeight() / 2;
+            double padding = 15; // allow some leniency for clicking near the edge of a shape, especially straight lines!!!!!!!
+
+            boolean isXInBounds = x + padding >= bb.getX() - bb.getWidth() / 2 && x - padding <= bb.getX() + bb.getWidth() / 2;
+            boolean isYInBounds = y + padding >= bb.getY() - bb.getHeight() / 2 && y - padding <= bb.getY() + bb.getHeight() / 2;
 
             if (isXInBounds && isYInBounds)
             {
@@ -373,7 +375,7 @@ public class Drawing {
         if (mode == DrawingMode.CREATE_TRIANGLE && triangleStep > 0) {
             gc.save();
             gc.setGlobalAlpha(0.90);
-            gc.setFill(Color.WHITE);
+            gc.setFill(Color.DARKGRAY);
             gc.setLineDashes(0);
             for (int i = 0; i < triangleStep; i++) {
                 double px = triangleBuffer[i].getX(), py = triangleBuffer[i].getY();
@@ -391,7 +393,7 @@ public class Drawing {
         gc.save();
         gc.setLineDashes(6, 4);
         gc.setFill(currentFillColor);
-        gc.setStroke(Color.WHITE);
+        gc.setStroke(Color.DARKGRAY);
 
         if (n == 2) {
             // Line: stroke only
