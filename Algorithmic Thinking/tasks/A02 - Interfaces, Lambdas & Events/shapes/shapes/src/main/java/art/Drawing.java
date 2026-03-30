@@ -401,7 +401,7 @@ public class Drawing {
                 if (triangleStep == 0) return null;
                 if (triangleStep == 1)
                     return new Line(triangleBuffer[0].getX(), triangleBuffer[0].getY(), cursorX, cursorY, currentFillColor);
-                return new Triangle(triangleBuffer[0], triangleBuffer[1], new Point(cursorX, cursorY), currentFillColor);
+                return new Triangle(triangleBuffer[0], triangleBuffer[1], new Vector2(cursorX, cursorY), currentFillColor);
             }
             default: return null;
         }

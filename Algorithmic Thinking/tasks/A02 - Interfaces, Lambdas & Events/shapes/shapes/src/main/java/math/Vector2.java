@@ -82,6 +82,18 @@ public class Vector2
         return (Math.abs(this.x - vector2.x) < 1e-9) && (Math.abs(this.y - vector2.y) < 1e-9);
     }
 
+    public Vector3 toVector3()
+    {
+        return new Vector3(this.x, this.y);
+    }
+
+    public static Vector3 toVector3(Vector2 vector2)
+    {
+        return new Vector3(vector2.x, vector2.y);
+    }
+
+    public double[]
+
     @Override
     public String toString()
     {
