@@ -129,7 +129,7 @@ public class Triangle extends Polygon
     @Override
     public void draw(GraphicsContext gc)
     {
-        gc.setFill(color);
+        super.draw(gc);
         gc.fillPolygon(new double[]{getPosition().x, getPosition().x + a, getPosition().x + b * Math.cos(Math.toRadians(getAngleC()))},
                        new double[]{getPosition().y, getPosition().y, getPosition().y + b * Math.sin(Math.toRadians(getAngleC()))},
                        3);
