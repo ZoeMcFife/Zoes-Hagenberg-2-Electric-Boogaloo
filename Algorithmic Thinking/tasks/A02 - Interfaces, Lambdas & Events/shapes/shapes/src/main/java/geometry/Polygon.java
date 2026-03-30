@@ -167,6 +167,7 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
             if (coords[1][i] < minY) minY = coords[1][i];
             if (coords[1][i] > maxY) maxY = coords[1][i];
         }
+
         return new Rectangle(minX, minY, maxX - minX, maxY - minY);
     }
 

@@ -282,8 +282,8 @@ public class Drawing {
         Polygon p = polygons[selectedIndex];
         Rectangle bb = p.getBoundingBox();
 
-        double cx = bb.getX() + bb.getWidth() / 2;
-        double cy = bb.getY() + bb.getHeight() / 2;
+        double cx = bb.getX();
+        double cy = bb.getY();
         Matrix3 toOrigin = TransformFactory.createTranslation(-cx, -cy);
         Matrix3 rotate =  TransformFactory.createRotation(radians);
         Matrix3 toBack = TransformFactory.createTranslation(cx, cy);
@@ -299,8 +299,8 @@ public class Drawing {
         Polygon p = polygons[selectedIndex];
         Rectangle bb = p.getBoundingBox();
 
-        double cx = bb.getX() + bb.getWidth() / 2;
-        double cy = bb.getY() + bb.getHeight() / 2;
+        double cx = bb.getX();
+        double cy = bb.getY();
         Matrix3 toOrigin = TransformFactory.createTranslation(-cx, -cy);
         Matrix3 scaling =  TransformFactory.createScaling(fx, fy);
         Matrix3 toBack = TransformFactory.createTranslation(cx, cy);
@@ -318,8 +318,8 @@ public class Drawing {
         Polygon p = polygons[selectedIndex];
         Rectangle bb = p.getBoundingBox();
 
-        double cx = bb.getX() + bb.getWidth() / 2;
-        double cy = bb.getY() + bb.getHeight() / 2;
+        double cx = bb.getX();
+        double cy = bb.getY();
         Matrix3 toOrigin = TransformFactory.createTranslation(-cx, -cy);
         Matrix3 mirror =  TransformFactory.createHorizontalMirroring();
         Matrix3 toBack = TransformFactory.createTranslation(cx, cy);
