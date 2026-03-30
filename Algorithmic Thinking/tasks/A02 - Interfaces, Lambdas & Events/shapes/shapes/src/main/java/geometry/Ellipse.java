@@ -1,6 +1,7 @@
 package geometry;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import math.Vector2;
 
 public class Ellipse extends Polygon
@@ -20,6 +21,14 @@ public class Ellipse extends Polygon
         super(position);
         setSemiMajorAxis(semiMajorAxis);
         setSemiMinorAxis(semiMinorAxis);
+    }
+
+    public Ellipse(Vector2 position, double semiMajorAxis, double semiMinorAxis, Color fillColor)
+    {
+        super(position);
+        setSemiMajorAxis(semiMajorAxis);
+        setSemiMinorAxis(semiMinorAxis);
+        setFillColor(fillColor);
     }
 
     @Override

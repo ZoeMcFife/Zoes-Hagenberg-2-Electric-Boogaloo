@@ -1,6 +1,7 @@
 package geometry;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import math.Vector2;
 
 public class Circle extends Polygon
@@ -17,6 +18,13 @@ public class Circle extends Polygon
     {
         super(position);
         setRadius(radius);
+    }
+
+    public Circle(Vector2 position, double radius, Color fillColor)
+    {
+        super(position);
+        setRadius(radius);
+        setFillColor(fillColor);
     }
 
     public Circle scale(double scale)

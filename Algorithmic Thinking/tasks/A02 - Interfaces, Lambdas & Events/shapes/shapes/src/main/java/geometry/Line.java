@@ -1,6 +1,7 @@
 package geometry;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import math.Vector2;
 
 public class Line extends Polygon
@@ -15,6 +16,17 @@ public class Line extends Polygon
         this.to = to;
         setPosition(getMidPoint());
     }
+
+
+    public Line(Vector2 from, Vector2 to, Color strokeColor)
+    {
+        super();
+        this.from = from;
+        this.to = to;
+        setPosition(getMidPoint());
+        setStrokeColor(strokeColor);
+    }
+
 
     public Vector2 getMidPoint()
     {
@@ -58,6 +70,18 @@ public class Line extends Polygon
     {
         this.from = from;
         this.setPosition(getMidPoint());
+    }
+
+    @Override
+    public void setFillColor(Color fillColor)
+    {
+        setStrokeColor(fillColor);
+    }
+
+    @Override
+    public Color getFillColor()
+    {
+        return getStrokeColor();
     }
 
     @Override

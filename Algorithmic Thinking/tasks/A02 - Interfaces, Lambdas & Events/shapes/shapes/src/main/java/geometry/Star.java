@@ -1,6 +1,7 @@
 package geometry;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import math.Vector2;
 
 public class Star extends Polygon
@@ -26,6 +27,17 @@ public class Star extends Polygon
         setOuterRadius(outerRadius);
         setNumPoints(numPoints);
     }
+
+    public Star(Vector2 position, double innerRadius, double outerRadius, int numPoints, Color fillColor)
+    {
+        super(position);
+
+        setInnerRadius(innerRadius);
+        setOuterRadius(outerRadius);
+        setNumPoints(numPoints);
+        setFillColor(fillColor);
+    }
+
 
     @Override
     public double getArea()

@@ -184,7 +184,7 @@ public class Drawing {
             case CREATE_CIRCLE: {
                 double dist = Math.sqrt(dx * dx + dy * dy);
                 double radius = (dist < 5) ? 30 : dist;
-                addWithColors(new Circle(pressX, pressY, radius, currentFillColor));
+                addWithColors(new Circle(new Vector2(pressX, pressY), radius, currentFillColor));
                 break;
             }
             case CREATE_RECTANGLE: {
@@ -198,9 +198,9 @@ public class Drawing {
             case CREATE_LINE: {
                 double len = Math.sqrt(dx * dx + dy * dy);
                 if (len < 5) {
-                    addWithColors(new Line(pressX, pressY, pressX + 80, pressY, currentFillColor));
+                    addWithColors(new Line(new Vector2(pressX, pressY), new Vector2(pressX + 80, pressY), currentFillColor));
                 } else {
-                    addWithColors(new Line(pressX, pressY, x, y, currentFillColor));
+                    addWithColors(new Line(new Vector2(pressX, pressY), new Vector2(x, y), currentFillColor));
                 }
                 break;
             }
@@ -209,13 +209,13 @@ public class Drawing {
                 double semiMinor = Math.abs(dy) / 2;
                 if (semiMajor < 5) semiMajor = 60;
                 if (semiMinor < 5) semiMinor = 35;
-                addWithColors(new Ellipse((pressX + x) / 2, (pressY + y) / 2, semiMajor, semiMinor, currentFillColor));
+                addWithColors(new Ellipse(new Vector2((pressX + x) / 2, (pressY + y) / 2), semiMajor, semiMinor, currentFillColor));
                 break;
             }
             case CREATE_STAR: {
                 double dist = Math.sqrt(dx * dx + dy * dy);
                 double outerR = (dist < 5) ? 45 : dist / 2;
-                addWithColors(new Star(pressX, pressY, 5, outerR, outerR * (20.0 / 45.0), currentFillColor));
+                addWithColors(new Star(new Vector2(pressX, pressY), outerR * (20.0 / 45.0), outerR, 5, currentFillColor));
                 break;
             }
         }
@@ -373,7 +373,7 @@ public class Drawing {
             case CREATE_CIRCLE: {
                 if (!mouseButtonPressed) return null;
                 double r = dist(pressX, pressY, cursorX, cursorY);
-                return new Circle(pressX, pressY, r < 5 ? 30 : r, currentFillColor);
+                return new Circle(new Vector2(pressX, pressY), r < 5 ? 30 : r, currentFillColor);
             }
             case CREATE_RECTANGLE: {
                 if (!mouseButtonPressed) return null;
@@ -383,24 +383,24 @@ public class Drawing {
             }
             case CREATE_LINE: {
                 if (!mouseButtonPressed) return null;
-                return new Line(pressX, pressY, cursorX, cursorY, currentFillColor);
+                return new Line(new Vector2(pressX, pressY), new Vector2(cursorX, cursorY), currentFillColor);
             }
             case CREATE_ELLIPSE: {
                 if (!mouseButtonPressed) return null;
                 double semiMajor = Math.max(Math.abs(cursorX - pressX) / 2, 5);
                 double semiMinor = Math.max(Math.abs(cursorY - pressY) / 2, 5);
-                return new Ellipse((pressX + cursorX) / 2, (pressY + cursorY) / 2, semiMajor, semiMinor, currentFillColor);
+                return new Ellipse(new Vector2( (pressX + cursorX) / 2, (pressY + cursorY) / 2), semiMajor, semiMinor, currentFillColor);
             }
             case CREATE_STAR: {
                 if (!mouseButtonPressed) return null;
                 double d = dist(pressX, pressY, cursorX, cursorY);
                 double outerR = d < 5 ? 45 : d / 2;
-                return new Star(pressX, pressY, 5, outerR, outerR * (20.0 / 45.0), currentFillColor);
+                return new Star(new Vector2(pressX, pressY), outerR * (20.0 / 45.0), outerR, 5, currentFillColor);
             }
             case CREATE_TRIANGLE: {
                 if (triangleStep == 0) return null;
                 if (triangleStep == 1)
-                    return new Line(triangleBuffer[0].getX(), triangleBuffer[0].getY(), cursorX, cursorY, currentFillColor);
+                    return new Line(new Vector2(triangleBuffer[0].getX(), triangleBuffer[0].getY()), new Vector2(cursorX, cursorY), currentFillColor);
                 return new Triangle(triangleBuffer[0], triangleBuffer[1], new Vector2(cursorX, cursorY), currentFillColor);
             }
             default: return null;

@@ -2,6 +2,7 @@ package geometry;
 
 import geometry.interfaces.Shape;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import math.Vector2;
 
 public class Rectangle extends Polygon implements Shape
@@ -23,9 +24,19 @@ public class Rectangle extends Polygon implements Shape
         setHeight(height);
     }
 
+    public Rectangle(double minX, double minY, double width, double height, Color fillColor)
+    {
+        super(new Vector2(minX + width / 2, minY + height / 2));
+        setWidth(width);
+        setHeight(height);
+        setFillColor(fillColor);
+    }
+
     public Rectangle(double minX, double minY, double width, double height)
     {
-
+        super(new Vector2(minX + width / 2, minY + height / 2));
+        setWidth(width);
+        setHeight(height);
     }
 
     public double getDiagonalLength()
