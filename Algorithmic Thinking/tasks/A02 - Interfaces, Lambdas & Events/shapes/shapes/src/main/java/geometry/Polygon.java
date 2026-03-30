@@ -211,5 +211,15 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
         }
         return ret;
     }
+
+    public void printCoordinates()
+    {
+        double[][] coords = getCoordinates();
+        System.out.println("Coordinates:");
+        for (int i = 0; i < coords[0].length; i++)
+        {
+            System.out.printf("  (%.2f, %.2f)\n", coords[0][i], coords[1][i]);
+        }
+    }
 }
 

@@ -50,9 +50,6 @@ public class Triangle extends Polygon
         setB(Math.abs(Math.sqrt(Math.pow(vertexC.x - vertexB.x, 2) + Math.pow(vertexC.y - vertexB.y, 2))));
         setC(Math.abs(Math.sqrt(Math.pow(vertexA.x - vertexC.x, 2) + Math.pow(vertexA.y - vertexC.y, 2))));
 
-        double angleCAB = Math.toDegrees(Math.acos((getA() * getA() + getC() * getC() - getB() * getB()) / (2 * getA() * getC())));
-        setAngleC(angleCAB);
-
         setFillColor(fillColor);
     }
 
@@ -92,9 +89,9 @@ public class Triangle extends Polygon
 
     private void setA(double a)
     {
-        if (a <= 0)
+        if (a < 0)
         {
-            //throw new IllegalArgumentException("Side a must be greater than 0.");
+            throw new IllegalArgumentException("Side a must be greater than 0.");
         }
 
         this.a = a;
@@ -107,9 +104,9 @@ public class Triangle extends Polygon
 
     private void setB(double b)
     {
-        if (b <= 0)
+        if (b < 0)
         {
-            //throw new IllegalArgumentException("Side b must be greater than 0.");
+            throw new IllegalArgumentException("Side b must be greater than 0.");
         }
 
         this.b = b;
@@ -122,9 +119,9 @@ public class Triangle extends Polygon
 
     private void setC(double c)
     {
-        if (c <= 0)
+        if (c < 0)
         {
-            //throw new IllegalArgumentException("Side c must be greater than 0.");
+            throw new IllegalArgumentException("Side c must be greater than 0.");
         }
 
         this.c = c;
@@ -132,9 +129,9 @@ public class Triangle extends Polygon
 
     private void setAngleC(double angleC)
     {
-        if (angleC <= 0 || angleC >= 180)
+        if (angleC < 0 || angleC > 180)
         {
-            //throw new IllegalArgumentException("Angle C must be between 0 and 180 degrees.");
+            throw new IllegalArgumentException("Angle C must be between 0 and 180 degrees.");
         }
 
         this.angleC = angleC;

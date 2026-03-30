@@ -8,6 +8,8 @@ import math.Matrix3;
 import math.TransformFactory;
 import math.Vector2;
 
+import java.util.Arrays;
+
 public class Drawing {
 
     // ========================================
@@ -244,18 +246,33 @@ public class Drawing {
 
         selectedIndex = -1;
 
+        IO.println("");
+        IO.println("click at " + x + ", " + y);
+
         for (int i = count - 1; i >= 0; i--)
         {
             Rectangle bb = polygons[i].getBoundingBox();
 
-            if (x >= bb.getX() / 2 && x <= bb.getX() + bb.getWidth() / 2
-                    && y >= bb.getY() / 2 && y <= bb.getY() + bb.getHeight() / 2)
+            boolean isXInBounds = x >= bb.getX() - bb.getWidth() / 2 && x <= bb.getX() + bb.getWidth() / 2;
+            boolean isYInBounds = y >= bb.getY() - bb.getHeight() / 2 && y <= bb.getY() + bb.getHeight() / 2;
+
+            IO.println("===============================");
+            IO.println("polygon at " + x + ", " + y + " has bounding box " + Arrays.deepToString(bb.getCoordinates()));
+            bb.printCoordinates();
+
+            IO.println("isXInBounds = " + isXInBounds);
+            IO.println("isYInBounds = " + isYInBounds);
+
+            IO.println("===============================");
+
+            if (isXInBounds && isYInBounds)
             {
                 polygons[i].setSelected(true);
                 selectedIndex = i;
                 break;
             }
         }
+
         redraw();
         if (onSelectionChanged != null) onSelectionChanged.run();
     }
@@ -270,7 +287,7 @@ public class Drawing {
                 double dx = x - lastDragX;
                 double dy = y - lastDragY;
                 polygons[selectedIndex].translate(dx, dy);
-                IO.println("drag at " + x + ", " + y);
+                //IO.println("drag at " + x + ", " + y);
                 wasDragging = true;
             }
             lastDragX = x;
