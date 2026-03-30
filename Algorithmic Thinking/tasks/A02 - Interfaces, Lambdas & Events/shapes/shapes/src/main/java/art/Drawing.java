@@ -5,7 +5,7 @@ import geometry.interfaces.Shape;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import math.Matrix3;
-import math.TransformerFactory;
+import math.TransformFactory;
 import math.Vector2;
 
 public class Drawing {
@@ -279,9 +279,9 @@ public class Drawing {
 
         double cx = bb.getX() + bb.getWidth() / 2;
         double cy = bb.getY() + bb.getHeight() / 2;
-        Matrix3 toOrigin = TransformerFactory.createTranslation(-cx, -cy);
-        Matrix3 rotate =  TransformerFactory.createRotation(radians);
-        Matrix3 toBack = TransformerFactory.createTranslation(cx, cy);
+        Matrix3 toOrigin = TransformFactory.createTranslation(-cx, -cy);
+        Matrix3 rotate =  TransformFactory.createRotation(radians);
+        Matrix3 toBack = TransformFactory.createTranslation(cx, cy);
 
         p.applyTransform(toBack.mult(rotate.mult(toOrigin)));
 

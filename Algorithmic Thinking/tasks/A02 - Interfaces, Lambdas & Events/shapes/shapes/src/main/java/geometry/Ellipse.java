@@ -3,6 +3,7 @@ package geometry;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import math.Vector2;
+import math.Vector3;
 
 public class Ellipse extends Polygon
 {
@@ -41,6 +42,26 @@ public class Ellipse extends Polygon
     public double getPerimeter()
     {
         return Math.PI * (3 * (semiMajorAxis + semiMinorAxis) - Math.sqrt((3 * semiMajorAxis + semiMinorAxis) * (semiMajorAxis + 3 * semiMinorAxis)));
+    }
+
+    @Override
+    public double[][] getCoordinates()
+    {
+        double vertexCount = 32;
+
+        Vector3[] vertices = new Vector3[(int) vertexCount];
+
+        for (int i = 0; i < vertexCount; i++)
+        {
+            double angle = Math.PI / vertexCount * i - Math.PI / 2;
+            double radius = i % 2 == 0 ? semiMajorAxis : semiMinorAxis;
+            double x = getPosition().x + radius * Math.cos(angle);
+            double y = getPosition().y + radius * Math.sin(angle);
+
+            vertices[i] = new Vector3(x, y);
+        }
+
+        return toCoordinates(transformed(vertices));
     }
 
     public double getSemiMajorAxis()
@@ -95,6 +116,9 @@ public class Ellipse extends Polygon
     public void draw(GraphicsContext gc)
     {
         super.draw(gc);
-        gc.fillOval(getPosition().x - semiMajorAxis, getPosition().y - semiMinorAxis, 2 * semiMajorAxis, 2 * semiMinorAxis);
-    }
+
+        double[][] coords = getCoordinates();
+
+        gc.fillPolygon(coords[0], coords[1], coords.length);
+        gc.strokePolygon(coords[0], coords[1], coords.length);    }
 }

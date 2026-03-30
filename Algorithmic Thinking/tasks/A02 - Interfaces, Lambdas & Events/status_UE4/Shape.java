@@ -1,103 +1,54 @@
-package geometry;
+package at.fhooe.ald.shapes;
 
-import art.Drawable;
-import geometry.interfaces.Selectable;
-import geometry.interfaces.Shape;
-import geometry.interfaces.Transformable;
+import at.fhooe.ald.math.Matrix3;
+import at.fhooe.ald.math.TransformFactory;
+import at.fhooe.ald.math.Vector3;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import math.Matrix3;
-import math.TransformFactory;
-import math.Vector2;
-import math.Vector3;
 
-public abstract class Polygon implements Shape, Drawable, Transformable, Selectable
-{
-    private Vector2 position;
-    private Matrix3 transform;
-    private boolean selected;
+public abstract class Shape implements Selectable, Transformable {
 
-    Polygon()
-    {
-       setPosition(Vector2.ZERO);
-    }
+    // ========================================
+    // FIELDS
+    // ========================================
 
-    Polygon(Vector2 position)
-    {
-        setPosition(position);
-    }
+    protected Vector3 position;
+    protected Matrix3 transform;
+    protected Color fillColor;
+    protected Color strokeColor;
 
-    public Vector2 getPosition()
-    {
-        return position;
-    }
+    private boolean selected = false;
 
-    public void setPosition(Vector2 position)
-    {
-        this.position = position;
-    }
+    // ========================================
+    // CONSTRUCTOR
+    // ========================================
 
-    private Color fillColor = Color.PURPLE;
-    private Color strokeColor = Color.PURPLE;
-
-
-    @Override
-    public String toString()
-    {
-        return String.format("%s at %s", getClass().getSimpleName(), getPosition());
-    }
-
-    @Override
-    public boolean equals(Object obj)
-    {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-
-        Polygon other = (Polygon) obj;
-        return getPosition().equals(other.getPosition());
-    }
-
-    public double getX()
-    {
-        return position.getX();
-    }
-
-    public double getY()
-    {
-        return position.getY();
-    }
-
-    public void setX(double x)
-    {
-        position.setX(x);
-    }
-
-    public void setY(double y)
-    {
-        position.setY(y);
-    }
-
-    public Color getFillColor() {
-        return fillColor;
-    }
-
-    public void setFillColor(Color fillColor) {
+    public Shape(double x, double y, Color fillColor) {
+        this.position = new Vector3(x, y);
         this.fillColor = fillColor;
+        this.strokeColor = fillColor;
     }
 
-    public Color getStrokeColor() {
-        return strokeColor;
+    // ========================================
+    // POSITION GETTERS / SETTERS
+    // ========================================
+
+    public double getX() {
+        return this.position.getX();
     }
 
-    public void setStrokeColor(Color strokeColor) {
-        this.strokeColor = strokeColor;
+    public double getY() {
+        return this.position.getY();
     }
 
-    public void applyTransform(Matrix3 m)
-    {
-        this.transform = (this.transform == null) ? m :m.mult(this.transform);
+    // Note: directly modifies the underlying array (position is mutable)
+    public void setX(double x) {
+        this.position.getValues()[0] = x;
     }
 
+    public void setY(double y) {
+        this.position.getValues()[1] = y;
+    }
 
     // Moves the shape by (dx, dy) in world (display) space.
     // If a transform matrix is active, we prepend a translation matrix so the
@@ -109,8 +60,8 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
         if (transform != null) {
             transform = TransformFactory.createTranslation(dx, dy).mult(transform);
         } else {
-            position.x += dx;
-            position.y += dy;
+            position.getValues()[0] += dx;
+            position.getValues()[1] += dy;
         }
     }
 
@@ -141,27 +92,45 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
         return this.transform;
     }
 
-    protected Vector3[] transformed(Vector3[] points)
-    {
-        if (transform != null)
-        {
-            for (int i = 0; i < points.length; i++)
-            {
-                points[i] = transform.mult(points[i]);
-            }
-        }
-
-        return points;
+    // Composes m with the current transform (or sets it if none exists yet).
+    public void applyTransform(Matrix3 m) {
+        this.transform = (this.transform == null) ? m : m.mult(this.transform);
     }
 
-    public Rectangle getBoundingBox()
-    {
+    // getCoordinates() is abstract -- each shape implements its own geometry
+    @Override
+    public abstract double[][] getCoordinates();
+
+    // ========================================
+    // COLOR SETTERS
+    // ========================================
+
+    public void setFillColor(Color c) {
+        this.fillColor = c;
+    }
+
+    public void setStrokeColor(Color c) {
+        this.strokeColor = c;
+    }
+
+    // ========================================
+    // ABSTRACT METHODS (geometry)
+    // ========================================
+
+    public abstract double getArea();
+
+    public abstract double getPerimeter();
+
+    // ========================================
+    // BOUNDING BOX
+    // ========================================
+
+    // Calculates the axis-aligned bounding box from getCoordinates()
+    public Rectangle getBoundingBox() {
         double[][] coords = getCoordinates();
         double minX = coords[0][0], maxX = coords[0][0];
         double minY = coords[1][0], maxY = coords[1][0];
-
-        for (int i = 1; i < coords[0].length; i++)
-        {
+        for (int i = 1; i < coords[0].length; i++) {
             if (coords[0][i] < minX) minX = coords[0][i];
             if (coords[0][i] > maxX) maxX = coords[0][i];
             if (coords[1][i] < minY) minY = coords[1][i];
@@ -176,16 +145,13 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
 
     // Draws a light-green bounding box if selected, then sets fill/stroke color.
     // Subclasses call super.draw(gc) first, then draw their own geometry.
-    public void draw(GraphicsContext gc)
-    {
-        if (isSelected())
-        {
+    public void draw(GraphicsContext gc) {
+        if (isSelected()) {
             Rectangle bb = getBoundingBox();
             gc.save();
             gc.setStroke(Color.LIGHTGREEN);
             gc.setLineWidth(2);
             gc.strokeRect(bb.getX(), bb.getY(), bb.getWidth(), bb.getHeight());
-            bb.draw(gc);
             gc.restore();
         }
         gc.setFill(fillColor);
@@ -197,15 +163,12 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
     // ========================================
 
     // Converts an array of Vector3 vertices to a double[2][n] coordinate array
-    static double[][] toCoordinates(Vector3[] transformed)
-    {
+    static double[][] toCoordinates(Vector3[] transformed) {
         double[][] ret = new double[2][transformed.length];
-        for (int i = 0; i < transformed.length; i++)
-        {
+        for (int i = 0; i < transformed.length; i++) {
             ret[0][i] = transformed[i].getX();
             ret[1][i] = transformed[i].getY();
         }
         return ret;
     }
 }
-

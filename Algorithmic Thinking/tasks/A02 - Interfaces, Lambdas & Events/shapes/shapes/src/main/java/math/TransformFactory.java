@@ -1,10 +1,8 @@
 package math;
 
-import javax.xml.transform.Transformer;
-
-public class TransformerFactory
+public class TransformFactory
 {
-    private static Matrix3 createTranslation(double dx, double dy)
+    public static Matrix3 createTranslation(double dx, double dy)
     {
         return new Matrix3(new double[][]
                 {

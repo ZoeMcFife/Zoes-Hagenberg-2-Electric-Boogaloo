@@ -3,6 +3,7 @@ package geometry;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import math.Vector2;
+import math.Vector3;
 
 public class Triangle extends Polygon
 {
@@ -10,6 +11,8 @@ public class Triangle extends Polygon
     private double b;
     private double c;
     private double angleC;
+
+    private Vector3[] originalVertices;
 
     public Triangle(double a, double b, double angleC)
     {
@@ -36,6 +39,10 @@ public class Triangle extends Polygon
 
     public Triangle(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Color fillColor)
     {
+        originalVertices = new Vector3[] {
+            vertexA.toVector3(), vertexB.toVector3(), vertexC.toVector3()
+        };
+
         super(new Vector2((vertexA.x + vertexB.x + vertexC.x) / 3, (vertexA.y + vertexB.y + vertexC.y) / 3));
 
         setA(Math.sqrt(Math.pow(vertexB.x - vertexA.x, 2) + Math.pow(vertexB.y - vertexA.y, 2)));
@@ -60,6 +67,21 @@ public class Triangle extends Polygon
     public double getPerimeter()
     {
         return a + b + c;
+    }
+
+    @Override
+    public double[][] getCoordinates()
+    {
+        if (originalVertices == null)
+        {
+            originalVertices = new Vector3[] {
+                new Vector3(getPosition().x, getPosition().y),
+                new Vector3(getPosition().x + a, getPosition().y),
+                new Vector3(getPosition().x + b * Math.cos(Math.toRadians(getAngleC())), getPosition().y + b * Math.sin(Math.toRadians(getAngleC())))
+            };
+        }
+
+        return toCoordinates(transformed(originalVertices));
     }
 
     public double getA()
@@ -145,9 +167,10 @@ public class Triangle extends Polygon
     public void draw(GraphicsContext gc)
     {
         super.draw(gc);
-        gc.fillPolygon(new double[]{getPosition().x, getPosition().x + a, getPosition().x + b * Math.cos(Math.toRadians(getAngleC()))},
-                       new double[]{getPosition().y, getPosition().y, getPosition().y + b * Math.sin(Math.toRadians(getAngleC()))},
-                       3);
+        double[][] coords = getCoordinates();
+
+        gc.fillPolygon(coords[0], coords[1], coords.length);
+        gc.strokePolygon(coords[0], coords[1], coords.length);
 
     }
 }

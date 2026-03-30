@@ -1,4 +1,5 @@
-module space.zoemcfife.shapes {
+module space.zoemcfife.shapes
+{
     requires javafx.controls;
     requires javafx.fxml;
 

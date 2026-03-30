@@ -3,6 +3,7 @@ package geometry;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import math.Vector2;
+import math.Vector3;
 
 public class Line extends Polygon
 {
@@ -48,6 +49,16 @@ public class Line extends Polygon
     public double getPerimeter()
     {
         return getLength();
+    }
+
+    @Override
+    public double[][] getCoordinates()
+    {
+        Vector3[] vertices = new Vector3[2];
+        vertices[0] = new Vector3(from.x, from.y);
+        vertices[1] = new Vector3(to.x, to.y);
+
+        return toCoordinates(transformed(vertices));
     }
 
     public Vector2 getTo()
@@ -104,6 +115,10 @@ public class Line extends Polygon
     public void draw(GraphicsContext gc)
     {
         super.draw(gc);
-        gc.strokeLine(from.x, from.y, to.x, to.y);
+
+        double[][] coords = getCoordinates();
+
+        gc.fillPolygon(coords[0], coords[1], coords.length);
+        gc.strokePolygon(coords[0], coords[1], coords.length);
     }
 }

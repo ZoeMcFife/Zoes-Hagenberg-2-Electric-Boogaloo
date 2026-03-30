@@ -3,6 +3,7 @@ package geometry;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import math.Vector2;
+import math.Vector3;
 
 public class Star extends Polygon
 {
@@ -49,6 +50,23 @@ public class Star extends Polygon
     public double getPerimeter()
     {
         return 2 * getNumPoints() * getEdgeLength();
+    }
+
+    @Override
+    public double[][] getCoordinates()
+    {
+        Vector3[] vertices = new Vector3[numPoints];
+
+        for (int i = 0; i < numPoints; i++)
+        {
+            double angle = Math.PI / numPoints * i - Math.PI / 2;
+            double radius = i % 2 == 0 ? getOuterRadius() : getInnerRadius();
+            double x = getPosition().x + radius * Math.cos(angle);
+            double y = getPosition().y + radius * Math.sin(angle);
+            vertices[i] = new Vector3(x, y);
+        }
+
+        return toCoordinates(transformed(vertices));
     }
 
     private double getEdgeLength()
@@ -128,20 +146,11 @@ public class Star extends Polygon
     @Override
     public void draw(GraphicsContext gc)
     {
-        double angleStep = 2 * Math.PI / getNumPoints();
-        double[] xPoints = new double[getNumPoints() * 2];
-        double[] yPoints = new double[getNumPoints() * 2];
-
-        for (int i = 0; i < getNumPoints(); i++)
-        {
-            double angle = i * angleStep;
-            xPoints[i * 2] = getPosition().x + getOuterRadius() * Math.cos(angle);
-            yPoints[i * 2] = getPosition().y + getOuterRadius() * Math.sin(angle);
-            xPoints[i * 2 + 1] = getPosition().x + getInnerRadius() * Math.cos(angle + angleStep / 2);
-            yPoints[i * 2 + 1] = getPosition().y + getInnerRadius() * Math.sin(angle + angleStep / 2);
-        }
-
         super.draw(gc);
-        gc.fillPolygon(xPoints, yPoints, getNumPoints() * 2);
+
+        double[][] coords = getCoordinates();
+
+        gc.fillPolygon(coords[0], coords[1], coords.length);
+        gc.strokePolygon(coords[0], coords[1], coords.length);
     }
 }
