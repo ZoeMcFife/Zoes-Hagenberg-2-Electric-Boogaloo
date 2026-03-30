@@ -75,7 +75,7 @@ public class Circle extends Polygon
     @Override
     public void draw(GraphicsContext gc)
     {
-        gc.setFill(color);
+        super.draw(gc);
         gc.fillOval(getPosition().x - radius, getPosition().y - radius, radius * 2, radius * 2);
     }
 }

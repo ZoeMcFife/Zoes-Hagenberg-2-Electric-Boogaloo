@@ -79,7 +79,7 @@ public class Line extends Polygon
     @Override
     public void draw(GraphicsContext gc)
     {
-        gc.setStroke(color);
+        super.draw(gc);
         gc.strokeLine(from.x, from.y, to.x, to.y);
     }
 }

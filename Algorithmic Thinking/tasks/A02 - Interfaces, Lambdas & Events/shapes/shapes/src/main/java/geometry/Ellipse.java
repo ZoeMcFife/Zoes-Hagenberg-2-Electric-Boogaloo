@@ -85,7 +85,7 @@ public class Ellipse extends Polygon
     @Override
     public void draw(GraphicsContext gc)
     {
-        gc.setFill(color);
+        super.draw(gc);
         gc.fillOval(getPosition().x - semiMajorAxis, getPosition().y - semiMinorAxis, 2 * semiMajorAxis, 2 * semiMinorAxis);
     }
 }

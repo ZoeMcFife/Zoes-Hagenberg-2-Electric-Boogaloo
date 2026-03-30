@@ -129,7 +129,7 @@ public class Star extends Polygon
             yPoints[i * 2 + 1] = getPosition().y + getInnerRadius() * Math.sin(angle + angleStep / 2);
         }
 
-        gc.setFill(color);
+        super.draw(gc);
         gc.fillPolygon(xPoints, yPoints, getNumPoints() * 2);
     }
 }
