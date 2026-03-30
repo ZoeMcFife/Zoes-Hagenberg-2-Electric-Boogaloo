@@ -77,7 +77,7 @@ public class Rectangle extends Polygon implements Shape
 
     private void setWidth(double width)
     {
-        if (width <= 0)
+        if (width < 0)
         {
             throw new IllegalArgumentException("Width must be positive.");
         }
@@ -92,7 +92,7 @@ public class Rectangle extends Polygon implements Shape
 
     private void setHeight(double height)
     {
-        if (height <= 0)
+        if (height < 0)
         {
             throw new IllegalArgumentException("Height must be positive.");
         }

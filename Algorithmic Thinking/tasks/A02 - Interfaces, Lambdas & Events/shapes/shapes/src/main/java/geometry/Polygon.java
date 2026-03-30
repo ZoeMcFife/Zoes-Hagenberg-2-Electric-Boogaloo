@@ -11,6 +11,8 @@ import math.TransformFactory;
 import math.Vector2;
 import math.Vector3;
 
+import java.util.Arrays;
+
 public abstract class Polygon implements Shape, Drawable, Transformable, Selectable
 {
     private Vector2 position;
@@ -37,8 +39,8 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
         this.position = position;
     }
 
-    private Color fillColor = Color.PURPLE;
-    private Color strokeColor = Color.PURPLE;
+    private Color fillColor = new Color(0.5, 0.5, 0.5, 0.2);
+    private Color strokeColor = Color.TRANSPARENT;
 
 
     @Override
@@ -157,6 +159,7 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
     public Rectangle getBoundingBox()
     {
         double[][] coords = getCoordinates();
+
         double minX = coords[0][0], maxX = coords[0][0];
         double minY = coords[1][0], maxY = coords[1][0];
 
@@ -185,7 +188,7 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
             gc.save();
             gc.setStroke(Color.LIGHTGREEN);
             gc.setLineWidth(2);
-            gc.strokeRect(bb.getX(), bb.getY(), bb.getWidth(), bb.getHeight());
+            gc.strokeRect(bb.getX() - bb.getWidth() / 2, bb.getY() - bb.getHeight() / 2, bb.getWidth(), bb.getHeight());
             bb.draw(gc);
             gc.restore();
         }

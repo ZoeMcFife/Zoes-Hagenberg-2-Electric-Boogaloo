@@ -183,7 +183,6 @@ public class Drawing {
         switch (mode) {
             case CREATE_CIRCLE:
             {
-                IO.println("circle released at " + x + ", " + y);
                 double dist = Math.sqrt(dx * dx + dy * dy);
                 double radius = (dist < 5) ? 30 : dist;
                 addWithColors(new Circle(new Vector2(pressX, pressY), radius, currentFillColor));
@@ -199,8 +198,6 @@ public class Drawing {
             }
             case CREATE_LINE:
             {
-                IO.println("line released at " + x + ", " + y);
-
                 double len = Math.sqrt(dx * dx + dy * dy);
                 if (len < 5) {
                     addWithColors(new Line(new Vector2(pressX, pressY), new Vector2(pressX + 80, pressY), currentFillColor));
@@ -230,20 +227,30 @@ public class Drawing {
 
     // Called when the user clicks on the canvas.
     // Only active in SELECT mode: finds the topmost shape and selects it.
-    public void handleClick(double x, double y) {
+    public void handleClick(double x, double y)
+    {
         if (mode != DrawingMode.SELECT) return;
-        if (wasDragging) {
+
+        if (wasDragging)
+        {
             wasDragging = false;
             return;
         }
-        for (int i = 0; i < count; i++) {
+
+        for (int i = 0; i < count; i++)
+        {
             polygons[i].setSelected(false);
         }
+
         selectedIndex = -1;
-        for (int i = count - 1; i >= 0; i--) {
+
+        for (int i = count - 1; i >= 0; i--)
+        {
             Rectangle bb = polygons[i].getBoundingBox();
-            if (x >= bb.getX() && x <= bb.getX() + bb.getWidth()
-                    && y >= bb.getY() && y <= bb.getY() + bb.getHeight()) {
+
+            if (x >= bb.getX() / 2 && x <= bb.getX() + bb.getWidth() / 2
+                    && y >= bb.getY() / 2 && y <= bb.getY() + bb.getHeight() / 2)
+            {
                 polygons[i].setSelected(true);
                 selectedIndex = i;
                 break;
@@ -263,6 +270,7 @@ public class Drawing {
                 double dx = x - lastDragX;
                 double dy = y - lastDragY;
                 polygons[selectedIndex].translate(dx, dy);
+                IO.println("drag at " + x + ", " + y);
                 wasDragging = true;
             }
             lastDragX = x;
