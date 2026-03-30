@@ -39,15 +39,16 @@ public class Triangle extends Polygon
 
     public Triangle(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Color fillColor)
     {
-        originalVertices = new Vector3[] {
+        originalVertices = new Vector3[]
+                {
             vertexA.toVector3(), vertexB.toVector3(), vertexC.toVector3()
         };
 
         super(new Vector2((vertexA.x + vertexB.x + vertexC.x) / 3, (vertexA.y + vertexB.y + vertexC.y) / 3));
 
-        setA(Math.sqrt(Math.pow(vertexB.x - vertexA.x, 2) + Math.pow(vertexB.y - vertexA.y, 2)));
-        setB(Math.sqrt(Math.pow(vertexC.x - vertexB.x, 2) + Math.pow(vertexC.y - vertexB.y, 2)));
-        setC(Math.sqrt(Math.pow(vertexA.x - vertexC.x, 2) + Math.pow(vertexA.y - vertexC.y, 2)));
+        setA(Math.abs(Math.sqrt(Math.pow(vertexB.x - vertexA.x, 2) + Math.pow(vertexB.y - vertexA.y, 2))));
+        setB(Math.abs(Math.sqrt(Math.pow(vertexC.x - vertexB.x, 2) + Math.pow(vertexC.y - vertexB.y, 2))));
+        setC(Math.abs(Math.sqrt(Math.pow(vertexA.x - vertexC.x, 2) + Math.pow(vertexA.y - vertexC.y, 2))));
 
         double angleCAB = Math.toDegrees(Math.acos((getA() * getA() + getC() * getC() - getB() * getB()) / (2 * getA() * getC())));
         setAngleC(angleCAB);
@@ -93,7 +94,7 @@ public class Triangle extends Polygon
     {
         if (a <= 0)
         {
-            throw new IllegalArgumentException("Side a must be greater than 0.");
+            //throw new IllegalArgumentException("Side a must be greater than 0.");
         }
 
         this.a = a;
@@ -108,7 +109,7 @@ public class Triangle extends Polygon
     {
         if (b <= 0)
         {
-            throw new IllegalArgumentException("Side b must be greater than 0.");
+            //throw new IllegalArgumentException("Side b must be greater than 0.");
         }
 
         this.b = b;
@@ -123,7 +124,7 @@ public class Triangle extends Polygon
     {
         if (c <= 0)
         {
-            throw new IllegalArgumentException("Side c must be greater than 0.");
+            //throw new IllegalArgumentException("Side c must be greater than 0.");
         }
 
         this.c = c;
@@ -133,7 +134,7 @@ public class Triangle extends Polygon
     {
         if (angleC <= 0 || angleC >= 180)
         {
-            throw new IllegalArgumentException("Angle C must be between 0 and 180 degrees.");
+            //throw new IllegalArgumentException("Angle C must be between 0 and 180 degrees.");
         }
 
         this.angleC = angleC;

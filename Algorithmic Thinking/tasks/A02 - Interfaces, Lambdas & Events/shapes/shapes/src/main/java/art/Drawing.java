@@ -290,12 +290,38 @@ public class Drawing {
 
     public void scaleSelected(double fx, double fy) {
         if (selectedIndex < 0) return;
-        // TODO
+
+        Polygon p = polygons[selectedIndex];
+        Rectangle bb = p.getBoundingBox();
+
+        double cx = bb.getX() + bb.getWidth() / 2;
+        double cy = bb.getY() + bb.getHeight() / 2;
+        Matrix3 toOrigin = TransformFactory.createTranslation(-cx, -cy);
+        Matrix3 scaling =  TransformFactory.createScaling(fx, fy);
+        Matrix3 toBack = TransformFactory.createTranslation(cx, cy);
+
+        p.applyTransform(toBack.mult(scaling.mult(toOrigin)));
+
+        redraw();
+
     }
 
-    public void mirrorSelectedHorizontal() {
+    public void mirrorSelectedHorizontal()
+    {
         if (selectedIndex < 0) return;
-        // TODO
+
+        Polygon p = polygons[selectedIndex];
+        Rectangle bb = p.getBoundingBox();
+
+        double cx = bb.getX() + bb.getWidth() / 2;
+        double cy = bb.getY() + bb.getHeight() / 2;
+        Matrix3 toOrigin = TransformFactory.createTranslation(-cx, -cy);
+        Matrix3 mirror =  TransformFactory.createHorizontalMirroring();
+        Matrix3 toBack = TransformFactory.createTranslation(cx, cy);
+
+        p.applyTransform(toBack.mult(mirror.mult(toOrigin)));
+
+        redraw();
     }
 
     public void deleteSelected() {
