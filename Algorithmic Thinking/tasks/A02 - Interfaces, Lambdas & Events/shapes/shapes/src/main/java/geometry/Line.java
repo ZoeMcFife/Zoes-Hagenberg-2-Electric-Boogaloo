@@ -7,36 +7,38 @@ import math.Vector3;
 
 public class Line extends Polygon
 {
-    private Vector2 to;
-    private Vector2 from;
+    private Vector2 toDelta;
+    private Vector2 fromDelta;
 
     public Line(Vector2 from, Vector2 to)
     {
         super();
-        this.from = from;
-        this.to = to;
-        setPosition(getMidPoint());
+
+        setPosition(getMidPoint(from, to));
+
+        this.fromDelta = getPosition().subtract(from);
+        this.toDelta = getPosition().subtract(to);
     }
 
 
     public Line(Vector2 from, Vector2 to, Color strokeColor)
     {
         super();
-        this.from = from;
-        this.to = to;
-        setPosition(getMidPoint());
+        setPosition(getMidPoint(from, to));
+        this.fromDelta = getPosition().subtract(from);
+        this.toDelta = getPosition().subtract(to);
         setStrokeColor(strokeColor);
     }
 
 
-    public Vector2 getMidPoint()
+    private Vector2 getMidPoint(Vector2 from, Vector2 to)
     {
         return new Vector2((from.x + to.x) / 2, (from.y + to.y) / 2);
     }
 
     public double getLength()
     {
-        return Math.sqrt(Math.pow(to.x - from.x, 2) + Math.pow(to.y - from.y, 2));
+        return Math.sqrt(Math.pow(toDelta.x - fromDelta.x, 2) + Math.pow(toDelta.y - fromDelta.y, 2));
     }
 
     @Override
@@ -55,33 +57,23 @@ public class Line extends Polygon
     public double[][] getCoordinates()
     {
         Vector3[] vertices = new Vector3[2];
-        vertices[0] = new Vector3(from.x, from.y);
-        vertices[1] = new Vector3(to.x, to.y);
+        vertices[0] = (getPosition().add(fromDelta)).toVector3();
+        vertices[1] = (getPosition().add(toDelta)).toVector3();
 
         return toCoordinates(transformed(vertices));
     }
 
-    public Vector2 getTo()
+    public Vector2 getToDelta()
     {
-        return to;
+        return toDelta;
     }
 
-    private void setTo(Vector2 to)
+
+    public Vector2 getFromDelta()
     {
-        this.to = to;
-        this.setPosition(getMidPoint());
+        return fromDelta;
     }
 
-    public Vector2 getFrom()
-    {
-        return from;
-    }
-
-    private void setFrom(Vector2 from)
-    {
-        this.from = from;
-        this.setPosition(getMidPoint());
-    }
 
     @Override
     public void setFillColor(Color fillColor)
@@ -102,13 +94,13 @@ public class Line extends Polygon
         if (obj == null || getClass() != obj.getClass()) return false;
 
         Line other = (Line) obj;
-        return this.from.equals(other.from) && this.to.equals(other.to);
+        return this.fromDelta.equals(other.fromDelta) && this.toDelta.equals(other.toDelta);
     }
 
     @Override
     public String toString()
     {
-        return "Line: From" + from + " to " + to;
+        return "Line: From" + fromDelta + " to " + toDelta;
     }
 
     @Override

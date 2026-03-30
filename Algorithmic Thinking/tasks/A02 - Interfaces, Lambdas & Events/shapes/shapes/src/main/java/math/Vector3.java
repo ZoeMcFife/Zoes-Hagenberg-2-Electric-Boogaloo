@@ -56,4 +56,11 @@ public class Vector3 {
         }
         return new Vector3(sumX / length, sumY / length);
     }
+
+    public double distanceTo(Vector3 other)
+    {
+        double dx = this.getX() - other.getX();
+        double dy = this.getY() - other.getY();
+        return Math.sqrt(dx * dx + dy * dy);
+    }
 }

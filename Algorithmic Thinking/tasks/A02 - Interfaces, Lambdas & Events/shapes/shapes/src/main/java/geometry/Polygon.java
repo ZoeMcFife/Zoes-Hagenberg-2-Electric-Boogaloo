@@ -187,8 +187,8 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
             Rectangle bb = getBoundingBox();
             gc.save();
             gc.setStroke(Color.LIGHTGREEN);
-            gc.setLineWidth(2);
-            gc.strokeRect(bb.getX() - bb.getWidth() / 2, bb.getY() - bb.getHeight() / 2, bb.getWidth(), bb.getHeight());
+            gc.setLineWidth(10);
+            gc.strokeRect(bb.getX() - bb.getWidth() / 2 + 0.1, bb.getY() - bb.getHeight() / 2 + 0.1, bb.getWidth() + 0.1, bb.getHeight() + 0.1);
             bb.draw(gc);
             gc.restore();
         }
