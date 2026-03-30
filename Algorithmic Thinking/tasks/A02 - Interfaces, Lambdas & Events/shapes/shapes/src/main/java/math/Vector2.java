@@ -92,8 +92,6 @@ public class Vector2
         return new Vector3(vector2.x, vector2.y);
     }
 
-    public double[]
-
     @Override
     public String toString()
     {

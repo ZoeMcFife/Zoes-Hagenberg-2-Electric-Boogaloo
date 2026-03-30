@@ -1,6 +1,7 @@
 package geometry;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import math.Vector2;
 
 public class Triangle extends Polygon
@@ -31,6 +32,20 @@ public class Triangle extends Polygon
         setAngleC(angleC);
 
         setC(Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(Math.toRadians(getAngleC()))));
+    }
+
+    public Triangle(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Color fillColor)
+    {
+        super(new Vector2((vertexA.x + vertexB.x + vertexC.x) / 3, (vertexA.y + vertexB.y + vertexC.y) / 3));
+
+        setA(Math.sqrt(Math.pow(vertexB.x - vertexA.x, 2) + Math.pow(vertexB.y - vertexA.y, 2)));
+        setB(Math.sqrt(Math.pow(vertexC.x - vertexB.x, 2) + Math.pow(vertexC.y - vertexB.y, 2)));
+        setC(Math.sqrt(Math.pow(vertexA.x - vertexC.x, 2) + Math.pow(vertexA.y - vertexC.y, 2)));
+
+        double angleCAB = Math.toDegrees(Math.acos((getA() * getA() + getC() * getC() - getB() * getB()) / (2 * getA() * getC())));
+        setAngleC(angleCAB);
+
+        setFillColor(fillColor);
     }
 
     @Override
