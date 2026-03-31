@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/06fa488f-8a16-4879-8a35-974d6d2ec5ea/console.sql" value="06fa488f-8a16-4879-8a35-974d6d2ec5ea" />
+    <file url="file://$PROJECT_DIR$/mmo_db.sql" value="06fa488f-8a16-4879-8a35-974d6d2ec5ea" />
+  </component>
+</project>
