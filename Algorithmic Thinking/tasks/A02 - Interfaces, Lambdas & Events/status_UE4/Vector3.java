@@ -1,11 +1,7 @@
-package math;
+package at.fhooe.ald.math;
 
 import java.util.Arrays;
 
-
-/**
- * From class, too lazy to write my own implementation agaiiin
- * */
 public class Vector3 {
     private double[] values;
 
@@ -55,12 +51,5 @@ public class Vector3 {
             sumY += vertices[i].getY();
         }
         return new Vector3(sumX / length, sumY / length);
-    }
-
-    public double distanceTo(Vector3 other)
-    {
-        double dx = this.getX() - other.getX();
-        double dy = this.getY() - other.getY();
-        return Math.sqrt(dx * dx + dy * dy);
     }
 }

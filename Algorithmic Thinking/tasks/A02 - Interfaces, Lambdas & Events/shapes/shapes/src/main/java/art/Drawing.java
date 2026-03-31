@@ -5,8 +5,10 @@ import geometry.interfaces.Shape;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import math.Matrix3;
-import math.TransformerFactory;
+import math.TransformFactory;
 import math.Vector2;
+
+import java.util.Arrays;
 
 public class Drawing {
 
@@ -181,10 +183,11 @@ public class Drawing {
         double dx = x - pressX;
         double dy = y - pressY;
         switch (mode) {
-            case CREATE_CIRCLE: {
+            case CREATE_CIRCLE:
+            {
                 double dist = Math.sqrt(dx * dx + dy * dy);
                 double radius = (dist < 5) ? 30 : dist;
-                addWithColors(new Circle(pressX, pressY, radius, currentFillColor));
+                addWithColors(new Circle(new Vector2(pressX, pressY), radius, currentFillColor));
                 break;
             }
             case CREATE_RECTANGLE: {
@@ -195,12 +198,13 @@ public class Drawing {
                 addWithColors(new Rectangle(Math.min(pressX, x), Math.min(pressY, y), w, h, currentFillColor));
                 break;
             }
-            case CREATE_LINE: {
+            case CREATE_LINE:
+            {
                 double len = Math.sqrt(dx * dx + dy * dy);
                 if (len < 5) {
-                    addWithColors(new Line(pressX, pressY, pressX + 80, pressY, currentFillColor));
+                    addWithColors(new Line(new Vector2(pressX, pressY), new Vector2(pressX + 80, pressY), currentFillColor));
                 } else {
-                    addWithColors(new Line(pressX, pressY, x, y, currentFillColor));
+                    addWithColors(new Line(new Vector2(pressX, pressY), new Vector2(x, y), currentFillColor));
                 }
                 break;
             }
@@ -209,13 +213,13 @@ public class Drawing {
                 double semiMinor = Math.abs(dy) / 2;
                 if (semiMajor < 5) semiMajor = 60;
                 if (semiMinor < 5) semiMinor = 35;
-                addWithColors(new Ellipse((pressX + x) / 2, (pressY + y) / 2, semiMajor, semiMinor, currentFillColor));
+                addWithColors(new Ellipse(new Vector2((pressX + x) / 2, (pressY + y) / 2), semiMajor, semiMinor, currentFillColor));
                 break;
             }
             case CREATE_STAR: {
                 double dist = Math.sqrt(dx * dx + dy * dy);
                 double outerR = (dist < 5) ? 45 : dist / 2;
-                addWithColors(new Star(pressX, pressY, 5, outerR, outerR * (20.0 / 45.0), currentFillColor));
+                addWithColors(new Star(new Vector2(pressX, pressY), outerR * (20.0 / 45.0), outerR, 5, currentFillColor));
                 break;
             }
         }
@@ -225,25 +229,40 @@ public class Drawing {
 
     // Called when the user clicks on the canvas.
     // Only active in SELECT mode: finds the topmost shape and selects it.
-    public void handleClick(double x, double y) {
+    public void handleClick(double x, double y)
+    {
         if (mode != DrawingMode.SELECT) return;
-        if (wasDragging) {
+
+        if (wasDragging)
+        {
             wasDragging = false;
             return;
         }
-        for (int i = 0; i < count; i++) {
+
+        for (int i = 0; i < count; i++)
+        {
             polygons[i].setSelected(false);
         }
+
         selectedIndex = -1;
-        for (int i = count - 1; i >= 0; i--) {
+
+        for (int i = count - 1; i >= 0; i--)
+        {
             Rectangle bb = polygons[i].getBoundingBox();
-            if (x >= bb.getX() && x <= bb.getX() + bb.getWidth()
-                    && y >= bb.getY() && y <= bb.getY() + bb.getHeight()) {
+
+            double padding = 15; // allow some leniency for clicking near the edge of a shape, especially straight lines!!!!!!!
+
+            boolean isXInBounds = x + padding >= bb.getX() - bb.getWidth() / 2 && x - padding <= bb.getX() + bb.getWidth() / 2;
+            boolean isYInBounds = y + padding >= bb.getY() - bb.getHeight() / 2 && y - padding <= bb.getY() + bb.getHeight() / 2;
+
+            if (isXInBounds && isYInBounds)
+            {
                 polygons[i].setSelected(true);
                 selectedIndex = i;
                 break;
             }
         }
+
         redraw();
         if (onSelectionChanged != null) onSelectionChanged.run();
     }
@@ -272,16 +291,15 @@ public class Drawing {
 
     public void rotateSelected(double radians) {
         if (selectedIndex < 0) return;
-        // TODO
 
         Polygon p = polygons[selectedIndex];
         Rectangle bb = p.getBoundingBox();
 
-        double cx = bb.getX() + bb.getWidth() / 2;
-        double cy = bb.getY() + bb.getHeight() / 2;
-        Matrix3 toOrigin = TransformerFactory.createTranslation(-cx, -cy);
-        Matrix3 rotate =  TransformerFactory.createRotation(radians);
-        Matrix3 toBack = TransformerFactory.createTranslation(cx, cy);
+        double cx = bb.getX();
+        double cy = bb.getY();
+        Matrix3 toOrigin = TransformFactory.createTranslation(-cx, -cy);
+        Matrix3 rotate =  TransformFactory.createRotation(radians);
+        Matrix3 toBack = TransformFactory.createTranslation(cx, cy);
 
         p.applyTransform(toBack.mult(rotate.mult(toOrigin)));
 
@@ -290,12 +308,38 @@ public class Drawing {
 
     public void scaleSelected(double fx, double fy) {
         if (selectedIndex < 0) return;
-        // TODO
+
+        Polygon p = polygons[selectedIndex];
+        Rectangle bb = p.getBoundingBox();
+
+        double cx = bb.getX();
+        double cy = bb.getY();
+        Matrix3 toOrigin = TransformFactory.createTranslation(-cx, -cy);
+        Matrix3 scaling =  TransformFactory.createScaling(fx, fy);
+        Matrix3 toBack = TransformFactory.createTranslation(cx, cy);
+
+        p.applyTransform(toBack.mult(scaling.mult(toOrigin)));
+
+        redraw();
+
     }
 
-    public void mirrorSelectedHorizontal() {
+    public void mirrorSelectedHorizontal()
+    {
         if (selectedIndex < 0) return;
-        // TODO
+
+        Polygon p = polygons[selectedIndex];
+        Rectangle bb = p.getBoundingBox();
+
+        double cx = bb.getX();
+        double cy = bb.getY();
+        Matrix3 toOrigin = TransformFactory.createTranslation(-cx, -cy);
+        Matrix3 mirror =  TransformFactory.createHorizontalMirroring();
+        Matrix3 toBack = TransformFactory.createTranslation(cx, cy);
+
+        p.applyTransform(toBack.mult(mirror.mult(toOrigin)));
+
+        redraw();
     }
 
     public void deleteSelected() {
@@ -330,7 +374,7 @@ public class Drawing {
         if (mode == DrawingMode.CREATE_TRIANGLE && triangleStep > 0) {
             gc.save();
             gc.setGlobalAlpha(0.90);
-            gc.setFill(Color.WHITE);
+            gc.setFill(Color.DARKGRAY);
             gc.setLineDashes(0);
             for (int i = 0; i < triangleStep; i++) {
                 double px = triangleBuffer[i].getX(), py = triangleBuffer[i].getY();
@@ -348,7 +392,7 @@ public class Drawing {
         gc.save();
         gc.setLineDashes(6, 4);
         gc.setFill(currentFillColor);
-        gc.setStroke(Color.WHITE);
+        gc.setStroke(Color.DARKGRAY);
 
         if (n == 2) {
             // Line: stroke only
@@ -373,7 +417,7 @@ public class Drawing {
             case CREATE_CIRCLE: {
                 if (!mouseButtonPressed) return null;
                 double r = dist(pressX, pressY, cursorX, cursorY);
-                return new Circle(pressX, pressY, r < 5 ? 30 : r, currentFillColor);
+                return new Circle(new Vector2(pressX, pressY), r < 5 ? 30 : r, currentFillColor);
             }
             case CREATE_RECTANGLE: {
                 if (!mouseButtonPressed) return null;
@@ -383,25 +427,25 @@ public class Drawing {
             }
             case CREATE_LINE: {
                 if (!mouseButtonPressed) return null;
-                return new Line(pressX, pressY, cursorX, cursorY, currentFillColor);
+                return new Line(new Vector2(pressX, pressY), new Vector2(cursorX, cursorY), currentFillColor);
             }
             case CREATE_ELLIPSE: {
                 if (!mouseButtonPressed) return null;
                 double semiMajor = Math.max(Math.abs(cursorX - pressX) / 2, 5);
                 double semiMinor = Math.max(Math.abs(cursorY - pressY) / 2, 5);
-                return new Ellipse((pressX + cursorX) / 2, (pressY + cursorY) / 2, semiMajor, semiMinor, currentFillColor);
+                return new Ellipse(new Vector2( (pressX + cursorX) / 2, (pressY + cursorY) / 2), semiMajor, semiMinor, currentFillColor);
             }
             case CREATE_STAR: {
                 if (!mouseButtonPressed) return null;
                 double d = dist(pressX, pressY, cursorX, cursorY);
                 double outerR = d < 5 ? 45 : d / 2;
-                return new Star(pressX, pressY, 5, outerR, outerR * (20.0 / 45.0), currentFillColor);
+                return new Star(new Vector2(pressX, pressY), outerR * (20.0 / 45.0), outerR, 5, currentFillColor);
             }
             case CREATE_TRIANGLE: {
                 if (triangleStep == 0) return null;
                 if (triangleStep == 1)
-                    return new Line(triangleBuffer[0].getX(), triangleBuffer[0].getY(), cursorX, cursorY, currentFillColor);
-                return new Triangle(triangleBuffer[0], triangleBuffer[1], new Point(cursorX, cursorY), currentFillColor);
+                    return new Line(new Vector2(triangleBuffer[0].getX(), triangleBuffer[0].getY()), new Vector2(cursorX, cursorY), currentFillColor);
+                return new Triangle(triangleBuffer[0], triangleBuffer[1], new Vector2(cursorX, cursorY), currentFillColor);
             }
             default: return null;
         }

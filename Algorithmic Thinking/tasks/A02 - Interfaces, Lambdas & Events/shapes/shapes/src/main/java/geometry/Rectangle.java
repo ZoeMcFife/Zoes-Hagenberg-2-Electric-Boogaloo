@@ -2,7 +2,9 @@ package geometry;
 
 import geometry.interfaces.Shape;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import math.Vector2;
+import math.Vector3;
 
 public class Rectangle extends Polygon implements Shape
 {
@@ -23,9 +25,19 @@ public class Rectangle extends Polygon implements Shape
         setHeight(height);
     }
 
+    public Rectangle(double minX, double minY, double width, double height, Color fillColor)
+    {
+        super(new Vector2(minX + width / 2, minY + height / 2));
+        setWidth(width);
+        setHeight(height);
+        setFillColor(fillColor);
+    }
+
     public Rectangle(double minX, double minY, double width, double height)
     {
-
+        super(new Vector2(minX + width / 2, minY + height / 2));
+        setWidth(width);
+        setHeight(height);
     }
 
     public double getDiagonalLength()
@@ -45,6 +57,19 @@ public class Rectangle extends Polygon implements Shape
         return 2 * (getWidth() + getHeight());
     }
 
+    @Override
+    public double[][] getCoordinates()
+    {
+        Vector3[] vertices = new Vector3[4];
+
+        vertices[0] = new Vector3(getPosition().x - getWidth() / 2, getPosition().y - getHeight() / 2);
+        vertices[1] = new Vector3(getPosition().x + getWidth() / 2, getPosition().y - getHeight() / 2);
+        vertices[2] = new Vector3(getPosition().x + getWidth() / 2, getPosition().y + getHeight() / 2);
+        vertices[3] = new Vector3(getPosition().x - getWidth() / 2, getPosition().y + getHeight() / 2);
+
+        return toCoordinates(transformed(vertices));
+    }
+
     public double getWidth()
     {
         return width;
@@ -52,7 +77,7 @@ public class Rectangle extends Polygon implements Shape
 
     private void setWidth(double width)
     {
-        if (width <= 0)
+        if (width < 0)
         {
             throw new IllegalArgumentException("Width must be positive.");
         }
@@ -67,7 +92,7 @@ public class Rectangle extends Polygon implements Shape
 
     private void setHeight(double height)
     {
-        if (height <= 0)
+        if (height < 0)
         {
             throw new IllegalArgumentException("Height must be positive.");
         }
@@ -98,6 +123,9 @@ public class Rectangle extends Polygon implements Shape
     {
         super.draw(gc);
 
-        gc.fillRect(getPosition().x - getWidth() / 2, getPosition().y - getHeight() / 2, getWidth(), getHeight());
+        double[][] coords = getCoordinates();
+
+        gc.fillPolygon(coords[0], coords[1], coords[0].length);
+        gc.strokePolygon(coords[0], coords[1], coords[0].length);
     }
 }

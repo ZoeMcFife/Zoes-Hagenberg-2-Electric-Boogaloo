@@ -7,13 +7,17 @@ import geometry.interfaces.Transformable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import math.Matrix3;
+import math.TransformFactory;
 import math.Vector2;
 import math.Vector3;
+
+import java.util.Arrays;
 
 public abstract class Polygon implements Shape, Drawable, Transformable, Selectable
 {
     private Vector2 position;
     private Matrix3 transform;
+    private boolean selected;
 
     Polygon()
     {
@@ -35,8 +39,8 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
         this.position = position;
     }
 
-    private Color fillColor = Color.PURPLE;
-    private Color strokeColor = Color.PURPLE;
+    private Color fillColor = new Color(0.5, 0.5, 0.5, 0.2);
+    private Color strokeColor = Color.TRANSPARENT;
 
 
     @Override
@@ -65,6 +69,16 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
         return position.getY();
     }
 
+    public void setX(double x)
+    {
+        position.setX(x);
+    }
+
+    public void setY(double y)
+    {
+        position.setY(y);
+    }
+
     public Color getFillColor() {
         return fillColor;
     }
@@ -86,6 +100,49 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
         this.transform = (this.transform == null) ? m :m.mult(this.transform);
     }
 
+
+    // Moves the shape by (dx, dy) in world (display) space.
+    // If a transform matrix is active, we prepend a translation matrix so the
+    // drag direction matches what the user sees regardless of rotation/scale.
+    // If no transform exists, we update the raw position directly.
+    // Subclasses with extra raw points (Triangle, Line) override this, but call
+    // super first — they only need to move their extra points when transform == null.
+    public void translate(double dx, double dy) {
+        if (transform != null) {
+            transform = TransformFactory.createTranslation(dx, dy).mult(transform);
+        } else {
+            position.x += dx;
+            position.y += dy;
+        }
+    }
+
+    // ========================================
+    // SELECTABLE INTERFACE
+    // ========================================
+
+    @Override
+    public boolean isSelected() {
+        return this.selected;
+    }
+
+    @Override
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    // ========================================
+    // TRANSFORMABLE INTERFACE
+    // ========================================
+
+    @Override
+    public void setTransform(Matrix3 transform) {
+        this.transform = transform;
+    }
+
+    public Matrix3 getTransform() {
+        return this.transform;
+    }
+
     protected Vector3[] transformed(Vector3[] points)
     {
         if (transform != null)
@@ -102,6 +159,7 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
     public Rectangle getBoundingBox()
     {
         double[][] coords = getCoordinates();
+
         double minX = coords[0][0], maxX = coords[0][0];
         double minY = coords[1][0], maxY = coords[1][0];
 
@@ -112,6 +170,7 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
             if (coords[1][i] < minY) minY = coords[1][i];
             if (coords[1][i] > maxY) maxY = coords[1][i];
         }
+
         return new Rectangle(minX, minY, maxX - minX, maxY - minY);
     }
 
@@ -128,8 +187,8 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
             Rectangle bb = getBoundingBox();
             gc.save();
             gc.setStroke(Color.LIGHTGREEN);
-            gc.setLineWidth(2);
-            gc.strokeRect(bb.getX(), bb.getY(), bb.getWidth(), bb.getHeight());
+            gc.setLineWidth(10);
+            gc.strokeRect(bb.getX() - bb.getWidth() / 2 + 0.1, bb.getY() - bb.getHeight() / 2 + 0.1, bb.getWidth() + 0.1, bb.getHeight() + 0.1);
             bb.draw(gc);
             gc.restore();
         }
@@ -151,6 +210,16 @@ public abstract class Polygon implements Shape, Drawable, Transformable, Selecta
             ret[1][i] = transformed[i].getY();
         }
         return ret;
+    }
+
+    public void printCoordinates()
+    {
+        double[][] coords = getCoordinates();
+        System.out.println("Coordinates:");
+        for (int i = 0; i < coords[0].length; i++)
+        {
+            System.out.printf("  (%.2f, %.2f)\n", coords[0][i], coords[1][i]);
+        }
     }
 }
 
