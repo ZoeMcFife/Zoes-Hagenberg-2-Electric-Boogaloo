@@ -291,7 +291,6 @@ public class Drawing {
 
     public void rotateSelected(double radians) {
         if (selectedIndex < 0) return;
-        // TODO
 
         Polygon p = polygons[selectedIndex];
         Rectangle bb = p.getBoundingBox();
