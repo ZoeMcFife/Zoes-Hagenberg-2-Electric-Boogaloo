@@ -28,6 +28,5 @@ public class ShapeApplication extends ShapeApplicationBase
         canvas.setOnMouseDragged(e -> drawing.handleDrag(e.getX(), e.getY()));
         canvas.setOnMouseReleased(e -> drawing.handleMouseReleased(e.getX(), e.getY()));
         canvas.setOnMouseClicked(e -> drawing.handleClick(e.getX(), e.getY()));
-
     }
 }

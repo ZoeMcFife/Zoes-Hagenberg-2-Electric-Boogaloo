@@ -1,36 +1,34 @@
 package geometry;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import math.Vector2;
+import math.Vector3;
 
 public class Triangle extends Polygon
 {
-    private double a;
-    private double b;
-    private double c;
-    private double angleC;
+    private final Vector3[] originalVertices;
 
-    public Triangle(double a, double b, double angleC)
+    private Vector2 vertexADelta;
+    private Vector2 vertexBDelta;
+    private Vector2 vertexCDelta;
+
+
+    public Triangle(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Color fillColor)
     {
-        super();
-        setA(a);
-        setB(b);
+        originalVertices = new Vector3[]
+                {
+                    vertexA.toVector3(), vertexB.toVector3(), vertexC.toVector3()
+                };
 
-        setAngleC(angleC);
+        // calculate the centroid of the triangle to set as the position
+        super(new Vector2((vertexA.x + vertexB.x + vertexC.x) / 3, (vertexA.y + vertexB.y + vertexC.y) / 3));
 
-        setC(Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(Math.toRadians(getAngleC()))));
-    }
+        vertexADelta = vertexA.subtract(getPosition());
+        vertexBDelta = vertexB.subtract(getPosition());
+        vertexCDelta = vertexC.subtract(getPosition());
 
-    public Triangle(Vector2 position, double a, double b, double angleC)
-    {
-        super(position);
-
-        setA(a);
-        setB(b);
-
-        setAngleC(angleC);
-
-        setC(Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(Math.toRadians(getAngleC()))));
+        setFillColor(fillColor);
     }
 
     @Override
@@ -38,88 +36,41 @@ public class Triangle extends Polygon
     {
         double s = getPerimeter() / 2;
 
-        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
+        return Math.sqrt(s * (s - getA()) * (s - getB()) * (s - getC()));
     }
 
     @Override
     public double getPerimeter()
     {
-        return a + b + c;
+        return getA() + getB() + getC();
+    }
+
+    @Override
+    public double[][] getCoordinates()
+    {
+        Vector3[] vertices = new Vector3[3];
+
+        vertices[0] = getPosition().add(vertexADelta).toVector3();
+        vertices[1] = getPosition().add(vertexBDelta).toVector3();
+        vertices[2] = getPosition().add(vertexCDelta).toVector3();
+
+        return toCoordinates(transformed(vertices));
     }
 
     public double getA()
     {
-        return a;
-    }
-
-    private void setA(double a)
-    {
-        if (a <= 0)
-        {
-            throw new IllegalArgumentException("Side a must be greater than 0.");
-        }
-
-        this.a = a;
+        return originalVertices[1].distanceTo(originalVertices[2]);
     }
 
     public double getB()
     {
-        return b;
-    }
-
-    private void setB(double b)
-    {
-        if (b <= 0)
-        {
-            throw new IllegalArgumentException("Side b must be greater than 0.");
-        }
-
-        this.b = b;
+        return originalVertices[0].distanceTo(originalVertices[2]);
     }
 
     public double getC()
     {
-        return c;
+        return originalVertices[0].distanceTo(originalVertices[1]);
     }
-
-    private void setC(double c)
-    {
-        if (c <= 0)
-        {
-            throw new IllegalArgumentException("Side c must be greater than 0.");
-        }
-
-        this.c = c;
-    }
-
-    private void setAngleC(double angleC)
-    {
-        if (angleC <= 0 || angleC >= 180)
-        {
-            throw new IllegalArgumentException("Angle C must be between 0 and 180 degrees.");
-        }
-
-        this.angleC = angleC;
-    }
-
-    private double getAngleC()
-    {
-        return angleC;
-    }
-
-    @Override
-    public boolean equals(Object obj)
-    {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-
-        Triangle triangle = (Triangle) obj;
-
-        return Double.compare(triangle.a, a) == 0 &&
-               Double.compare(triangle.b, b) == 0 &&
-               Double.compare(triangle.c, c) == 0;
-    }
-
     @Override
     public String toString()
     {
@@ -129,10 +80,10 @@ public class Triangle extends Polygon
     @Override
     public void draw(GraphicsContext gc)
     {
-        gc.setFill(color);
-        gc.fillPolygon(new double[]{getPosition().x, getPosition().x + a, getPosition().x + b * Math.cos(Math.toRadians(getAngleC()))},
-                       new double[]{getPosition().y, getPosition().y, getPosition().y + b * Math.sin(Math.toRadians(getAngleC()))},
-                       3);
+        super.draw(gc);
+        double[][] coords = getCoordinates();
 
+        gc.fillPolygon(coords[0], coords[1], coords[0].length);
+        gc.strokePolygon(coords[0], coords[1], coords[0].length);
     }
 }

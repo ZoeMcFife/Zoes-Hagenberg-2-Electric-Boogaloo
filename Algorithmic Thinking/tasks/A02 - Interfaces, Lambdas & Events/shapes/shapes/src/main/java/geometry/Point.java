@@ -2,6 +2,7 @@ package geometry;
 
 import javafx.scene.canvas.GraphicsContext;
 import math.Vector2;
+import math.Vector3;
 
 public class Point extends Polygon
 {
@@ -25,6 +26,12 @@ public class Point extends Polygon
     public double getPerimeter()
     {
         return 0; // A point has no perimeter
+    }
+
+    @Override
+    public double[][] getCoordinates()
+    {
+        return toCoordinates(transformed(new Vector3[]{new Vector3(getPosition().x, getPosition().y)}));
     }
 
     @Override
