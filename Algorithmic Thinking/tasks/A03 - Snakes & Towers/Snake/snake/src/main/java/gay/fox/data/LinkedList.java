@@ -10,11 +10,13 @@ public class LinkedList<E> implements Iterable<E>
     private Node<E> head;
     private Node<E> tail;
 
-    private int size = 0;
+    private int size;
 
     public LinkedList()
     {
-
+        head = null;
+        tail = null;
+        size = 0;
     }
 
     public void addFirst(E item)
@@ -27,25 +29,38 @@ public class LinkedList<E> implements Iterable<E>
             head.prev = newHead;
         }
 
-        if (tail == null)
-        {
-            tail = head;
-        }
-
         head = newHead;
 
         size++;
+    }
+
+    public void append(E item)
+    {
+        addLast(item);
     }
 
     public void addLast(E item)
     {
         Node<E> newTail = new Node<>(item);
 
+        if (size == 0)
+        {
+            addFirst(item);
+            return;
+        }
+
         if (tail != null)
         {
             newTail.prev = tail;
             tail.next = newTail;
         }
+
+        if (tail == null)
+        {
+            newTail.prev = head;
+            head.next = newTail;
+        }
+
         tail = newTail;
 
         size++;
@@ -81,6 +96,11 @@ public class LinkedList<E> implements Iterable<E>
 
     public void remove(int index)
     {
+        if (isEmpty())
+        {
+            throw new IndexOutOfBoundsException("List is empty");
+        }
+
         if  (index < 0 || index >= size)
         {
             throw new IndexOutOfBoundsException();
@@ -105,6 +125,11 @@ public class LinkedList<E> implements Iterable<E>
 
     public void removeFirst()
     {
+        if (isEmpty())
+        {
+            throw new IndexOutOfBoundsException("List is empty");
+        }
+
         Node<E> oldHead = head;
 
         head = oldHead.next;
@@ -116,6 +141,11 @@ public class LinkedList<E> implements Iterable<E>
 
     public void removeLast()
     {
+        if (isEmpty())
+        {
+            throw new IndexOutOfBoundsException("List is empty");
+        }
+
         Node<E> oldTail = tail;
 
         tail = oldTail.prev;
@@ -127,23 +157,47 @@ public class LinkedList<E> implements Iterable<E>
 
     private Node<E> getNode(int index)
     {
+        if (isEmpty())
+        {
+            throw new IndexOutOfBoundsException("List is empty");
+        }
+
         if(index < 0 || index >= size)
         {
             throw new IndexOutOfBoundsException();
         }
 
-        Node<E> current = head;
-
-        if (index < size / 2)
+        if (index == 0)
         {
-            for (int i = index; i < size / 2; i++)
+            return head;
+        }
+
+        if  (index == size - 1)
+        {
+            if (tail == null)
+            {
+                return head;
+            }
+
+            return tail;
+        }
+
+        Node<E> current;
+
+        if (index <= size / 2)
+        {
+            current = head;
+
+            for (int i = 0; i < index; i++)
             {
                 current = current.next;
             }
         }
         else
         {
-            for (int i = index; i < size - 1; i++)
+            current = tail;
+
+            for (int i = size; i > index; i--)
             {
                 current = current.prev;
             }
@@ -157,16 +211,14 @@ public class LinkedList<E> implements Iterable<E>
         return getNode(index).data;
     }
 
-    @Override
-    public Iterator<E> iterator()
+    public E getFirst()
     {
-        return head;
+        return get(0);
     }
 
-    @Override
-    public void forEach(Consumer<? super E> action)
+    public E getLast()
     {
-        Iterable.super.forEach(action);
+        return get(size - 1);
     }
 
     @Override
@@ -174,8 +226,63 @@ public class LinkedList<E> implements Iterable<E>
     {
         StringBuilder result = new StringBuilder("[");
 
-        forEach(e -> result.append(e.toString()).append(", "));
+        Node<E>  current = head;
+
+        for (int i = 0;  i != size; i++)
+        {
+            result.append(current.data);
+
+            if (current.next != null)
+            {
+                current = current.next;
+            }
+
+            if (i != size - 1)
+            {
+                result.append(", ");
+            }
+        }
 
         return result.append("]").toString();
+    }
+
+    public String toNodeString()
+    {
+        StringBuilder result = new StringBuilder("[");
+
+        Node<E>  current = head;
+
+        for (int i = 0;  i != size; i++)
+        {
+            result.append(current);
+
+            if (current.next != null)
+            {
+                current = current.next;
+            }
+
+            if (i != size - 1)
+            {
+                result.append(", ");
+            }
+        }
+
+        return result.append("]").toString();
+    }
+
+    public boolean isEmpty()
+    {
+        return size == 0;
+    }
+
+    public int getSize()
+    {
+        return size;
+    }
+
+    @Override
+    public Iterator<E> iterator()
+    {
+        return new LinkedListIterator<>(head);
     }
 }

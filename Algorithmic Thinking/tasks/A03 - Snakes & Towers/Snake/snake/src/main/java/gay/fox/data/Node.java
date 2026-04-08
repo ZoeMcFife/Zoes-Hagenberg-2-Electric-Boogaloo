@@ -1,8 +1,9 @@
 package gay.fox.data;
 
 import java.util.Iterator;
+import java.util.function.Consumer;
 
-public class Node<T> implements Iterator<T>
+public class Node<T>
 {
     public T data;
     public Node<T> next = null;
@@ -26,24 +27,22 @@ public class Node<T> implements Iterator<T>
         this.next = next;
     }
 
-    @Override
-    public boolean hasNext()
-    {
-        return next != null;
-    }
-
-    @Override
-    public T next()
-    {
-        return next.data;
-    }
-
     // the garbage collector should technically get rid of this node from memory
     // i find it a little cursed, i want to remove it manually
-    @Override
     public void remove()
     {
-        prev.next = next;
-        next.prev = prev;
+        if (prev != null)
+            prev.next = next;
+        if (next != null)
+            next.prev = prev;
+    }
+
+    @Override
+    public String toString()
+    {
+        String prevString = prev == null ? "null" : prev.data.toString();
+        String nextString = next == null ? "null" : next.data.toString();
+
+        return "Node[" + data.toString() + ", prev: " +  prevString + ", next: " + nextString + "]";
     }
 }
