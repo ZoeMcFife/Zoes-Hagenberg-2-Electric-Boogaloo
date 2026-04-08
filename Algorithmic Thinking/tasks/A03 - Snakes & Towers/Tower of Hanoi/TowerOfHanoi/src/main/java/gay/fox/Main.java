@@ -17,7 +17,5 @@ public class Main
             menu.startScreen();
             UI.clearScreen();
         }
-
-
     }
 }

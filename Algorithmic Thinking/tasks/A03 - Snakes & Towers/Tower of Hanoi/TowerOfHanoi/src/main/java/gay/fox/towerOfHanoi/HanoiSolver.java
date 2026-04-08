@@ -4,7 +4,7 @@ public class HanoiSolver
 {
     private final TowerOfHanoi towerOfHanoi;
     private int moves;
-    private boolean printSteps;
+    private final boolean printSteps;
 
     public HanoiSolver(int size, boolean printSteps)
     {
@@ -43,6 +43,7 @@ public class HanoiSolver
             }
 
             moves++;
+
             return;
         }
 

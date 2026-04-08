@@ -7,6 +7,7 @@ import gay.fox.userInterface.UI;
 public class HanoiGame extends Screen
 {
     private TowerOfHanoi towerOfHanoi;
+    private int moveCount = 0;
 
     @Override
     public void startScreen()
@@ -30,6 +31,8 @@ public class HanoiGame extends Screen
         UI.clearScreen();
         towerOfHanoi.printStacks();
         UI.printGreen("You did it!");
+        UI.printRed(" " + moveCount + " moves.");
+        UI.printBlankSeparatorLine();
 
         UI.waitForEnterKey();
     }
@@ -54,6 +57,7 @@ public class HanoiGame extends Screen
             {
                 towerOfHanoi.move(source, destination);
                 moveComplete = true;
+                moveCount++;
             }
             catch (Exception e)
             {
