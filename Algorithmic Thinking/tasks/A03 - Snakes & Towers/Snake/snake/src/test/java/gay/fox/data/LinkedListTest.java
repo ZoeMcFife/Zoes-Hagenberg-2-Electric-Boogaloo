@@ -2,7 +2,7 @@ package gay.fox.data;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class LinkedListTest
@@ -108,6 +108,18 @@ public class LinkedListTest
         assertEquals(2, list.get(1));
         assertEquals(2, list.getSize());
     }
+
+    @Test
+    public void testRemoveLastOnSmallList()
+    {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.append(1);
+
+        list.removeLast();
+
+        assertTrue(list.isEmpty());
+    }
+
 
     @Test
     public void testIterator()

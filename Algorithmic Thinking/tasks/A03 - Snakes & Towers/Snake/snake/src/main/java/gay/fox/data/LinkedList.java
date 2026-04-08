@@ -146,6 +146,12 @@ public class LinkedList<E> implements Iterable<E>
             throw new IndexOutOfBoundsException("List is empty");
         }
 
+        if (tail == null)
+        {
+            removeFirst();
+            return;
+        }
+
         Node<E> oldTail = tail;
 
         tail = oldTail.prev;
