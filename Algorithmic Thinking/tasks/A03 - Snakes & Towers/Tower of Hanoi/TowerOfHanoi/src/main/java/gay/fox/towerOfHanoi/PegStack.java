@@ -1,15 +1,16 @@
 package gay.fox.towerOfHanoi;
 
+import gay.fox.data.Stack;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class PegStack extends Stack<Integer>
 {
     @Override
     public Integer push(Integer item)
     {
-        if (isEmpty())
+        if (empty())
         {
             add(item);
             return item;
