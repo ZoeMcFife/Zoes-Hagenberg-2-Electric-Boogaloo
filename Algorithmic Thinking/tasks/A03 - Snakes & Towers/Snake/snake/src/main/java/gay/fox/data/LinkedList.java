@@ -227,6 +227,54 @@ public class LinkedList<E> implements Iterable<E>
         return get(size - 1);
     }
 
+    public E find(E item)
+    {
+        if (isEmpty())
+        {
+            return null;
+        }
+
+        Node<E> current;
+
+        current = head;
+
+        for (int i = 0; i < getSize(); i++)
+        {
+            current = current.next;
+
+            if (current.data.equals(item))
+            {
+                return current.data;
+            }
+        }
+
+        return null;
+    }
+
+    public boolean contains(E item)
+    {
+        if (isEmpty())
+        {
+            return false;
+        }
+
+        Node<E> current;
+
+        current = head;
+
+        for (int i = 0; i < getSize(); i++)
+        {
+            current = current.next;
+
+            if (current.data.equals(item))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     @Override
     public String toString()
     {
