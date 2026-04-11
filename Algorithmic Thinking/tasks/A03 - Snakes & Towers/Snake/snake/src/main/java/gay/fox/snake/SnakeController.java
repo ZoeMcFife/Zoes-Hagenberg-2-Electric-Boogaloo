@@ -2,7 +2,10 @@ package gay.fox.snake;
 
 import gay.fox.snake.snake.Position;
 import gay.fox.snake.snake.Snake;
+import gay.fox.snake.snake.Tile;
 import gay.fox.snake.snake.World;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -10,6 +13,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 public class SnakeController
 {
@@ -32,49 +36,62 @@ public class SnakeController
     private final Color snakeHeadColor = Color.YELLOW;
     private final Color snakeTailColor = Color.GREEN;
 
+    private Timeline gameLoop;
+
     public void onStartButtonPressed(ActionEvent actionEvent)
     {
         initialize();
-        drawGame();
 
-        drawTileAtPositionInCanvas(foodTileColor, new Position(5, 5));
+        gameLoop = new Timeline(new KeyFrame(Duration.millis(500), e ->
+        {
+            update();
+            drawGame();
+        }));
+
+        gameLoop.setCycleCount(Timeline.INDEFINITE);
+        gameLoop.play();
     }
 
     private void drawGame()
     {
         drawBoard();
-        drawSnake();
+
+        IO.println(world);
+        IO.println(snake);
     }
 
     private void update()
     {
         world.update();
-        snake.move();
     }
 
     private void drawBoard()
     {
         gc.setFill(traversableTileColor);
         gc.fillRect(0, 0, snakeCanvas.getWidth(), snakeCanvas.getHeight());
-    }
 
-    private void drawSnake()
-    {
-        for (Position p : snake)
+        for (int i = 0; i < gridSize; i++)
         {
-            if (p.equals(snake.getFirst()))
+            for (int  j = 0; j < gridSize; j++)
             {
-                drawTileAtPositionInCanvas(snakeHeadColor, p);
-            }
+                Tile t = world.getTile(new Position(i, j));
 
-            drawTileAtPositionInCanvas(snakeTailColor, p);
+                switch (t)
+                {
+                    case FOOD:
+                        drawTileAtPositionInCanvas(foodTileColor, new Position(i, j));
+                        break;
+                    case SNAKE_HEAD:
+                        drawTileAtPositionInCanvas(snakeHeadColor, new Position(i, j));
+                        break;
+                    case SNAKE_TAIL:
+                        drawTileAtPositionInCanvas(snakeTailColor, new Position(i, j));
+                        break;
+                }
+            }
         }
     }
 
-    private void drawFood()
-    {
-
-    }
 
     private void drawTileAtPositionInCanvas(Color color, Position position)
     {
@@ -91,5 +108,19 @@ public class SnakeController
         pixelGridSize = (int) (snakeCanvas.getHeight() / gridSize);
 
         gc = snakeCanvas.getGraphicsContext2D();
+
+        snakeCanvas.setFocusTraversable(true);
+        snakeCanvas.setOnKeyPressed(event ->
+        {
+            switch (event.getCode())
+            {
+                case W -> snake.moveUp();
+                case S -> snake.moveDown();
+                case A -> snake.moveLeft();
+                case D -> snake.moveRight();
+            }
+        });
+
+        snakeCanvas.requestFocus();
     }
 }

@@ -37,6 +37,7 @@ public class LinkedList<E> implements Iterable<E>
     public void append(E item)
     {
         addLast(item);
+        IO.println(item + " added to LinkedList");
     }
 
     public void addLast(E item)

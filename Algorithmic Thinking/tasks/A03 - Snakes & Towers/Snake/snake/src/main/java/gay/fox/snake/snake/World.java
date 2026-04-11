@@ -1,5 +1,9 @@
 package gay.fox.snake.snake;
 
+import javafx.geometry.Pos;
+
+import java.util.Random;
+
 public class World
 {
     private Tile[][] grid;
@@ -8,6 +12,7 @@ public class World
     private Snake snake;
 
     private final int MINIMUM_GRID_SIZE = 5;
+    private Position currentFoodPosition;
 
     public World(int gridSize)
     {
@@ -20,6 +25,21 @@ public class World
         grid = new Tile[gridSize][gridSize];
 
         fillTraversalTiles();
+
+        spawnFood();
+    }
+
+    public void spawnFood()
+    {
+        Random rand = new Random();
+        Position food = new Position(rand.nextInt(0, gridSize), rand.nextInt(0, gridSize));
+        setTile(food, Tile.FOOD);
+        currentFoodPosition = food;
+    }
+
+    public Position getCurrentFoodPosition()
+    {
+        return currentFoodPosition;
     }
 
     public Position wrapAroundPosition(Position position)
@@ -28,7 +48,7 @@ public class World
         {
             position.setX(gridSize - 1);
         }
-        else if (position.getX() > gridSize)
+        else if (position.getX() >= gridSize)
         {
             position.setX(0);
         }
@@ -37,7 +57,7 @@ public class World
         {
             position.setY(gridSize - 1);
         }
-        else if (position.getY() > gridSize)
+        else if (position.getY() >= gridSize)
         {
             position.setY(0);
         }
@@ -71,6 +91,11 @@ public class World
         }
     }
 
+    private void drawFood()
+    {
+        setTile(currentFoodPosition, Tile.FOOD);
+    }
+
     private void setTile(Position pos, Tile tile)
     {
         grid[pos.getY()][pos.getX()] = tile;
@@ -79,7 +104,14 @@ public class World
     public void update()
     {
         fillTraversalTiles();
+        drawFood();
+        snake.move();
         drawSnake();
+    }
+
+    public Tile getTile(Position pos)
+    {
+        return grid[pos.getY()][pos.getX()];
     }
 
     public void addSnake(Snake snake)
