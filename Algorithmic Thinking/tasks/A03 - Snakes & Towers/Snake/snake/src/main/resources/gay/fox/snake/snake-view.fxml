@@ -12,5 +12,5 @@
 
     <Label fx:id="snakeTitle" text="Snake Game" />
     <Canvas fx:id="snakeCanvas" height="300.0" width="300.0" />
-    <Button text="Start" />
+    <Button fx:id="startButton" onAction="#onStartButtonPressed" text="Start" />
 </VBox>
