@@ -45,21 +45,14 @@ public class Snake extends LinkedList<Position>
 
     public void move(Direction direction)
     {
-        IO.println("snake move " + direction);
-        IO.println("snake move : " + this);
-
         for (int i = getSize() - 1; i > 0; i--)
         {
-            get(i).copy(get(i-1));
+            set(i, new Position(get(i - 1).getX(), get(i - 1).getY()));
         }
 
         getFirst().shift(direction);
 
-        IO.println("snake moved: " + this);
-
         wrapAround();
-
-        IO.println("snake moved: " + this);
 
         if (getFirst().equals(world.getCurrentFoodPosition()))
         {

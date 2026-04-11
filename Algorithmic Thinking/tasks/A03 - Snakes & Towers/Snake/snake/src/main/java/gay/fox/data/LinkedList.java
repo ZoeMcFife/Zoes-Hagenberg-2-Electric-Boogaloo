@@ -40,6 +40,12 @@ public class LinkedList<E> implements Iterable<E>
         IO.println(item + " added to LinkedList");
     }
 
+    public void set(int index, E item)
+    {
+        Node<E> node = getNode(index);
+        node.data  = item;
+    }
+
     public void addLast(E item)
     {
         Node<E> newTail = new Node<>(item);
@@ -204,7 +210,7 @@ public class LinkedList<E> implements Iterable<E>
         {
             current = tail;
 
-            for (int i = size; i > index; i--)
+            for (int i = size - 1; i > index; i--)
             {
                 current = current.prev;
             }
