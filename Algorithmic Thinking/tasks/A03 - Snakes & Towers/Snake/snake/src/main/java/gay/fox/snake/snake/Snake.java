@@ -36,9 +36,8 @@ public class Snake extends LinkedList<Position>
         newTail.copy(getLast());
         newTail.shift(getOppositeDirection(direction));
 
-        score++;
-
         append(newTail);
+        score++;
     }
 
     public int getScore()
