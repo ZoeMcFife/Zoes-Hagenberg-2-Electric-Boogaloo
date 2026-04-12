@@ -81,6 +81,13 @@ public class SnakeController
             snakeTitle.setText("GAME OVER");
             startButton.setText("Play Again");
         }
+
+        if (world.isGameWon())
+        {
+            gameLoop.stop();
+            snakeTitle.setText("GAME WON");
+            startButton.setText("Play Again");
+        }
     }
 
     private void drawBoard()

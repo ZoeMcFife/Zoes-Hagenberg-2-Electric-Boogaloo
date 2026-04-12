@@ -15,6 +15,7 @@ public class World
     private Position currentFoodPosition;
 
     private boolean isGameOver = false;
+    private boolean isGameWon = false;
 
     private boolean createWall = false;
 
@@ -47,6 +48,12 @@ public class World
 
         setTile(food, Tile.FOOD);
         currentFoodPosition = food;
+    }
+
+    public void spawnFood(Position position)
+    {
+        setTile(position, Tile.FOOD);
+        currentFoodPosition = position;
     }
 
     public Position getCurrentFoodPosition()
@@ -135,6 +142,21 @@ public class World
         {
             isGameOver = true;
         }
+
+        if (createWall)
+        {
+            if (snake.getSize() >= gridSize * gridSize - (gridSize * 4 - 4))
+            {
+                isGameWon = true;
+            }
+        }
+        else
+        {
+            if (snake.getSize() >= gridSize * gridSize)
+            {
+                isGameWon = true;
+            }
+        }
     }
 
     public void setIsGameOver(boolean isGameOver)
@@ -145,6 +167,11 @@ public class World
     public boolean isGameOver()
     {
         return isGameOver;
+    }
+
+    public boolean isGameWon()
+    {
+        return isGameWon;
     }
 
     public Tile getTile(Position pos)

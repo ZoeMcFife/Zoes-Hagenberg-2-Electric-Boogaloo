@@ -61,7 +61,7 @@
          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
             <children>
                <Label text="World Size" />
-               <Slider fx:id="worldSizeSlider" majorTickUnit="10.0" min="10.0" minorTickCount="0" showTickMarks="true" value="30.0" />
+               <Slider fx:id="worldSizeSlider" blockIncrement="20.0" majorTickUnit="10.0" max="60.0" min="10.0" minorTickCount="0" showTickMarks="true" value="30.0" />
             </children>
          </VBox>
       </children>
