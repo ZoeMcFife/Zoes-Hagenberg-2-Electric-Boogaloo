@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gay.fox.snake.SnakeController">
+    <padding>
+        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+    </padding>
+
+    <Label fx:id="snakeTitle" text="Snake" textFill="#000d03">
+      <font>
+         <Font size="24.0" />
+      </font></Label>
+    <Canvas fx:id="snakeCanvas" height="300.0" width="300.0" />
+   <Label fx:id="scoreLabel" text="Label" textAlignment="CENTER" textFill="#f20000">
+      <font>
+         <Font size="10.0" />
+      </font>
+   </Label>
+    <Button fx:id="startButton" onAction="#onStartButtonPressed" text="Start" />
+
+    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+        <Label fx:id="currentDifficultyLabel" text="EASY" />
+        <HBox alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#onEasyButtonPressed" text="EASY">
+                <VBox.margin>
+                    <Insets top="10.0" />
+                </VBox.margin>
+                <HBox.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#onMediumButtonPressed" text="MEDIUM">
+                <HBox.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#onHardButtonPressed" text="HARD">
+                <HBox.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#onSuicideButtonPressed" text="SUICIDE">
+                <HBox.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </HBox.margin>
+            </Button>
+        </HBox>
+    </VBox>
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <CheckBox fx:id="worldSpawnWithWallsToggle" mnemonicParsing="false" text="Walls">
+            <HBox.margin>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </HBox.margin>
+         </CheckBox>
+         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <Label text="World Size" />
+               <Slider fx:id="worldSizeSlider" blockIncrement="20.0" majorTickUnit="10.0" max="60.0" min="10.0" minorTickCount="0" showTickMarks="true" value="30.0" />
+            </children>
+         </VBox>
+      </children>
+   </HBox>
+</VBox>

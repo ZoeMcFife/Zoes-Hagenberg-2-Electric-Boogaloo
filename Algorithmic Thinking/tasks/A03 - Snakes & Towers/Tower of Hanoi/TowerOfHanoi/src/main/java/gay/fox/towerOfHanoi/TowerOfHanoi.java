@@ -1,5 +1,7 @@
 package gay.fox.towerOfHanoi;
 
+import gay.fox.userInterface.UI;
+
 import java.util.List;
 
 public class TowerOfHanoi
@@ -11,6 +13,11 @@ public class TowerOfHanoi
     private final PegStack c  = new PegStack();
 
     private final int size;
+
+    public int getSize()
+    {
+        return size;
+    }
 
     public TowerOfHanoi(int size)
     {
@@ -58,11 +65,24 @@ public class TowerOfHanoi
 
         Integer disk = pegStacks[from].pop();
 
-        pegStacks[to].push(disk);
+        try
+        {
+            pegStacks[to].push(disk);
+        }
+        catch (Exception e)
+        {
+            pegStacks[from].push(disk);
+
+            throw new RuntimeException(e);
+        }
+
+
+
     }
 
     public void printStacks()
     {
+        IO.println();
         int stackSize = Math.max(a.size(), Math.max(b.size(), c.size())) + 1;
 
         List<String> aList = a.getPegListWithSize(stackSize);
@@ -83,17 +103,18 @@ public class TowerOfHanoi
             IO.println();
         }
 
-        IO.print("-");
-        IO.print("-");
-        IO.print("1");
-        IO.print("-");
-        IO.print("-");
-        IO.print("2");
-        IO.print("-");
-        IO.print("-");
-        IO.print("3");
-        IO.print("-");
-        IO.print("-");
+        UI.printCyan("-");
+        UI.printCyan("-");
+       UI.printRed("1");
+        UI.printCyan("-");
+        UI.printCyan("-");
+       UI.printRed("2");
+        UI.printCyan("-");
+        UI.printCyan("-");
+       UI.printRed("3");
+        UI.printCyan("-");
+        UI.printCyan("-");
+        IO.println();
         IO.println();
 
     }
