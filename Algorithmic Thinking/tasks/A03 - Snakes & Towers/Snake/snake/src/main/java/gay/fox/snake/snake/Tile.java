@@ -5,5 +5,6 @@ public enum Tile
     SNAKE_HEAD,
     SNAKE_TAIL,
     FOOD,
-    TRAVERSABLE
+    TRAVERSABLE,
+    WALL
 }

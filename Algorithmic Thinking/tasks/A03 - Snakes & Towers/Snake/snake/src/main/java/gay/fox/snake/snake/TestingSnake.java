@@ -4,7 +4,7 @@ public class TestingSnake
 {
     public static void main( String[] args )
     {
-        World world = new World(5);
+        World world = new World(5, true);
         Snake snake = new Snake(world);
         world.addSnake(snake);
         world.update();

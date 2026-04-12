@@ -11,7 +11,9 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
@@ -22,47 +24,63 @@ public class SnakeController
 
     @FXML
     public Canvas snakeCanvas;
+    @FXML
     public Button startButton;
+    @FXML
+    public Label currentDifficultyLabel;
+
+    @FXML
+    public CheckBox worldSpawnWithWallsToggle;
+    @FXML
+    public Slider worldSizeSlider;
+    @FXML
+    public Label scoreLabel;
 
     private World world;
     private Snake snake;
 
-    private final int gridSize = 30;
+    private int gridSize;
     private int pixelGridSize;
     private GraphicsContext gc;
 
-    private final Color traversableTileColor = Color.DARKGRAY;
+    private final Color traversableTileColor = Color.BLACK;
     private final Color foodTileColor = Color.RED;
     private final Color snakeHeadColor = Color.YELLOW;
     private final Color snakeTailColor = Color.GREEN;
+    private final Color wallColor = Color.BLUEVIOLET;
+
+    private final int EASY_TICK_TIME = 500;
+    private final int MEDIUM_TICK_TIME = 300;
+    private final int HARD_TICK_TIME = 150;
+    private final int SUICIDE_TICK_TIME = 30;
+
+    private int current_tick = EASY_TICK_TIME;
 
     private Timeline gameLoop;
 
+    private boolean hasPressedKeyThisTick = false;
+
+    @FXML
     public void onStartButtonPressed(ActionEvent actionEvent)
     {
         initialize();
-
-        gameLoop = new Timeline(new KeyFrame(Duration.millis(500), e ->
-        {
-            update();
-            drawGame();
-        }));
-
-        gameLoop.setCycleCount(Timeline.INDEFINITE);
-        gameLoop.play();
-    }
-
-    private void drawGame()
-    {
-        drawBoard();
-
-        IO.println(world);
-        IO.println(snake);
     }
 
     private void update()
     {
+        hasPressedKeyThisTick = false;
         world.update();
+
+        scoreLabel.setText("Score: " + snake.getScore());
+
+        drawBoard();
+
+        if (world.isGameOver())
+        {
+            gameLoop.stop();
+            snakeTitle.setText("GAME OVER");
+            startButton.setText("Play Again");
+        }
     }
 
     private void drawBoard()
@@ -87,11 +105,13 @@ public class SnakeController
                     case SNAKE_TAIL:
                         drawTileAtPositionInCanvas(snakeTailColor, new Position(i, j));
                         break;
+                    case WALL:
+                        drawTileAtPositionInCanvas(wallColor, new Position(i, j));
+                        break;
                 }
             }
         }
     }
-
 
     private void drawTileAtPositionInCanvas(Color color, Position position)
     {
@@ -101,26 +121,87 @@ public class SnakeController
 
     private void initialize()
     {
-        world = new World(gridSize);
+        scoreLabel.setText("Score: " + 0);
+        startButton.setText("RESTART");
+        snakeTitle.setText("Snake");
+
+        gridSize = (int) worldSizeSlider.getValue();
+
+        // Snake Game
+        world = new World(gridSize, worldSpawnWithWallsToggle.isSelected());
         snake = new Snake(world);
         world.addSnake(snake);
 
-        pixelGridSize = (int) (snakeCanvas.getHeight() / gridSize);
+        // Game Loop
+        if (gameLoop != null)
+            gameLoop.stop();
 
+        gameLoop = new Timeline(new KeyFrame(Duration.millis(current_tick), e -> update()));
+        gameLoop.setCycleCount(Timeline.INDEFINITE);
+        gameLoop.play();
+
+        // Canvas
         gc = snakeCanvas.getGraphicsContext2D();
+
+        pixelGridSize = (int) (snakeCanvas.getHeight() / gridSize);
 
         snakeCanvas.setFocusTraversable(true);
         snakeCanvas.setOnKeyPressed(event ->
         {
+            if (hasPressedKeyThisTick)
+            {
+                return;
+            }
+
             switch (event.getCode())
             {
-                case W -> snake.moveUp();
-                case S -> snake.moveDown();
-                case A -> snake.moveLeft();
-                case D -> snake.moveRight();
+                case W:
+                    snake.moveUp();
+                    hasPressedKeyThisTick = true;
+                    break;
+                case A:
+                    snake.moveLeft();
+                    hasPressedKeyThisTick = true;
+                    break;
+                case S:
+                    snake.moveDown();
+                    hasPressedKeyThisTick = true;
+                    break;
+                case D:
+                    snake.moveRight();
+                    hasPressedKeyThisTick = true;
+                    break;
             }
         });
 
         snakeCanvas.requestFocus();
+    }
+
+    @FXML
+    public void onEasyButtonPressed(ActionEvent actionEvent)
+    {
+        currentDifficultyLabel.setText("EASY");
+        current_tick = EASY_TICK_TIME;
+    }
+
+    @FXML
+    public void onMediumButtonPressed(ActionEvent actionEvent)
+    {
+        currentDifficultyLabel.setText("MEDIUM");
+        current_tick = MEDIUM_TICK_TIME;
+    }
+
+    @FXML
+    public void onHardButtonPressed(ActionEvent actionEvent)
+    {
+        currentDifficultyLabel.setText("HARD");
+        current_tick = HARD_TICK_TIME;
+    }
+
+    @FXML
+    public void onSuicideButtonPressed(ActionEvent actionEvent)
+    {
+        currentDifficultyLabel.setText("SUICIDE");
+        current_tick = SUICIDE_TICK_TIME;
     }
 }

@@ -14,7 +14,11 @@ public class World
     private final int MINIMUM_GRID_SIZE = 5;
     private Position currentFoodPosition;
 
-    public World(int gridSize)
+    private boolean isGameOver = false;
+
+    private boolean createWall = false;
+
+    public World(int gridSize, boolean createWall)
     {
         if (gridSize < MINIMUM_GRID_SIZE)
         {
@@ -22,6 +26,7 @@ public class World
         }
 
         this.gridSize = gridSize;
+        this.createWall = createWall;
         grid = new Tile[gridSize][gridSize];
 
         fillTraversalTiles();
@@ -33,6 +38,13 @@ public class World
     {
         Random rand = new Random();
         Position food = new Position(rand.nextInt(0, gridSize), rand.nextInt(0, gridSize));
+
+        if (getTile(food).equals(Tile.WALL))
+        {
+            spawnFood();
+            return;
+        }
+
         setTile(food, Tile.FOOD);
         currentFoodPosition = food;
     }
@@ -74,6 +86,17 @@ public class World
                 grid[i][j] = Tile.TRAVERSABLE;
             }
         }
+
+        if (!createWall)
+            return;
+
+        for (int i = 0; i < gridSize; i++)
+        {
+            grid[0][i] = Tile.WALL;             // top row
+            grid[gridSize - 1][i] = Tile.WALL;  // bottom row
+            grid[i][0] = Tile.WALL;             // left column
+            grid[i][gridSize - 1] = Tile.WALL;  // right column
+        }
     }
 
     private void drawSnake()
@@ -107,6 +130,21 @@ public class World
         drawFood();
         snake.move();
         drawSnake();
+
+        if (snake.isSelfColliding())
+        {
+            isGameOver = true;
+        }
+    }
+
+    public void setIsGameOver(boolean isGameOver)
+    {
+        this.isGameOver = isGameOver;
+    }
+
+    public boolean isGameOver()
+    {
+        return isGameOver;
     }
 
     public Tile getTile(Position pos)
@@ -148,6 +186,7 @@ public class World
                         case SNAKE_TAIL -> c = 'o';
                         case FOOD -> c = '*';
                         case TRAVERSABLE -> c = '·';
+                        case WALL -> c = '#';
                         default -> c = '?';
                     }
                 }

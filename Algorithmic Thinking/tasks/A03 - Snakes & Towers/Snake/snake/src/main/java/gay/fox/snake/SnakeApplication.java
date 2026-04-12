@@ -7,7 +7,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SnakeApplication extends Application {
+public class SnakeApplication extends Application
+{
     @Override
     public void start(Stage stage) throws IOException
     {

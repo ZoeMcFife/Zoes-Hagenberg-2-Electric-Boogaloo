@@ -1,9 +1,6 @@
 package gay.fox.data;
 
 import java.util.Iterator;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.function.Consumer;
 
 public class LinkedList<E> implements Iterable<E>
 {
@@ -37,7 +34,6 @@ public class LinkedList<E> implements Iterable<E>
     public void append(E item)
     {
         addLast(item);
-        IO.println(item + " added to LinkedList");
     }
 
     public void set(int index, E item)
@@ -234,6 +230,32 @@ public class LinkedList<E> implements Iterable<E>
         return get(size - 1);
     }
 
+    public int countOccurrences(E item)
+    {
+        if (isEmpty())
+        {
+            return 0;
+        }
+
+        int count = 0;
+
+        Node<E> current;
+
+        current = head;
+
+        for (int i = 0; i < getSize(); i++)
+        {
+            if (current.data.equals(item))
+            {
+                count++;
+            }
+
+            current = current.next;
+        }
+
+        return count;
+    }
+
     public E find(E item)
     {
         if (isEmpty())
@@ -247,12 +269,12 @@ public class LinkedList<E> implements Iterable<E>
 
         for (int i = 0; i < getSize(); i++)
         {
-            current = current.next;
-
             if (current.data.equals(item))
             {
                 return current.data;
             }
+
+            current = current.next;
         }
 
         return null;
@@ -271,12 +293,12 @@ public class LinkedList<E> implements Iterable<E>
 
         for (int i = 0; i < getSize(); i++)
         {
-            current = current.next;
-
             if (current.data.equals(item))
             {
                 return true;
             }
+
+            current = current.next;
         }
 
         return false;

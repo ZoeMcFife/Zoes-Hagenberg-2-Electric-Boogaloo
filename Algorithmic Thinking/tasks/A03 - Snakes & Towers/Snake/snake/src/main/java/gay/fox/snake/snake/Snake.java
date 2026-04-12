@@ -6,6 +6,8 @@ public class Snake extends LinkedList<Position>
 {
     private World world;
     private Direction direction;
+    private final int initialSnakeSize = 3;
+    private int score = 0;
 
     public Snake(World world)
     {
@@ -13,19 +15,19 @@ public class Snake extends LinkedList<Position>
 
         Position center = world.getCenter();
 
-        append(center);
-        append(new Position(center.getX() - 1, center.getY()));
-        append(new Position(center.getX() - 2, center.getY()));
-        append(new Position(center.getX() - 3, center.getY()));
-        append(new Position(center.getX() - 4, center.getY()));
-        append(new Position(center.getX() - 5, center.getY()));
-        append(new Position(center.getX() - 6, center.getY()));
-
-        IO.println("snake made: " + this);
+        for (int i = 0; i < initialSnakeSize; i++)
+        {
+            append(new Position(center.getX() - i, center.getY()));
+        }
 
         direction = Direction.RIGHT;
 
         wrapAround();
+    }
+
+    public boolean isSelfColliding()
+    {
+        return countOccurrences(getFirst()) > 1;
     }
 
     public void feed()
@@ -34,8 +36,14 @@ public class Snake extends LinkedList<Position>
         newTail.copy(getLast());
         newTail.shift(getOppositeDirection(direction));
 
+        score++;
+
         append(newTail);
-        IO.println("Snake feed: " + newTail);
+    }
+
+    public int getScore()
+    {
+        return score;
     }
 
     public void move()
@@ -59,8 +67,14 @@ public class Snake extends LinkedList<Position>
             world.spawnFood();
             feed();
         }
+        if (world.getTile(getFirst()).equals(Tile.WALL))
+        {
+            world.setIsGameOver(true);
+        }
     }
 
+
+    // These could've been done more efficiently but oh well lol
     public void moveLeft()
     {
         if (direction == Direction.RIGHT)
