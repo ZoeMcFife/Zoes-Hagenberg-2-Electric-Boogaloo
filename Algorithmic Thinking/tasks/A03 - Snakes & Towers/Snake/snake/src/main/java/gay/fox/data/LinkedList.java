@@ -89,9 +89,9 @@ public class LinkedList<E> implements Iterable<E>
             Node<E> oldNode = getNode(index - 1);
 
             Node<E> newNode = new Node<>(item);
-            newNode.prev = oldNode.prev;
-            newNode.next = oldNode;
-            oldNode.prev = newNode;
+            newNode.prev = oldNode;
+            newNode.next = oldNode.next;
+            oldNode.next = newNode;
 
             size++;
         }
