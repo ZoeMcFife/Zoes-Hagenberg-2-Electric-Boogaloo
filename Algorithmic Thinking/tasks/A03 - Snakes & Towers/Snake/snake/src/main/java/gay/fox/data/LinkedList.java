@@ -1,9 +1,6 @@
 package gay.fox.data;
 
 import java.util.Iterator;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.function.Consumer;
 
 public class LinkedList<E> implements Iterable<E>
 {
@@ -37,6 +34,12 @@ public class LinkedList<E> implements Iterable<E>
     public void append(E item)
     {
         addLast(item);
+    }
+
+    public void set(int index, E item)
+    {
+        Node<E> node = getNode(index);
+        node.data  = item;
     }
 
     public void addLast(E item)
@@ -86,9 +89,9 @@ public class LinkedList<E> implements Iterable<E>
             Node<E> oldNode = getNode(index - 1);
 
             Node<E> newNode = new Node<>(item);
-            newNode.prev = oldNode.prev;
-            newNode.next = oldNode;
-            oldNode.prev = newNode;
+            newNode.prev = oldNode;
+            newNode.next = oldNode.next;
+            oldNode.next = newNode;
 
             size++;
         }
@@ -203,7 +206,7 @@ public class LinkedList<E> implements Iterable<E>
         {
             current = tail;
 
-            for (int i = size; i > index; i--)
+            for (int i = size - 1; i > index; i--)
             {
                 current = current.prev;
             }
@@ -225,6 +228,80 @@ public class LinkedList<E> implements Iterable<E>
     public E getLast()
     {
         return get(size - 1);
+    }
+
+    public int countOccurrences(E item)
+    {
+        if (isEmpty())
+        {
+            return 0;
+        }
+
+        int count = 0;
+
+        Node<E> current;
+
+        current = head;
+
+        for (int i = 0; i < getSize(); i++)
+        {
+            if (current.data.equals(item))
+            {
+                count++;
+            }
+
+            current = current.next;
+        }
+
+        return count;
+    }
+
+    public E find(E item)
+    {
+        if (isEmpty())
+        {
+            return null;
+        }
+
+        Node<E> current;
+
+        current = head;
+
+        for (int i = 0; i < getSize(); i++)
+        {
+            if (current.data.equals(item))
+            {
+                return current.data;
+            }
+
+            current = current.next;
+        }
+
+        return null;
+    }
+
+    public boolean contains(E item)
+    {
+        if (isEmpty())
+        {
+            return false;
+        }
+
+        Node<E> current;
+
+        current = head;
+
+        for (int i = 0; i < getSize(); i++)
+        {
+            if (current.data.equals(item))
+            {
+                return true;
+            }
+
+            current = current.next;
+        }
+
+        return false;
     }
 
     @Override
