@@ -37,6 +37,58 @@ public class BinarySearchTree<T extends Comparable<T>>
         return node;
     }
 
+    // ----------------------------------------------------------------- remove
+
+    public void remove(T value)
+    {
+        if (!contains(value))
+        {
+            return;
+        }
+
+        root = remove(root, value);
+    }
+
+    private TreeNode<T> remove(TreeNode<T> node, T value)
+    {
+        int cmp = value.compareTo(node.value);
+
+        if (cmp < 0)
+        {
+            node.left = remove(node.left, value);
+        }
+        else if (cmp > 0)
+        {
+            node.right = remove(node.right, value);
+        }
+        else
+        {
+            if (node.left == null)
+            {
+                return node.right;
+            }
+
+            if (node.right == null)
+            {
+                return node.left;
+            }
+
+            // Two Children
+            node.value = findSmallest(node.right).value;
+            node.right = remove(node.right, node.value);
+        }
+
+        return node;
+    }
+
+    private TreeNode<T> findSmallest(TreeNode<T> node)
+    {
+        while (node.left != null)
+            node = node.left;
+
+        return node;
+    }
+
     // ----------------------------------------------------------------- contains
 
     public boolean contains(T value)
