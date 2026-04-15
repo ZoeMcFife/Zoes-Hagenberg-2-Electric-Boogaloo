@@ -61,4 +61,40 @@ public class BinarySearchTreeTest
         assertFalse(bst.contains(6));
         assertEquals(List.of(8, 4, 10, 2, 5, 9, 11), bst.bfs());
     }
+
+    @Test
+    @DisplayName("Range Search 3 - 6")
+    void rangeSearch()
+    {
+        BinarySearchTree<Integer> bst = createTree();
+
+        assertEquals(List.of(4, 5, 6), bst.rangeSearch(3, 6));
+    }
+
+    @Test
+    @DisplayName("Range Search 8 - 12")
+    void rangeSearch2()
+    {
+        BinarySearchTree<Integer> bst = createTree();
+
+        assertEquals(List.of(8, 9, 10, 11), bst.rangeSearch(8, 12));
+    }
+
+
+    @Test
+    @DisplayName("Range Search invalid range")
+    void rangeSearchError()
+    {
+        BinarySearchTree<Integer> bst = createTree();
+
+        assertThrows(IllegalArgumentException.class, () -> bst.rangeSearch(-1, -1));
+    }
+
+    @Test
+    @DisplayName("Range Search nothing found")
+    void rangeSearchNothingFound()
+    {
+        BinarySearchTree<Integer> bst = createTree();
+
+        assertEquals(List.of(), bst.rangeSearch(599, 670));    }
 }
