@@ -3,6 +3,7 @@ package gay.fox.stuff;
 import java.util.ArrayList;
 import java.util.ArrayDeque;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BinarySearchTree<T extends Comparable<T>>
 {
@@ -87,6 +88,20 @@ public class BinarySearchTree<T extends Comparable<T>>
             node = node.left;
 
         return node;
+    }
+
+    // ----------------------------------------------------------------- range search
+
+    public List<T> rangeSearch(T min, T max)
+    {
+        if (min.compareTo(max) >= 0)
+        {
+            throw new IllegalArgumentException("Invalid range; Min: " + min + ", Max: " + max + "; max must be larger than min!");
+        }
+
+        return inorder().stream()
+                .filter(v -> v.compareTo(min) >= 0 && v.compareTo(max) <= 0)
+                .toList();
     }
 
     // ----------------------------------------------------------------- contains
