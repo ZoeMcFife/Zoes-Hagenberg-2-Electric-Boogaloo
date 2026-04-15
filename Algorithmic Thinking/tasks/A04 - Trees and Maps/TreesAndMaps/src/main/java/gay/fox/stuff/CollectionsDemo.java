@@ -3,6 +3,9 @@ package gay.fox.stuff;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 public class CollectionsDemo {
 
     public static void main(String[] args) {
@@ -22,21 +25,21 @@ public class CollectionsDemo {
         directory.inorder().forEach(System.out::println);
 
         System.out.println("\n=== BFS from root (level-by-level) ===");
-        directory.bfs().forEach(r -> System.out.print(r.name() + "  "));
+        directory.bfs().forEach(r -> System.out.print(r.getName() + "  "));
         System.out.println();
 
         // ----------------------------------------------------------------
         // Sample data: dungeon items
         // ----------------------------------------------------------------
         List<Item> allItems = List.of(
-            new Item("Iron Sword",      "weapon", 8,  120),
-            new Item("Health Potion",   "potion", 1,   50),
-            new Item("Magic Staff",     "weapon", 5,  200),
-            new Item("Rusty Dagger",    "weapon", 3,   40),
-            new Item("Vault Key",       "key",    1,  300),
-            new Item("Mana Potion",     "potion", 1,   80),
-            new Item("Dragon Shield",   "weapon", 15, 250),
-            new Item("Elixir",          "potion", 2,  150)
+                new Item("Iron Sword",      "weapon", 8,  120),
+                new Item("Health Potion",   "potion", 1,   50),
+                new Item("Magic Staff",     "weapon", 5,  200),
+                new Item("Rusty Dagger",    "weapon", 3,   40),
+                new Item("Vault Key",       "key",    1,  300),
+                new Item("Mana Potion",     "potion", 1,   80),
+                new Item("Dragon Shield",   "weapon", 15, 250),
+                new Item("Elixir",          "potion", 2,  150)
         );
 
         // ----------------------------------------------------------------
@@ -45,7 +48,7 @@ public class CollectionsDemo {
         System.out.println("\n=== HashMap: O(1) item lookup by name ===");
         HashMap<String, Item> inventory = new HashMap<>();
         for (Item item : allItems) {
-            inventory.put(item.name(), item);
+            inventory.put(item.getName(), item);
         }
         System.out.println("Looking up 'Vault Key': " + inventory.get("Vault Key"));
         System.out.println("Looking up 'Banana':    " + inventory.get("Banana")); // null
@@ -74,8 +77,8 @@ public class CollectionsDemo {
         // ----------------------------------------------------------------
         System.out.println("\n=== ArrayList + Comparator: loot sorted by value desc, weight asc ===");
         List<Item> loot = new ArrayList<>(allItems);
-        loot.sort(Comparator.comparingInt(Item::value).reversed()
-                            .thenComparingInt(Item::weight));
+        loot.sort(Comparator.comparingInt(Item::getValue).reversed()
+                .thenComparingInt(Item::getWeight));
         loot.forEach(item -> System.out.println("  " + item));
 
         // ----------------------------------------------------------------
@@ -83,10 +86,10 @@ public class CollectionsDemo {
         // ----------------------------------------------------------------
         System.out.println("\n=== Streams: weapon names sorted by value (desc) ===");
         List<String> weaponNames = allItems.stream()
-            .filter(i -> i.type().equals("weapon"))
-            .sorted(Comparator.comparingInt(Item::value).reversed())
-            .map(Item::name)
-            .collect(Collectors.toList());
+                .filter(i -> i.getType().equals("weapon"))
+                .sorted(Comparator.comparingInt(Item::getValue).reversed())
+                .map(Item::getName)
+                .collect(Collectors.toList());
         System.out.println(weaponNames);
 
         // ----------------------------------------------------------------
@@ -94,7 +97,7 @@ public class CollectionsDemo {
         // ----------------------------------------------------------------
         System.out.println("\n=== Streams: items grouped by type ===");
         Map<String, List<Item>> byType = allItems.stream()
-            .collect(Collectors.groupingBy(Item::type));
+                .collect(Collectors.groupingBy(Item::getType));
         byType.forEach((type, items) -> {
             System.out.println("  " + type + ":");
             items.forEach(item -> System.out.println("    " + item));
@@ -104,9 +107,9 @@ public class CollectionsDemo {
         // Part 4c: Streams — total value of all potions
         // ----------------------------------------------------------------
         int potionValue = allItems.stream()
-            .filter(i -> i.type().equals("potion"))
-            .mapToInt(Item::value)
-            .sum();
+                .filter(i -> i.getType().equals("potion"))
+                .mapToInt(Item::getValue)
+                .sum();
         System.out.println("\n=== Streams: total potion value = " + potionValue + " gold ===");
 
         // ----------------------------------------------------------------
@@ -115,8 +118,8 @@ public class CollectionsDemo {
         System.out.println("\n=== Streams: most valuable item per type ===");
         byType.forEach((type, items) -> {
             items.stream()
-                .max(Comparator.comparingInt(Item::value))
-                .ifPresent(best -> System.out.println("  " + type + " best: " + best));
+                    .max(Comparator.comparingInt(Item::getValue))
+                    .ifPresent(best -> System.out.println("  " + type + " best: " + best));
         });
     }
 }

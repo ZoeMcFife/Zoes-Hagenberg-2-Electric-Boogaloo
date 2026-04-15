@@ -1,5 +1,4 @@
 package gay.fox.stuff;
-
 import org.junit.jupiter.api.*;
 
 import java.util.*;
@@ -84,8 +83,8 @@ public class TreesAndMapsTest {
             bst.insert(new Room("Dungeon", "Dark cells"));
             // When
             List<String> names = bst.inorder().stream()
-                .map(Room::name)
-                .collect(Collectors.toList());
+                    .map(Room::getName)
+                    .collect(Collectors.toList());
             // Then
             assertEquals(List.of("Armory", "Crypt", "Dungeon", "Hall", "Vault"), names);
         }
@@ -101,7 +100,7 @@ public class TreesAndMapsTest {
             // When
             List<String> result = bst.preorder();
             // Then — root must be the first element
-            assertEquals("Hall", result.getFirst());
+            assertEquals("Hall", result.get(0));
         }
 
         @Test
@@ -115,7 +114,7 @@ public class TreesAndMapsTest {
             // When
             List<String> result = bst.postorder();
             // Then — root must be the last element
-            assertEquals("Hall", result.getLast());
+            assertEquals("Hall", result.get(result.size() - 1));
         }
 
         @Test
@@ -166,11 +165,11 @@ public class TreesAndMapsTest {
 
         private List<Item> sampleItems() {
             return new ArrayList<>(List.of(
-                new Item("Iron Sword",    "weapon", 8,  120),
-                new Item("Health Potion", "potion", 1,   50),
-                new Item("Magic Staff",   "weapon", 5,  200),
-                new Item("Vault Key",     "key",    1,  300),
-                new Item("Mana Potion",   "potion", 1,   80)
+                    new Item("Iron Sword",    "weapon", 8,  120),
+                    new Item("Health Potion", "potion", 1,   50),
+                    new Item("Magic Staff",   "weapon", 5,  200),
+                    new Item("Vault Key",     "key",    1,  300),
+                    new Item("Mana Potion",   "potion", 1,   80)
             ));
         }
 
@@ -181,7 +180,7 @@ public class TreesAndMapsTest {
             HashMap<String, Item> map = new HashMap<>();
             Item sword = new Item("Iron Sword", "weapon", 8, 120);
             // When
-            map.put(sword.name(), sword);
+            map.put(sword.getName(), sword);
             // Then
             assertEquals(sword, map.get("Iron Sword"));
             assertNull(map.get("Banana"));
@@ -193,7 +192,7 @@ public class TreesAndMapsTest {
             // Given
             TreeMap<String, Item> map = new TreeMap<>();
             for (Item item : sampleItems()) {
-                map.put(item.name(), item);
+                map.put(item.getName(), item);
             }
             // When
             List<String> keys = new ArrayList<>(map.keySet());
@@ -239,10 +238,10 @@ public class TreesAndMapsTest {
             // Given
             List<Item> items = sampleItems();
             // When
-            items.sort(Comparator.comparingInt(Item::value).reversed());
+            items.sort(Comparator.comparingInt(Item::getValue).reversed());
             // Then — Vault Key (300) must be first, Health Potion (50) must be last
-            assertEquals("Vault Key",     items.get(0).name());
-            assertEquals("Health Potion", items.get(items.size() - 1).name());
+            assertEquals("Vault Key",     items.get(0).getName());
+            assertEquals("Health Potion", items.get(items.size() - 1).getName());
         }
 
         @Test
@@ -252,10 +251,10 @@ public class TreesAndMapsTest {
             List<Item> items = sampleItems();
             // When
             List<Item> weapons = items.stream()
-                .filter(i -> i.type().equals("weapon"))
-                .collect(Collectors.toList());
+                    .filter(i -> i.getType().equals("weapon"))
+                    .collect(Collectors.toList());
             // Then
-            assertTrue(weapons.stream().allMatch(i -> i.type().equals("weapon")));
+            assertTrue(weapons.stream().allMatch(i -> i.getType().equals("weapon")));
             assertEquals(2, weapons.size());
         }
 
@@ -266,9 +265,9 @@ public class TreesAndMapsTest {
             List<Item> items = sampleItems();
             // When
             int total = items.stream()
-                .filter(i -> i.type().equals("potion"))
-                .mapToInt(Item::value)
-                .sum();
+                    .filter(i -> i.getType().equals("potion"))
+                    .mapToInt(Item::getValue)
+                    .sum();
             // Then: Health Potion 50 + Mana Potion 80 = 130
             assertEquals(130, total);
         }
@@ -280,7 +279,7 @@ public class TreesAndMapsTest {
             List<Item> items = sampleItems();
             // When
             Map<String, List<Item>> byType = items.stream()
-                .collect(Collectors.groupingBy(Item::type));
+                    .collect(Collectors.groupingBy(Item::getType));
             // Then
             assertTrue(byType.containsKey("weapon"));
             assertTrue(byType.containsKey("potion"));
