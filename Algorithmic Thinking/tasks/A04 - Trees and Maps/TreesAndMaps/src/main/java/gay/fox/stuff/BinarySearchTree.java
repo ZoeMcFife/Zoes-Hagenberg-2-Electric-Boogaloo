@@ -214,4 +214,10 @@ public class BinarySearchTree<T extends Comparable<T>>
     {
         return root == null;
     }
+
+    @Override
+    public String toString()
+    {
+        return inorder().toString();
+    }
 }
