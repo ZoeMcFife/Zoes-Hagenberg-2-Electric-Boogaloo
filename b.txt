@@ -1,0 +1,82 @@
+=== SURVIVORS ===
+[ALIVE] Grumplethwaite | Rooms: 119 | Gold: 5923 | Items: 107 | Survived
+[ALIVE] Winklenob | Rooms: 102 | Gold: 5291 | Items: 112 | Survived
+[ALIVE] Angus McFife | Rooms: 76 | Gold: 3083 | Items: 84 | Survived
+[ALIVE] Frizzle Norbax | Rooms: 170 | Gold: 8144 | Items: 172 | Survived
+[ALIVE] Frizzle Norbax | Rooms: 0 | Gold: 0 | Items: 0 | Survived
+[ALIVE] Thrumblewick | Rooms: 113 | Gold: 6108 | Items: 112 | Survived
+[ALIVE] Klorp Fibblenose | Rooms: 46 | Gold: 2271 | Items: 53 | Survived
+[ALIVE] Throbble Dungsworth | Rooms: 30 | Gold: 1444 | Items: 31 | Survived
+[ALIVE] Snarfle Zun | Rooms: 113 | Gold: 5286 | Items: 130 | Survived
+[ALIVE] Gorple Snagworth | Rooms: 65 | Gold: 3349 | Items: 69 | Survived
+[ALIVE] Mina Gaia | Rooms: 135 | Gold: 6242 | Items: 143 | Survived
+[ALIVE] Voorp Snibbleton | Rooms: 156 | Gold: 7663 | Items: 150 | Survived
+[ALIVE] Glorbnor | Rooms: 3 | Gold: 153 | Items: 0 | Survived
+
+=== TOP 5 RUNS BY GOLD ===
+[ALIVE] Frizzle Norbax | Rooms: 170 | Gold: 8144 | Items: 172 | Survived
+[ALIVE] Voorp Snibbleton | Rooms: 156 | Gold: 7663 | Items: 150 | Survived
+[ALIVE] Mina Gaia | Rooms: 135 | Gold: 6242 | Items: 143 | Survived
+[ALIVE] Thrumblewick | Rooms: 113 | Gold: 6108 | Items: 112 | Survived
+[ALIVE] Grumplethwaite | Rooms: 119 | Gold: 5923 | Items: 107 | Survived
+
+=== TOTAL GOLD ACROSS ALL RUNS ===
+74326g
+
+=== RUNS BY PLAYER ===
+
+~ Glorbnor ~
+  [ALIVE] Glorbnor | Rooms: 3 | Gold: 153 | Items: 0 | Survived
+
+~ Throbble Dungsworth ~
+  [ALIVE] Throbble Dungsworth | Rooms: 30 | Gold: 1444 | Items: 31 | Survived
+
+~ Snarfle Zun ~
+  [ALIVE] Snarfle Zun | Rooms: 113 | Gold: 5286 | Items: 130 | Survived
+
+~ Snaggle Pfunk ~
+  [DEAD] Snaggle Pfunk | Rooms: 83 | Gold: 3789 | Items: 81 | Perished
+
+~ Glumble Snortwick ~
+  [DEAD] Glumble Snortwick | Rooms: 45 | Gold: 2455 | Items: 46 | Perished
+
+~ Klorp Fibblenose ~
+  [ALIVE] Klorp Fibblenose | Rooms: 46 | Gold: 2271 | Items: 53 | Survived
+
+~ Mina Gaia ~
+  [ALIVE] Mina Gaia | Rooms: 135 | Gold: 6242 | Items: 143 | Survived
+
+~ Blatherskite McGurp ~
+  [DEAD] Blatherskite McGurp | Rooms: 80 | Gold: 4276 | Items: 76 | Perished
+  [DEAD] Blatherskite McGurp | Rooms: 23 | Gold: 1266 | Items: 20 | Perished
+
+~ Gobblewump ~
+  [DEAD] Gobblewump | Rooms: 107 | Gold: 5209 | Items: 122 | Perished
+
+~ Frizzle Norbax ~
+  [ALIVE] Frizzle Norbax | Rooms: 170 | Gold: 8144 | Items: 172 | Survived
+  [ALIVE] Frizzle Norbax | Rooms: 0 | Gold: 0 | Items: 0 | Survived
+
+~ Splrx ~
+  [DEAD] Splrx | Rooms: 27 | Gold: 1546 | Items: 19 | Perished
+
+~ Gorple Snagworth ~
+  [ALIVE] Gorple Snagworth | Rooms: 65 | Gold: 3349 | Items: 69 | Survived
+
+~ Gobsnort Wumblemore ~
+  [DEAD] Gobsnort Wumblemore | Rooms: 17 | Gold: 828 | Items: 9 | Perished
+
+~ Winklenob ~
+  [ALIVE] Winklenob | Rooms: 102 | Gold: 5291 | Items: 112 | Survived
+
+~ Angus McFife ~
+  [ALIVE] Angus McFife | Rooms: 76 | Gold: 3083 | Items: 84 | Survived
+
+~ Thrumblewick ~
+  [ALIVE] Thrumblewick | Rooms: 113 | Gold: 6108 | Items: 112 | Survived
+
+~ Grumplethwaite ~
+  [ALIVE] Grumplethwaite | Rooms: 119 | Gold: 5923 | Items: 107 | Survived
+
+~ Voorp Snibbleton ~
+  [ALIVE] Voorp Snibbleton | Rooms: 156 | Gold: 7663 | Items: 150 | Survived
