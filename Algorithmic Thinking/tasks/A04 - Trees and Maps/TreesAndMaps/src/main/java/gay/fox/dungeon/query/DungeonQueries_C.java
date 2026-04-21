@@ -87,7 +87,7 @@ public class DungeonQueries_C
         TreeMap<String, Integer> runCountPerPlayer = new TreeMap<>();
 
         groupByPlayers()
-                .forEach((key, value) -> runCountPerPlayer.put(key, value.size()));
+                .forEach((key, value) -> runCountPerPlayer.put(key, Integer.valueOf(value.size())));
 
         return runCountPerPlayer;
     }
