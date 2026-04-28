@@ -124,6 +124,9 @@ public class Npc {
         System.out.println(name + " moves toward waypoint " + waypointIndex
                 + " (" + target[0] + "," + target[1] + ")");
         waypointIndex = (waypointIndex + 1) % waypoints.size();
+
+        x = target[0];
+        y = target[1];
     }
 
     /** Moves the NPC one step toward the player (Euclidean, speed units). */

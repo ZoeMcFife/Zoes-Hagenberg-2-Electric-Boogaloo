@@ -4,7 +4,7 @@ import gay.fox.statemachine.game.Npc;
 
 public class FleeState implements NpcState
 {
-    private static final double SAFE_DISTANCE = 50;
+    private static final double SAFE_DISTANCE = 20;
 
     @Override
     public void onEnter(Npc npc)
