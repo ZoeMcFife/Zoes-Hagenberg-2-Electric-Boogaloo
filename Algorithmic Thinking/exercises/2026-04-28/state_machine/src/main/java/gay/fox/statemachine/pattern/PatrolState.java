@@ -4,6 +4,7 @@ import gay.fox.statemachine.game.Npc;
 
 public class PatrolState implements NpcState
 {
+    private int maximumPatrolSteps = 4;
 
     @Override
     public void onEnter(Npc npc)
@@ -22,6 +23,14 @@ public class PatrolState implements NpcState
         if (npc.distanceToPlayer() <= npc.getDetectionRange())
         {
             npc.setState(new ChaseState());
+        }
+
+        maximumPatrolSteps--;
+
+        if (maximumPatrolSteps <= 0)
+        {
+            npc.setState(new IdleState());
+            npc.setPlayer(null);
         }
     }
 

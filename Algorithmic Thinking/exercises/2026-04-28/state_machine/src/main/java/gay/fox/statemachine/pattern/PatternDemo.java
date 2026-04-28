@@ -81,5 +81,33 @@ public class PatternDemo
         IO.println(arsonCat);
         arsonCat.update();
         IO.println(arsonCat);
+
+        IO.println("--- idle ---");
+
+        mina.moveTo(1200, 0);
+
+        arsonCat.update();
+        IO.println(arsonCat);
+        arsonCat.update();
+        IO.println(arsonCat);
+        arsonCat.update();
+        IO.println(arsonCat);
+        arsonCat.update();
+        IO.println(arsonCat);
+        arsonCat.update();
+        IO.println(arsonCat);
+
+        arsonCat.setPlayer(mina);
+
+        arsonCat.update();
+        IO.println(arsonCat);
+        arsonCat.update();
+        IO.println(arsonCat);
+        arsonCat.update();
+        IO.println(arsonCat);
+        arsonCat.update();
+        IO.println(arsonCat);
+        arsonCat.update();
+        IO.println(arsonCat);
     }
 }

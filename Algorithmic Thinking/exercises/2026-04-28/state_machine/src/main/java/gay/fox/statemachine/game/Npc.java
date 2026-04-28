@@ -110,6 +110,11 @@ public class Npc {
         return Math.sqrt(dx * dx + dy * dy);
     }
 
+    public boolean hasPlayer()
+    {
+        return player != null;
+    }
+
     public double getHp()             { return hp;             }
     public int getMaxHp()          { return maxHp;          }
     public double getDetectionRange() { return detectionRange; }
