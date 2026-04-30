@@ -7,26 +7,30 @@ USE Steam_Games;
 
 START TRANSACTION;
 
-SELECT COUNT(*) INTO @action_exists FROM genres WHERE genre_name = 'Action';
-SELECT COUNT(*) INTO @strategy_exists FROM genres WHERE genre_name = 'Strategy';
-SELECT COUNT(*) INTO @bethesda_exists FROM developers WHERE developer_name = 'Bethesda Softworks';
+SELECT genre_id INTO @action_exists FROM genres WHERE genre_name = 'Action';
+SELECT genre_id INTO @strategy_exists FROM genres WHERE genre_name = 'Strategy';
+SELECT developer_id INTO @bethesda_exists FROM developers WHERE developer_name = 'Bethesda Softworks';
 
-IF @action_exists = 0 THEN
+IF @action_exists IS NULL THEN
     ROLLBACK;
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Action Genre is non-existent';
 END IF;
 
-IF @strategy_exists = 0 THEN
+IF @strategy_exists IS NULL THEN
     ROLLBACK;
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Strategy Genre is non-existent';
 END IF;
 
-IF @bethesda_exists = 0 THEN
+IF @bethesda_exists IS NULL  THEN
     ROLLBACK;
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Bethesda Softworks is non-existent';
 END IF;
 
-INSERT INTO games VALUES (200000, 'The Elder Scrolls V: Skyrim, 8th Edition', 10, 4, 1, '2026-01-01', 102, 122, 12, 10, 'Very Positive', 100, 100, 0, 69.99);
+INSERT INTO games VALUES (2000000, 'The Elder Scrolls V: Skyrim, 8th Edition', 10, 4, 1, '2026-01-01', 102, 122, 12, 10, 'Very Positive', 100, 100, 0, 69.99);
+
+INSERT INTO game_genres VALUES (steam_appid, @action_exists);
+INSERT INTO game_genres VALUES (steam_appid, @strategy_exists);
+INSERT INTO game_developers VALUES (steam_appid, @bethesda_exists);
 
 SELECT * FROM games WHERE name LIKE '%elder scrolls%';
 
@@ -38,26 +42,30 @@ START TRANSACTION;
 
 DELETE FROM developers WHERE developer_name LIKE '%Bethesda%'; -- goodbye bethesda </3
 
-SELECT COUNT(*) INTO @action_exists FROM genres WHERE genre_name = 'Action';
-SELECT COUNT(*) INTO @strategy_exists FROM genres WHERE genre_name = 'Strategy';
-SELECT COUNT(*) INTO @bethesda_exists FROM developers WHERE developer_name = 'Bethesda Softworks';
+SELECT genre_id INTO @action_exists FROM genres WHERE genre_name = 'Action';
+SELECT genre_id INTO @strategy_exists FROM genres WHERE genre_name = 'Strategy';
+SELECT developer_id INTO @bethesda_exists FROM developers WHERE developer_name = 'Bethesda Softworks';
 
-IF @action_exists = 0 THEN
+IF @action_exists IS NULL THEN
     ROLLBACK;
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Action Genre is non-existent';
 END IF;
 
-IF @strategy_exists = 0 THEN
+IF @strategy_exists IS NULL THEN
     ROLLBACK;
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Strategy Genre is non-existent';
 END IF;
 
-IF @bethesda_exists = 0 THEN
+IF @bethesda_exists IS NULL  THEN
     ROLLBACK;
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Bethesda Softworks is non-existent';
 END IF;
 
-INSERT INTO games VALUES (200000, 'The Elder Scrolls V: Skyrim, 8th Edition', 10, 4, 1, '2026-01-01', 102, 122, 12, 10, 'Very Positive', 100, 100, 0, 69.99);
+INSERT INTO games VALUES (2000000, 'The Elder Scrolls V: Skyrim, 8th Edition', 10, 4, 1, '2026-01-01', 102, 122, 12, 10, 'Very Positive', 100, 100, 0, 69.99);
+
+INSERT INTO game_genres VALUES (steam_appid, @action_exists);
+INSERT INTO game_genres VALUES (steam_appid, @strategy_exists);
+INSERT INTO game_developers VALUES (steam_appid, @bethesda_exists);
 
 SELECT * FROM games WHERE name LIKE '%elder scrolls%';
 
