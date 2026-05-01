@@ -67,6 +67,10 @@ public class MazeParser
                 {
                     traversalLayer[r][c] = parseTileString(mazeAscii.charAt(i), new TilePosition(r, c));
                 }
+                else
+                {
+                    traversalLayer[r][c] = new Tile(TileType.EMPTY, new TilePosition(r, c));
+                }
                 i++;
             }
         }

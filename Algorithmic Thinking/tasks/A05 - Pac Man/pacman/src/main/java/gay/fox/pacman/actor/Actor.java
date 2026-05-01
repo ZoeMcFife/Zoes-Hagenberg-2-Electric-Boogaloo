@@ -8,7 +8,7 @@ public class Actor
 {
     private String name;
     private Tile actorTile;
-    private Maze maze;
+    private int layerId;
 
     private Direction currentDirection = Direction.UP;
 
@@ -39,8 +39,8 @@ public class Actor
         this.name = name;
     }
 
-    public void setMaze(Maze maze)
+    private void setLayerId(int layerId)
     {
-        this.maze = maze;
+        this.layerId = layerId;
     }
 }
