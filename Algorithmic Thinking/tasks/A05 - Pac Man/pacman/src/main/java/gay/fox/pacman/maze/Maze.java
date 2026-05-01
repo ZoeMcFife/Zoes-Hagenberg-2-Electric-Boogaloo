@@ -75,13 +75,13 @@ public class Maze
 
     public void addActor(Actor actor)
     {
-        actor.setMaze(this);
-
         if (!isTileValidSpawnPosition(actor.getActorTile().getPos()))
         {
             throw new IllegalStateException("Actor tile has invalid spawn position");
         }
-        
+
+        Layer actorLayer = new Layer(actorLayers.size() + 100);
+
 
 
 

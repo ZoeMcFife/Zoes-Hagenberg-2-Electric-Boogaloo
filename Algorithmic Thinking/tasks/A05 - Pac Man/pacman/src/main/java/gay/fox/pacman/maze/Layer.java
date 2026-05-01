@@ -1,5 +1,7 @@
 package gay.fox.pacman.maze;
 
+import gay.fox.pacman.actor.Direction;
+
 public class Layer
 {
     private final int layerId;
@@ -17,6 +19,23 @@ public class Layer
 
         this.layer = new Tile[Maze.MAZE_ROWS][Maze.MAZE_COLUMNS];
     }
+
+    public void addTile(Tile tile)
+    {
+        layer[tile.getPos().getRow()][tile.getPos().getCol()] = tile;
+    }
+
+    public void moveTile(TilePosition position, Direction direction)
+    {
+
+
+    }
+
+    public void removeTile(TilePosition position)
+    {
+        layer[position.getRow()][position.getCol()] = null;
+    }
+
 
     public int getLayerId()
     {
