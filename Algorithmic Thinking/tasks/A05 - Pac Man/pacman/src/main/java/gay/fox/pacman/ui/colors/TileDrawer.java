@@ -32,8 +32,8 @@ public class TileDrawer
 
     private static void drawGhost(GraphicsContext gc, int x, int y, Color color, int size)
     {
-        drawCircle(gc, x, y, color, size, 1.5);
+        drawCircle(gc, x, y, color, size, 3);
         Color inverted = color.invert();
-        drawCircle(gc, x, y, inverted, size, 3);
+        drawCircle(gc, x, y, inverted, size, 1.5);
     }
 }

@@ -34,7 +34,7 @@ public class PacManController
     private Maze maze;
 
     private Timeline gameLoop;
-    private final int tickRate = 10;
+    private final int tickRate = 5;
 
     private int tickCounter = 0;
 

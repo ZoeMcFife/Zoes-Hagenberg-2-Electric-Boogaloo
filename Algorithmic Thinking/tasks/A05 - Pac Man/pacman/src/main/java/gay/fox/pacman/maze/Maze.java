@@ -152,7 +152,7 @@ public class Maze
 
     public boolean isValidTraversableTile(TilePosition pos)
     {
-        if (getTileType(pos) == TileType.WALL || getTileType(pos) == TileType.PACMAN)
+        if (getTileType(pos) == TileType.WALL)
             return false;
 
         if (pos.getCol() >= MAZE_COLUMNS || pos.getRow() >= MAZE_ROWS)
@@ -266,5 +266,10 @@ public class Maze
     public Layer getTraversalLayer()
     {
         return traversalLayer;
+    }
+
+    public boolean isPlayerSuperPowered()
+    {
+        return ((Player) playerLayer.getActor()).isSuperPowered();
     }
 }
