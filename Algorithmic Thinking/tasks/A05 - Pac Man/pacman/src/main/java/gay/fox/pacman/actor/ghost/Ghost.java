@@ -15,9 +15,9 @@ import java.util.Random;
 public class Ghost extends Actor
 {
     private List<TilePosition> randomIdlePoints;
-    public final double playerDetectionRange = 3;
-    public final double playerDisengagementRange = 7;
-    public final int playerChaseMaxSteps = 10;
+    public final double playerDetectionRange = 8;
+    public final double playerDisengagementRange = 10;
+    public final int playerChaseMaxSteps = 15;
 
     private List<TilePosition> currentPath;
 
@@ -52,9 +52,9 @@ public class Ghost extends Actor
 
     public void update()
     {
+        move();
         currentState.update(this);
-
-        IO.println("Ghost update: " + currentState.getName() + " path: " + currentPath.toString());
+        IO.println("Ghost State: " + currentState.getName() + " Ghost Pos: " + getActorTile().getPos() + " player pos: " + getPlayerPosition());
     }
 
     private void generateRandomIdlePoints()
@@ -104,8 +104,20 @@ public class Ghost extends Actor
         if (currentPath.isEmpty())
             return;
 
-        layer.moveActor(currentPath.getLast());
-        currentPath.removeLast();
+        if (currentPath.size() == 1)
+        {
+            IO.println("ghost current pos: " + getActorTile().getPos());
+            IO.println("Ghost Pathfinding one path: " + currentPath.toString());
+            layer.moveActor(currentPath.getFirst());
+            return;
+        }
+
+        currentPath.removeFirst();
+        layer.moveActor(currentPath.getFirst());
+
+        //currentPath.removeFirst();
+
+        IO.println("Ghost Path: " + currentPath.toString());
     }
 
     public List<TilePosition> getCurrentPath()
@@ -116,5 +128,10 @@ public class Ghost extends Actor
     public boolean isPlayerNearby()
     {
         return getPlayerDistance() < playerDetectionRange;
+    }
+
+    public boolean isPlayerSuperPowered()
+    {
+        return layer.getMaze().isPlayerSuperPowered();
     }
 }
