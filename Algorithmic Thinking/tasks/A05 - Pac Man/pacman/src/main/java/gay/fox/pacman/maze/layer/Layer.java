@@ -4,6 +4,7 @@ import gay.fox.pacman.actor.Direction;
 import gay.fox.pacman.maze.Maze;
 import gay.fox.pacman.maze.tile.Tile;
 import gay.fox.pacman.maze.tile.TilePosition;
+import gay.fox.pacman.maze.tile.TileType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,14 @@ public class Layer
     public void removeTile(TilePosition position)
     {
         layer[position.getRow()][position.getCol()] = null;
+    }
+
+    public TileType getTileType(TilePosition position)
+    {
+        if (layer[position.getRow()][position.getCol()] == null)
+            return TileType.EMPTY;
+
+        return layer[position.getRow()][position.getCol()].getType();
     }
 
     public int getLayerId()

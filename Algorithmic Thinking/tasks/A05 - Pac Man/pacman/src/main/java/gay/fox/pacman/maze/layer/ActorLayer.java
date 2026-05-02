@@ -35,9 +35,29 @@ public class ActorLayer<T extends Actor> extends Layer
         addTile(actor.getActorTile());
     }
 
+    public void moveActor(TilePosition nextPosition)
+    {
+        if (!maze.isValidTraversableTile(nextPosition))
+        {
+            return;
+        }
+
+        TilePosition currentPosition = actor.getActorTile().getPos();
+
+        actor.getActorTile().setPos(nextPosition);
+
+        removeTile(currentPosition);
+        addTile(actor.getActorTile());
+    }
+
     public TileType collect()
     {
         return maze.collect(actor.getActorTile().getPos());
+    }
+
+    public Actor getActor()
+    {
+        return actor;
     }
 
 }

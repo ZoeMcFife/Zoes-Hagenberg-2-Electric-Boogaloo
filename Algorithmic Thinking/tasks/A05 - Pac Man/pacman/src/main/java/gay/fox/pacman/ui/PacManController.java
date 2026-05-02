@@ -2,6 +2,7 @@ package gay.fox.pacman.ui;
 
 import gay.fox.pacman.actor.Actor;
 import gay.fox.pacman.actor.Direction;
+import gay.fox.pacman.actor.ghost.Ghost;
 import gay.fox.pacman.actor.player.Player;
 import gay.fox.pacman.maze.Maze;
 import gay.fox.pacman.maze.layer.Layer;
@@ -15,6 +16,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PacManController
 {
@@ -30,11 +34,12 @@ public class PacManController
     private Maze maze;
 
     private Timeline gameLoop;
-    private final int tickRate = 5;
+    private final int tickRate = 10;
+
+    private int tickCounter = 0;
 
     private Player playerActor;
     private boolean hasPressedKeyThisTick = false;
-
 
     private void init()
     {
@@ -92,11 +97,19 @@ public class PacManController
 
     private void update()
     {
+        tickCounter++;
+
+        if (tickCounter >= tickRate)
+            tickCounter = 0;
+
         hasPressedKeyThisTick = false;
         playerActor.collectPellet();
         playerActor.move();
         playerActor.updatePowerSteps();
         drawFrame();
+
+        if (tickCounter % 3 == 0)
+            maze.updateGhosts();
 
         scoreLabel.setText(String.valueOf(playerActor.getPoints()));
     }

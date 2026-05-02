@@ -1,5 +1,7 @@
 package gay.fox.pacman.maze.tile;
 
+import java.util.Objects;
+
 public class TilePosition
 {
     private int row;
@@ -47,5 +49,17 @@ public class TilePosition
     public String toString()
     {
         return "TilePosition [row=" + row + ", col=" + col + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        TilePosition that = (TilePosition) o;
+        return getRow() == that.getRow() && getCol() == that.getCol();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getRow(), getCol());
     }
 }
