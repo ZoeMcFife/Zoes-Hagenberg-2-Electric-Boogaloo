@@ -29,20 +29,45 @@ public class Maze
     private Layer pathFindingPreviewLayer = new Layer(2, this);
     private List<ActorLayer<Ghost>> ghostLayers = new ArrayList<>();
     private ActorLayer<Player> playerLayer;
+    private List<Ghost> ghosts = new ArrayList<>();
 
     public Maze()
     {
         Ghost blinky = new Ghost("Blinky", new TilePosition(14, 11));
+        blinky.previewPathfinding = true;
         Ghost pinky = new Ghost("Pinky", new TilePosition(14, 13));
         Ghost inky = new Ghost("Inky", new TilePosition(14, 15));
         Ghost clyde = new Ghost("Clyde", new TilePosition(15, 13));
 
         addGhost(blinky);
-        addGhost(pinky);
+        /*addGhost(pinky);
         addGhost(inky);
-        addGhost(clyde);
+        addGhost(clyde);*/
+
+        ghosts.add(blinky);
+        /*ghosts.add(pinky);
+        ghosts.add(inky);
+        ghosts.add(clyde);*/
     }
 
+    public void updateGhosts()
+    {
+        for (Ghost ghost : ghosts)
+        {
+            ghost.update();
+
+            if (ghost.previewPathfinding)
+            {
+                pathFindingPreviewLayer.layer = new Tile[MAZE_ROWS][MAZE_COLUMNS];
+
+                for (TilePosition pos : ghost.getCurrentPath())
+                {
+                    pathFindingPreviewLayer.addTile(new Tile(TileType.PATH_FINDING_PREVIEW, pos));
+                }
+            }
+        }
+
+    }
 
     public List<Layer> getLayersInDrawOrder()
     {
@@ -139,6 +164,21 @@ public class Maze
         return true;
     }
 
+    public boolean isValidTraversableTile(TilePosition pos, Layer layer)
+    {
+        if (pos.getCol() >= MAZE_COLUMNS || pos.getRow() >= MAZE_ROWS)
+            return false;
+
+        if (pos.getCol() < 0 || pos.getRow() < 0)
+            return false;
+
+        if (getTileType(layer, pos) == TileType.WALL || getTileType(layer, pos) == TileType.PACMAN)
+            return false;
+
+        return true;
+    }
+
+
     public void addPlayer(Player player)
     {
         if (!isTileValidSpawnPosition(player.getActorTile().getPos()))
@@ -160,6 +200,8 @@ public class Maze
         ActorLayer<Ghost> ghostLayer = new ActorLayer<>(ghostLayers.size() + 100, ghost, this);
         ghost.setLayer(ghostLayer);
         ghostLayers.add(ghostLayer);
+
+        ghost.activateGhost();
     }
 
 
@@ -214,5 +256,15 @@ public class Maze
         }
 
         return TileType.EMPTY;
+    }
+
+    public TilePosition getPlayerPostion()
+    {
+        return playerLayer.getActor().getActorTile().getPos();
+    }
+
+    public Layer getTraversalLayer()
+    {
+        return traversalLayer;
     }
 }
