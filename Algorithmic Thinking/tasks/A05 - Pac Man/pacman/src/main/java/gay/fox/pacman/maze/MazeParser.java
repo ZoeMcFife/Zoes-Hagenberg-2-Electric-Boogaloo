@@ -1,12 +1,16 @@
 package gay.fox.pacman.maze;
 
+import gay.fox.pacman.maze.tile.Tile;
+import gay.fox.pacman.maze.tile.TilePosition;
+import gay.fox.pacman.maze.tile.TileType;
+
 public class MazeParser
 {
     private static final String mazeAscii =
         "############################" +
         "#············##············#" +
         "#·####·#####·##·#####·####·#" +
-        "#@####·#####·##·#####·####@#" +
+        "#@#  #·#   #·##·#   #·#  #@#" +
         "#·####·#####·##·#####·####·#" +
         "#··························#" +
         "#·####·##·########·##·####·#" +

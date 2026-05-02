@@ -1,6 +1,13 @@
 package gay.fox.pacman.maze;
 
-import gay.fox.pacman.actor.Actor;
+import gay.fox.pacman.actor.Direction;
+import gay.fox.pacman.actor.ghost.Ghost;
+import gay.fox.pacman.actor.player.Player;
+import gay.fox.pacman.maze.layer.ActorLayer;
+import gay.fox.pacman.maze.layer.Layer;
+import gay.fox.pacman.maze.tile.Tile;
+import gay.fox.pacman.maze.tile.TilePosition;
+import gay.fox.pacman.maze.tile.TileType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +17,45 @@ public class Maze
     public static final int MAZE_ROWS = 31;
     public static final int MAZE_COLUMNS = 28;
 
-    private Layer traversalLayer = new Layer(0, MazeParser.createTraversalLayer());
-    private Layer pelletLayer = new Layer(1,  MazeParser.createPelletLayer());
-    private List<Layer> actorLayers = new ArrayList<>();
+    public static final TilePosition playerStart = new TilePosition(17, 14);
+
+    /**
+     * Used to determine when the player loops around the maze!
+     */
+    private static final int MAZE_TELEPORT_ROW = 14;
+
+    private Layer traversalLayer = new Layer(0, MazeParser.createTraversalLayer(), this);
+    private Layer pelletLayer = new Layer(1,  MazeParser.createPelletLayer(), this);
+    private Layer pathFindingPreviewLayer = new Layer(2, this);
+    private List<ActorLayer<Ghost>> ghostLayers = new ArrayList<>();
+    private ActorLayer<Player> playerLayer;
+
+    public Maze()
+    {
+        Ghost blinky = new Ghost("Blinky", new TilePosition(14, 11));
+        Ghost pinky = new Ghost("Pinky", new TilePosition(14, 13));
+        Ghost inky = new Ghost("Inky", new TilePosition(14, 15));
+        Ghost clyde = new Ghost("Clyde", new TilePosition(15, 13));
+
+        addGhost(blinky);
+        addGhost(pinky);
+        addGhost(inky);
+        addGhost(clyde);
+    }
+
+
+    public List<Layer> getLayersInDrawOrder()
+    {
+        List<Layer> layers = new ArrayList<>();
+
+        layers.add(traversalLayer);
+        layers.add(pathFindingPreviewLayer);
+        layers.add(pelletLayer);
+        layers.addAll(ghostLayers);
+        layers.add(playerLayer);
+
+        return layers;
+    }
 
     @Override
     public String toString()
@@ -36,8 +79,14 @@ public class Maze
 
     private Tile[][] getMergedMaze()
     {
-        List<Layer> layers = new ArrayList<>(List.of(traversalLayer, pelletLayer));
-        layers.addAll(actorLayers);
+        List<Layer> layers = new ArrayList<>();
+
+        layers.add(traversalLayer);
+        layers.add(pelletLayer);
+        layers.addAll(ghostLayers);
+
+        if (playerLayer != null)
+            layers.add(playerLayer);
 
         Tile[][] mergedLayer = new Tile[MAZE_ROWS][MAZE_COLUMNS];
 
@@ -58,14 +107,17 @@ public class Maze
         return mergedLayer;
     }
 
-    /*private void setTile(Tile tile)
+    public TileType getTileType(TilePosition pos)
     {
-        maze[tile.getPos().getRow()][tile.getPos().getCol()]  = tile;
-    }*/
+        return getMergedMaze()[pos.getRow()][pos.getCol()].getType();
+    }
 
-    private TileType getTileType(TilePosition pos)
+    public TileType getTileType(Layer layer, TilePosition pos)
     {
-        return getMergedMaze()[pos.getRow()][pos.getRow()].getType();
+        if (layer.layer[pos.getRow()][pos.getCol()] == null)
+            return TileType.EMPTY;
+
+        return layer.layer[pos.getRow()][pos.getCol()].getType();
     }
 
     private boolean isTileValidSpawnPosition(TilePosition pos)
@@ -73,18 +125,94 @@ public class Maze
         return getTileType(pos) ==  TileType.EMPTY;
     }
 
-    public void addActor(Actor actor)
+    public boolean isValidTraversableTile(TilePosition pos)
     {
-        if (!isTileValidSpawnPosition(actor.getActorTile().getPos()))
-        {
-            throw new IllegalStateException("Actor tile has invalid spawn position");
-        }
+        if (getTileType(pos) == TileType.WALL || getTileType(pos) == TileType.PACMAN)
+            return false;
 
-        Layer actorLayer = new Layer(actorLayers.size() + 100);
+        if (pos.getCol() >= MAZE_COLUMNS || pos.getRow() >= MAZE_ROWS)
+            return false;
 
+        if (pos.getCol() < 0 || pos.getRow() < 0)
+            return false;
 
-
-
+        return true;
     }
 
+    public void addPlayer(Player player)
+    {
+        if (!isTileValidSpawnPosition(player.getActorTile().getPos()))
+        {
+            throw new IllegalStateException("Player tile has invalid spawn position");
+        }
+
+        playerLayer = new ActorLayer<>(3, player, this);
+        player.setLayer(playerLayer);
+    }
+
+    public void addGhost(Ghost ghost)
+    {
+        if (!isTileValidSpawnPosition(ghost.getActorTile().getPos()))
+        {
+            throw new IllegalStateException("Ghost tile has invalid spawn position");
+        }
+
+        ActorLayer<Ghost> ghostLayer = new ActorLayer<>(ghostLayers.size() + 100, ghost, this);
+        ghost.setLayer(ghostLayer);
+        ghostLayers.add(ghostLayer);
+    }
+
+
+    public TilePosition getNextTile(TilePosition pos, Direction direction)
+    {
+        TilePosition nextTilePosition = new TilePosition(pos);
+
+        switch (direction)
+        {
+            case UP:
+                nextTilePosition.setRow(pos.getRow() - 1);
+                break;
+            case DOWN:
+                nextTilePosition.setRow(pos.getRow() + 1);
+                break;
+            case LEFT:
+                if (pos.getRow() == MAZE_TELEPORT_ROW && pos.getCol() == 0)
+                {
+                    nextTilePosition.setRow(MAZE_TELEPORT_ROW);
+                    nextTilePosition.setCol(MAZE_COLUMNS - 1);
+                }
+                else
+                {
+                    nextTilePosition.setCol(pos.getCol() - 1);
+                }
+                break;
+            case RIGHT:
+                if (pos.getRow() == MAZE_TELEPORT_ROW && pos.getCol() == MAZE_COLUMNS - 1)
+                {
+                    nextTilePosition.setRow(MAZE_TELEPORT_ROW);
+                    nextTilePosition.setCol(0);
+                }
+                else
+                {
+                    nextTilePosition.setCol(pos.getCol() + 1);
+                }
+
+                break;
+        }
+
+        return nextTilePosition;
+    }
+
+    public TileType collect(TilePosition pos)
+    {
+        TileType type = getTileType(pelletLayer, pos);
+
+        if (type == TileType.PELLET || type == TileType.POWER_PELLET)
+        {
+            pelletLayer.removeTile(pos);
+            return type;
+        }
+
+        return TileType.EMPTY;
+    }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gay.fox.pacman.ui.PacManController">
+    <padding>
+        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+    </padding>
+
+    <Label fx:id="titleText" text="Pac Man" textFill="#000d03">
+        <font>
+            <Font name="Bookman Old Style Italic" size="41.0" />
+        </font></Label>
+    <Canvas fx:id="pacmanCanvas" height="300.0" width="300.0" />
+    <Label fx:id="scoreLabel" text="Label" textAlignment="CENTER" textFill="#f20000">
+        <font>
+            <Font size="10.0" />
+        </font>
+    </Label>
+    <Button fx:id="startButton" onAction="#start" text="Start" />
+</VBox>
