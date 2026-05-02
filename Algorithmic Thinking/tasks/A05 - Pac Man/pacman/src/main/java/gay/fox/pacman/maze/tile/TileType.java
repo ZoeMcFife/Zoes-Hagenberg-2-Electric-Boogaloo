@@ -1,4 +1,4 @@
-package gay.fox.pacman.maze;
+package gay.fox.pacman.maze.tile;
 
 public enum TileType
 {
@@ -9,5 +9,6 @@ public enum TileType
     WALL,
     PELLET,
     POWER_PELLET,
-    EMPTY
+    EMPTY,
+    PATH_FINDING_PREVIEW
 }

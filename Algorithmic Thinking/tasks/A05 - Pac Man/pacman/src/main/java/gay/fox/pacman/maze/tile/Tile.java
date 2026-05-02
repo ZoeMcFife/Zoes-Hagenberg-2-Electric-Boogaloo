@@ -1,4 +1,4 @@
-package gay.fox.pacman.maze;
+package gay.fox.pacman.maze.tile;
 
 public class Tile
 {
@@ -48,6 +48,7 @@ public class Tile
             case PELLET -> "·";
             case POWER_PELLET -> "@";
             case EMPTY -> " ";
+            case PATH_FINDING_PREVIEW -> "x";
         };
     }
 
