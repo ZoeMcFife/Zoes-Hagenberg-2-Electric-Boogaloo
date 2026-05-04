@@ -10,8 +10,6 @@ public class Pathfinding
 {
     public static List<TilePosition> findPath(TilePosition start, TilePosition goal, Layer traversalLayer)
     {
-        IO.println("Pathfinding start: " + start + " goal: " + goal);
-
         if (start.getManhattanDistance(goal) <= 1)
         {
             return List.of(goal);

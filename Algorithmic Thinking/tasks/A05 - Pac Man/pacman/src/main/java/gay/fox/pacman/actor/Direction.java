@@ -5,7 +5,8 @@ public enum Direction
     UP,
     DOWN,
     LEFT,
-    RIGHT;
+    RIGHT,
+    NONE;
 
     public static Direction getOpposite(Direction d)
     {
@@ -15,6 +16,7 @@ public enum Direction
             case DOWN -> UP;
             case LEFT -> RIGHT;
             case RIGHT -> LEFT;
+            default -> NONE;
         };
     }
 }

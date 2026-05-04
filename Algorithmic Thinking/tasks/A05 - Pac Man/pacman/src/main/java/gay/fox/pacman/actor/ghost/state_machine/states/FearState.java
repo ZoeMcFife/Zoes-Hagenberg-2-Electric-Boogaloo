@@ -33,6 +33,6 @@ public class FearState implements State
 
     @Override
     public String getName() {
-        return "";
+        return "Fear";
     }
 }
