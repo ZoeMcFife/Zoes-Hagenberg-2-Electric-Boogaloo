@@ -127,4 +127,9 @@ public class Ghost extends Actor
     {
         return layer.getMaze().isPlayerSuperPowered();
     }
+
+    public TilePosition getFurthestPositionFromPlayer()
+    {
+
+    }
 }

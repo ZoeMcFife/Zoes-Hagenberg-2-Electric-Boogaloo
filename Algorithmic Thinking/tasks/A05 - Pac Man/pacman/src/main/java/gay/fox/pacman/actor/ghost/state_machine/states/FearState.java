@@ -7,12 +7,11 @@ import gay.fox.pacman.maze.tile.TileType;
 
 public class FearState implements State
 {
-    private TilePosition goal =  new TilePosition(14, 14);
 
     @Override
     public void onEnter(Ghost ghost)
     {
-        ghost.pathFind(goal);
+
         ghost.getActorTile().setType(TileType.GHOST_FRIGHTENED);
     }
 
@@ -25,6 +24,8 @@ public class FearState implements State
     @Override
     public void update(Ghost ghost)
     {
+        ghost.pathFind(goal);
+
         if (!ghost.isPlayerSuperPowered())
         {
             ghost.switchState(new IdleState(ghost.randomIdlePoint()));
