@@ -46,8 +46,7 @@ public class PacManController
         pixelGridSize = (int) (pacmanCanvas.getHeight() / Maze.MAZE_ROWS);
         maze = new Maze();
 
-        playerActor = new Player("test", Maze.playerStart);
-        maze.addPlayer(playerActor);
+        playerActor = maze.createPlayer();
 
         gc = pacmanCanvas.getGraphicsContext2D();
 
@@ -97,6 +96,30 @@ public class PacManController
 
     private void update()
     {
+        if (maze.ghostOverlapsWithPlayer())
+        {
+
+            try
+            {
+                gameLoop.stop();
+                Thread.sleep(1000);
+                gameLoop.play();
+            }
+            catch (InterruptedException e)
+            {
+                // do nothing
+            }
+
+            maze.reset();
+            playerActor.death();
+
+            if (playerActor.getLives() <= 0)
+            {
+                gameLoop.stop();
+                return;
+            }
+        }
+
         tickCounter++;
 
         if (tickCounter >= tickRate)

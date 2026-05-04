@@ -54,7 +54,6 @@ public class Ghost extends Actor
     {
         move();
         currentState.update(this);
-        IO.println("Ghost State: " + currentState.getName() + " Ghost Pos: " + getActorTile().getPos() + " player pos: " + getPlayerPosition());
     }
 
     private void generateRandomIdlePoints()
@@ -106,18 +105,12 @@ public class Ghost extends Actor
 
         if (currentPath.size() == 1)
         {
-            IO.println("ghost current pos: " + getActorTile().getPos());
-            IO.println("Ghost Pathfinding one path: " + currentPath.toString());
             layer.moveActor(currentPath.getFirst());
             return;
         }
 
         currentPath.removeFirst();
         layer.moveActor(currentPath.getFirst());
-
-        //currentPath.removeFirst();
-
-        IO.println("Ghost Path: " + currentPath.toString());
     }
 
     public List<TilePosition> getCurrentPath()

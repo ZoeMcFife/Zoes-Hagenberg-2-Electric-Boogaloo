@@ -10,6 +10,7 @@ public class Player extends Actor
     private boolean isSuperPowered = false;
     private int points = 0;
     private int powerStepsLeft = 0;
+    private int lives = 3;
 
     public Player(String name, TilePosition position)
     {
@@ -65,5 +66,16 @@ public class Player extends Actor
     public int getPoints()
     {
         return points;
+    }
+
+    public void death()
+    {
+        lives--;
+        IO.println("You death!");
+    }
+
+    public int getLives()
+    {
+        return lives;
     }
 }

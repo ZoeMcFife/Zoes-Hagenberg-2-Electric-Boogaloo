@@ -27,7 +27,7 @@ public class Actor
 
     public boolean isValidDirection(Direction direction)
     {
-        if (currentDirection == direction)
+        if (currentDirection == direction && currentDirection != Direction.NONE)
             return false;
 
         return layer.getMaze().isValidTraversableTile(layer.getMaze().getNextTile(getActorTile().getPos(), direction));
@@ -66,5 +66,10 @@ public class Actor
     public Direction getCurrentDirection()
     {
         return currentDirection;
+    }
+
+    public ActorLayer<?> getLayer()
+    {
+        return layer;
     }
 }

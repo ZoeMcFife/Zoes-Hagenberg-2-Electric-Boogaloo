@@ -33,6 +33,14 @@ public class Maze
 
     public Maze()
     {
+        addGhosts();
+    }
+
+    private void addGhosts()
+    {
+        ghostLayers.clear();
+        ghosts.clear();
+
         Ghost blinky = new Ghost("Blinky", new TilePosition(14, 11));
         blinky.previewPathfinding = true;
         Ghost pinky = new Ghost("Pinky", new TilePosition(14, 13));
@@ -48,6 +56,28 @@ public class Maze
         /*ghosts.add(pinky);
         ghosts.add(inky);
         ghosts.add(clyde);*/
+    }
+
+    public boolean ghostOverlapsWithPlayer()
+    {
+        for (Ghost ghost : ghosts)
+        {
+            if (ghost.getActorTile().getPos().equals(playerLayer.getActor().getActorTile().getPos()))
+            {
+                if (ghost.getCurrentState().getName().equals("Fear"))
+                {
+                    // kill ghost :3
+                    ghostLayers.remove(ghost.getLayer());
+                    ghosts.remove(ghost);
+                    pathFindingPreviewLayer = new Layer(2, this);
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void updateGhosts()
@@ -147,7 +177,7 @@ public class Maze
 
     private boolean isTileValidSpawnPosition(TilePosition pos)
     {
-        return getTileType(pos) ==  TileType.EMPTY;
+        return getTileType(pos) == TileType.EMPTY;
     }
 
     public boolean isValidTraversableTile(TilePosition pos)
@@ -178,8 +208,28 @@ public class Maze
         return true;
     }
 
+    public void reset()
+    {
+        addGhosts();
+        resetPlayerPositon();
+    }
 
-    public void addPlayer(Player player)
+    private void resetPlayerPositon()
+    {
+        playerLayer.getActor().getActorTile().setPos(playerStart);
+        playerLayer.getActor().setCurrentDirection(Direction.NONE);
+    }
+
+    public Player createPlayer()
+    {
+        Player p = new Player("Pac Man", playerStart);
+
+        addPlayer(p);
+
+        return p;
+    }
+
+    private void addPlayer(Player player)
     {
         if (!isTileValidSpawnPosition(player.getActorTile().getPos()))
         {
@@ -188,6 +238,8 @@ public class Maze
 
         playerLayer = new ActorLayer<>(3, player, this);
         player.setLayer(playerLayer);
+
+        playerLayer.getActor().setCurrentDirection(Direction.NONE);
     }
 
     public void addGhost(Ghost ghost)
