@@ -11,7 +11,6 @@ public class FearState implements State
     @Override
     public void onEnter(Ghost ghost)
     {
-
         ghost.getActorTile().setType(TileType.GHOST_FRIGHTENED);
     }
 

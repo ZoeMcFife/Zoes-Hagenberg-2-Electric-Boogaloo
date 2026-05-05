@@ -71,7 +71,6 @@ public class Player extends Actor
     public void death()
     {
         lives--;
-        IO.println("You death!");
     }
 
     public int getLives()

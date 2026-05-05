@@ -31,12 +31,20 @@ public class Maze
     private ActorLayer<Player> playerLayer;
     private List<Ghost> ghosts = new ArrayList<>();
 
-    public Maze()
+    /** primarily for testing */
+    public void addOneGhost(Ghost ghost)
     {
-        addGhosts();
+        ghostLayers.clear();
+        ghosts.clear();
+
+        ghost.previewPathfinding = true;
+
+        addGhost(ghost);
+
+        ghosts.add(ghost);
     }
 
-    private void addGhosts()
+    public void addGhosts()
     {
         ghostLayers.clear();
         ghosts.clear();

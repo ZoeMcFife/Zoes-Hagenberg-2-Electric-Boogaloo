@@ -52,6 +52,7 @@ public class PacManController
     {
         pixelGridSize = (int) (pacmanCanvas.getHeight() / Maze.MAZE_ROWS);
         maze = new Maze();
+        maze.addGhosts();
 
         playerActor = maze.createPlayer();
 

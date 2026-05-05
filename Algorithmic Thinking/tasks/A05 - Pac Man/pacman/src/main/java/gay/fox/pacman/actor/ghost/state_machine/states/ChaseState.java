@@ -59,4 +59,9 @@ public class ChaseState implements State
     {
         return "Chase";
     }
+
+    public int getSteps()
+    {
+        return steps;
+    }
 }
