@@ -1,0 +1,20 @@
+services:
+  MariaDB:
+    image: mariadb:11
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: pokemondb
+      MARIADB_USER: pokemonuser
+      MARIADB_PASSWORD: pokemonpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - pokemon_data:/var/lib/mysql
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+volumes:
+  pokemon_data:
