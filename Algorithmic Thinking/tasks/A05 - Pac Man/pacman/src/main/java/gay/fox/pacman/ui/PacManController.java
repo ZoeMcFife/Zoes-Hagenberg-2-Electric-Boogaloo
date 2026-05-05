@@ -32,6 +32,9 @@ public class PacManController
     @FXML
     private Label scoreLabel;
 
+    @FXML
+    private Label livesLabel;
+
     private GraphicsContext gc;
 
     private int pixelGridSize;
@@ -110,6 +113,9 @@ public class PacManController
         playerActor.move();
         playerActor.updatePowerSteps();
 
+        scoreLabel.setText(String.valueOf(playerActor.getPoints()));
+        livesLabel.setText(playerActor.getLives() + " Lives left");
+
         if (tickCounter % 3 == 0)
             maze.updateGhosts();
 
@@ -132,21 +138,20 @@ public class PacManController
             if (playerActor.getLives() <= 0)
             {
                 gameLoop.stop();
+                livesLabel.setText(playerActor.getLives() + " Lives left");
                 startButton.setText("You died! Restart Game!");
-                return;
-            }
-
-            if (playerActor.getPoints() == 280)
-            {
-                gameLoop.stop();
-                startButton.setText("You won! Restart Game!");
                 return;
             }
         }
 
-        drawFrame();
+        if (playerActor.getPoints() >= 280)
+        {
+            gameLoop.stop();
+            startButton.setText("You won! Restart Game!");
+            return;
+        }
 
-        scoreLabel.setText(String.valueOf(playerActor.getPoints()));
+        drawFrame();
     }
 
     private void drawFrame()
