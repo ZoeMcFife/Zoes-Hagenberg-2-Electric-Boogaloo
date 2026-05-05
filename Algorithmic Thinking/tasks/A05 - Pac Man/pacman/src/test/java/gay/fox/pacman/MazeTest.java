@@ -13,10 +13,6 @@ public class MazeTest
     @Test
     public void test()
     {
-        Maze maze = new Maze();
 
-        IO.println(maze);
-
-        IO.println(maze.getLayersInDrawOrder());
     }
 }

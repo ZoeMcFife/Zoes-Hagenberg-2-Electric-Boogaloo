@@ -7,7 +7,7 @@ import gay.fox.pacman.maze.tile.TileType;
 
 public class EatenState implements State
 {
-    private TilePosition goal =  new TilePosition(14, 14);
+    private TilePosition goal = new TilePosition(14, 14);
 
     @Override
     public void onEnter(Ghost ghost)
