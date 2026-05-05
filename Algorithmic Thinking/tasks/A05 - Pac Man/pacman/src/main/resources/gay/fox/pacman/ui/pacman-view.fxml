@@ -15,8 +15,8 @@
         <font>
             <Font name="Bookman Old Style Italic" size="41.0" />
         </font></Label>
-    <Canvas fx:id="pacmanCanvas" height="300.0" width="300.0" />
-    <Label fx:id="scoreLabel" text="Label" textAlignment="CENTER" textFill="#f20000">
+    <Canvas fx:id="pacmanCanvas" height="496.0" width="448.0" />
+    <Label fx:id="scoreLabel" text="Score" textAlignment="CENTER" textFill="#f20000">
         <font>
             <Font size="10.0" />
         </font>

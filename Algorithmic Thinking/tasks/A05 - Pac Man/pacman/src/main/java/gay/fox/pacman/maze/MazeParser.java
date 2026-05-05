@@ -112,6 +112,7 @@ public class MazeParser
             case 'G' -> new Tile(TileType.GHOST,  position);
             case 'P' -> new Tile(TileType.PACMAN,  position);
             case 'F' -> new Tile(TileType.GHOST_FRIGHTENED,  position);
+            case 'E' -> new Tile(TileType.GHOST_EATEN,  position);
             case 'Ü' -> new Tile(TileType.PACMAN_POWER,  position);
             case '·' -> new Tile(TileType.PELLET,  position);
             case '@' -> new Tile(TileType.POWER_PELLET,  position);

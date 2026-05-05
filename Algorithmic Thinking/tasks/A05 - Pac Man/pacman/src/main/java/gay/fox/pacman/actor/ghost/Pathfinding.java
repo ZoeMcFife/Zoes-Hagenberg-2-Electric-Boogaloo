@@ -73,7 +73,7 @@ public class Pathfinding
             }
         }
 
-        return Collections.emptyList(); // no path found
+        return Collections.emptyList();
     }
 
     private static List<TilePosition> reconstructPath(Map<TilePosition, TilePosition> cameFrom, TilePosition start, TilePosition goal)

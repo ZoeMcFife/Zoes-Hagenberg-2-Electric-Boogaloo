@@ -5,18 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f369fae-c3a6-4e1f-803d-5fa03f8bc46d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/actor/Actor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/actor/Direction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/actor/player/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/Layer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/Maze.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/MazeParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/TilePosition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/TileType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/test/java/gay/fox/pacman/MazeParserTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/test/java/gay/fox/pacman/MazeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Relational Databases/exercises/2026-04-23/pokermon_triggers.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Relational Databases/exercises/2026-04-23/pokermon_triggers.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../Relational Databases/tasks/04_advanced_sql_topics/sql_stuffings.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Relational Databases/tasks/04_advanced_sql_topics/sql_stuffings.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/actor/ghost/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/actor/ghost/Ghost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/actor/ghost/Pathfinding.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/actor/ghost/Pathfinding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/actor/ghost/state_machine/states/EatenState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/actor/ghost/state_machine/states/EatenState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/actor/ghost/state_machine/states/FearState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/actor/ghost/state_machine/states/FearState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/Maze.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/MazeParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/MazeParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/tile/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/tile/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/tile/TilePosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/tile/TilePosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/tile/TileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/maze/tile/TileType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/ui/PacManController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/ui/PacManController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/ui/colors/TileColor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/ui/colors/TileColor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/ui/colors/TileDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/gay/fox/pacman/ui/colors/TileDrawer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/resources/gay/fox/pacman/ui/pacman-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/main/resources/gay/fox/pacman/ui/pacman-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/test/java/gay/fox/pacman/MazeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../tasks/A05 - Pac Man/pacman/src/test/java/gay/fox/pacman/MazeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,34 +52,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.FsmDemo.executor&quot;: &quot;Run&quot;,
-    &quot;Application.GraphDemo.executor&quot;: &quot;Run&quot;,
-    &quot;Application.PatternDemo.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.JAVA&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.FsmDemo.executor": "Run",
+    "Application.GraphDemo.executor": "Run",
+    "Application.PatternDemo.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "67-algorithmic-thinking-pac-man",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.sourceCode.JAVA",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.PatternDemo">
     <configuration name="FsmDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gay.fox.statemachine.fsm.FsmDemo" />
@@ -142,6 +146,7 @@
       <workItem from="1777377505012" duration="7565000" />
       <workItem from="1777540892568" duration="16000" />
       <workItem from="1777629341634" duration="5345000" />
+      <workItem from="1777964387036" duration="599000" />
     </task>
     <servers />
   </component>

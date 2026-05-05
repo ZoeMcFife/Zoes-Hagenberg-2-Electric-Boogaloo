@@ -45,7 +45,7 @@ public class TilePosition
         this.col = col;
     }
 
-    public double getManhattanDistance(TilePosition tilePosition)
+    public int getManhattanDistance(TilePosition tilePosition)
     {
         return Math.abs(this.row - tilePosition.getRow()) + Math.abs(this.col - tilePosition.getCol());
     }
