@@ -39,24 +39,6 @@ public class MazeParser
         "#··························#" +
         "############################";
 
-    public static Tile[][] createMaze()
-    {
-        Tile[][] maze = new Tile[Maze.MAZE_ROWS][Maze.MAZE_COLUMNS];
-
-        int i = 0;
-
-        for (int r = 0; r < Maze.MAZE_ROWS; r++)
-        {
-            for (int c = 0; c < Maze.MAZE_COLUMNS; c++)
-            {
-                maze[r][c] = parseTileString(mazeAscii.charAt(i), new TilePosition(r, c));
-                i++;
-            }
-        }
-
-        return maze;
-    }
-
     public static Tile[][] createTraversalLayer()
     {
         Tile[][] traversalLayer = new Tile[Maze.MAZE_ROWS][Maze.MAZE_COLUMNS];
