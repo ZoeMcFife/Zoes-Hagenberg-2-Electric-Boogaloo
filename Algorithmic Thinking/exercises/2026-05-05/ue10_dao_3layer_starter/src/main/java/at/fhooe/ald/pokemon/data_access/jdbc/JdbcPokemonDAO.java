@@ -18,12 +18,13 @@ import java.util.Optional;
 @Repository
 public class JdbcPokemonDAO implements PokemonDAO
 {
-    private final DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 
-    public JdbcPokemonDAO(DataSource dataSource)
+    /*public JdbcPokemonDAO(DataSource dataSource)
     {
         this.dataSource = dataSource;
-    }
+    }*/
 
     protected Connection openConnection() throws SQLException
     {
@@ -35,7 +36,7 @@ public class JdbcPokemonDAO implements PokemonDAO
     {
         String sql =
                 """
-                   INSERT INTO Pokemon (pokedex_number, name, type_1, type_2, hp, attack, defense, speed)
+                   INSERT INTO pokemon (pokedex_number, name, type_1, type_2, hp, attack, defense, speed)
                    VALUES (?, ?, ?, ?, ?, ?, ?, ?);
                 """;
 
@@ -51,6 +52,7 @@ public class JdbcPokemonDAO implements PokemonDAO
             ps.setInt(6, pokemon.getAttack());
             ps.setInt(7, pokemon.getDefense());
             ps.setInt(8, pokemon.getSpeed());
+
             ps.executeUpdate();
         }
         catch (SQLException e)
@@ -60,7 +62,7 @@ public class JdbcPokemonDAO implements PokemonDAO
     }
 
     @Override
-    public Optional<Pokemon> findByPokedexNumber(int pokedexNumber)
+    public Optional<Pokemon> findById(int pokedexNumber)
     {
         String sql =
                 """
@@ -143,7 +145,7 @@ public class JdbcPokemonDAO implements PokemonDAO
         }
         catch (SQLException e)
         {
-            throw new RuntimeException("Could not save Pokemon", e);
+            throw new RuntimeException("Could not update Pokemon", e);
         }
     }
 

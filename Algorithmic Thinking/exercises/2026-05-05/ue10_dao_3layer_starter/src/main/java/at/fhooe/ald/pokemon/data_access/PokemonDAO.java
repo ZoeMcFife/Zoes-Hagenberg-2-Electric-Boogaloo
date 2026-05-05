@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface PokemonDAO
 {
     void save(Pokemon pokemon);
-    Optional<Pokemon> findByPokedexNumber(int pokedexNumber);
+    Optional<Pokemon> findById(int pokedexNumber);
     List<Pokemon> findAll();
     void update(Pokemon pokemon);
     void delete(int pokedexNumber);
