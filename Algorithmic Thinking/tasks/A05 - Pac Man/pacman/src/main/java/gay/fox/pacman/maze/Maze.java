@@ -42,20 +42,29 @@ public class Maze
         ghosts.clear();
 
         Ghost blinky = new Ghost("Blinky", new TilePosition(14, 11));
-        blinky.previewPathfinding = true;
         Ghost pinky = new Ghost("Pinky", new TilePosition(14, 13));
         Ghost inky = new Ghost("Inky", new TilePosition(14, 15));
         Ghost clyde = new Ghost("Clyde", new TilePosition(15, 13));
 
+        blinky.previewPathfinding = true;
+        pinky.previewPathfinding = true;
+        inky.previewPathfinding = true;
+        clyde.previewPathfinding = true;
+
         addGhost(blinky);
-        /*addGhost(pinky);
+        addGhost(pinky);
         addGhost(inky);
-        addGhost(clyde);*/
+        addGhost(clyde);
 
         ghosts.add(blinky);
-        /*ghosts.add(pinky);
+        ghosts.add(pinky);
         ghosts.add(inky);
-        ghosts.add(clyde);*/
+        ghosts.add(clyde);
+    }
+
+    private boolean canPlayerEatGhost(Ghost ghost)
+    {
+        return ghost.getCurrentState().getName().equals("Fear") && ((Player) playerLayer.getActor()).isSuperPowered();
     }
 
     public boolean ghostOverlapsWithPlayer()
@@ -64,14 +73,14 @@ public class Maze
         {
             if (ghost.getActorTile().getPos().equals(playerLayer.getActor().getActorTile().getPos()))
             {
-                if (ghost.getCurrentState().getName().equals("Fear"))
+                if (canPlayerEatGhost(ghost))
                 {
-                    // kill ghost :3
-                    ghostLayers.remove(ghost.getLayer());
-                    ghosts.remove(ghost);
-                    pathFindingPreviewLayer = new Layer(2, this);
+                    ghost.eatGhost();
                     return false;
                 }
+
+                if (ghost.getCurrentState().getName().equals("Eaten"))
+                    return false;
 
                 return true;
             }
@@ -82,14 +91,14 @@ public class Maze
 
     public void updateGhosts()
     {
+        pathFindingPreviewLayer.layer = new Tile[MAZE_ROWS][MAZE_COLUMNS];
+
         for (Ghost ghost : ghosts)
         {
             ghost.update();
 
             if (ghost.previewPathfinding)
             {
-                pathFindingPreviewLayer.layer = new Tile[MAZE_ROWS][MAZE_COLUMNS];
-
                 for (TilePosition pos : ghost.getCurrentPath())
                 {
                     pathFindingPreviewLayer.addTile(new Tile(TileType.PATH_FINDING_PREVIEW, pos));
@@ -192,6 +201,34 @@ public class Maze
             return false;
 
         return true;
+    }
+
+    public TilePosition getFurthestTileFromPlayer()
+    {
+        List<TilePosition> traversableTiles = new ArrayList<>();
+
+        for (Tile t : traversalLayer.flatten())
+        {
+            if (t.getType().equals(TileType.EMPTY))
+                traversableTiles.add(t.getPos());
+        }
+
+        TilePosition playerPos = getPlayerPostion();
+        TilePosition furthestPosition = new TilePosition();
+        int maxDistance = 0;
+
+        for (TilePosition pos : traversableTiles)
+        {
+            int distance = playerPos.getManhattanDistance(pos);
+
+            if (distance > maxDistance)
+            {
+                maxDistance = distance;
+                furthestPosition = pos;
+            }
+        }
+
+        return furthestPosition;
     }
 
     public boolean isValidTraversableTile(TilePosition pos, Layer layer)

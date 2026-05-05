@@ -24,7 +24,13 @@ public class FearState implements State
     @Override
     public void update(Ghost ghost)
     {
-        ghost.pathFind(goal);
+        ghost.pathFind(ghost.getFurthestPositionFromPlayer());
+
+        if (ghost.isEaten())
+        {
+            ghost.switchState(new EatenState());
+            return;
+        }
 
         if (!ghost.isPlayerSuperPowered())
         {

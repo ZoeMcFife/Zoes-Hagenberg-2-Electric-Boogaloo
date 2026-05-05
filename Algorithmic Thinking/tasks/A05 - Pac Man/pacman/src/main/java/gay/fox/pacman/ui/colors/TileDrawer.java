@@ -11,7 +11,7 @@ public class TileDrawer
         switch (tile.getType())
         {
             case PACMAN, PACMAN_POWER, POWER_PELLET -> drawCircle(gc, tile.getPos().getCol(), tile.getPos().getRow(), TileColor.getTileColor(tile.getType()), pixelGridSize, 2);
-            case GHOST, GHOST_FRIGHTENED -> drawGhost(gc, tile.getPos().getCol(), tile.getPos().getRow(), TileColor.getTileColor(tile.getType()), pixelGridSize);
+            case GHOST, GHOST_FRIGHTENED, GHOST_EATEN -> drawGhost(gc, tile.getPos().getCol(), tile.getPos().getRow(), TileColor.getTileColor(tile.getType()), pixelGridSize);
             case WALL, EMPTY, PATH_FINDING_PREVIEW -> drawSquare(gc, tile.getPos().getCol(), tile.getPos().getRow(), TileColor.getTileColor(tile.getType()), pixelGridSize);
             case PELLET -> drawCircle(gc, tile.getPos().getCol(), tile.getPos().getRow(), TileColor.getTileColor(tile.getType()), pixelGridSize, 1.5);
         }

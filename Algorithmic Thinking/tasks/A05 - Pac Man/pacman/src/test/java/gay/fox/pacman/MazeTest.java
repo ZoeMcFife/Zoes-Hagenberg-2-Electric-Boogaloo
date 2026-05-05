@@ -15,10 +15,6 @@ public class MazeTest
     {
         Maze maze = new Maze();
 
-        Actor actor = new Actor("test", TileType.PACMAN, Maze.playerStart);
-
-        maze.addActor(actor);
-
         IO.println(maze);
 
         IO.println(maze.getLayersInDrawOrder());

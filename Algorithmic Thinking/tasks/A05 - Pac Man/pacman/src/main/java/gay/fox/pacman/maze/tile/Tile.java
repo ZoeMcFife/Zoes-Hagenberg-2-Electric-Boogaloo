@@ -43,6 +43,7 @@ public class Tile
             case WALL -> "#";
             case GHOST -> "G";
             case GHOST_FRIGHTENED -> "F";
+            case GHOST_EATEN -> "E";
             case PACMAN -> "P";
             case PACMAN_POWER -> "Ü";
             case PELLET -> "·";

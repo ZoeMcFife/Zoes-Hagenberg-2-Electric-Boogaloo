@@ -24,6 +24,7 @@ public class Ghost extends Actor
     private State currentState;
 
     public boolean previewPathfinding = false;
+    private boolean isEaten = false;
 
     public Ghost(String name, TilePosition position)
     {
@@ -130,6 +131,23 @@ public class Ghost extends Actor
 
     public TilePosition getFurthestPositionFromPlayer()
     {
-
+        return getLayer().getMaze().getFurthestTileFromPlayer();
     }
+
+    public void eatGhost()
+    {
+        isEaten = true;
+    }
+
+    public boolean isEaten()
+    {
+        return isEaten;
+    }
+
+    public void revive()
+    {
+        isEaten = false;
+    }
+
 }
+

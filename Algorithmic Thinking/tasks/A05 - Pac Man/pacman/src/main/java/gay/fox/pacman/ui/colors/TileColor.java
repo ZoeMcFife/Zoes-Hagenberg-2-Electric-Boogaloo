@@ -14,6 +14,7 @@ public class TileColor
             case PACMAN_POWER -> Color.rgb(0, 255, 0);
             case GHOST -> Color.rgb(255, 30, 30);
             case GHOST_FRIGHTENED -> Color.rgb(30, 130, 255);
+            case GHOST_EATEN -> Color.rgb(255, 255, 255);
             case WALL -> Color.rgb(0, 0, 180);
             case PELLET, POWER_PELLET -> Color.rgb(255, 255, 255);
             case EMPTY -> Color.rgb(30, 30, 30);

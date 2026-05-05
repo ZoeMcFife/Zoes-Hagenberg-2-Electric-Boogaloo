@@ -14,6 +14,7 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 
@@ -22,6 +23,9 @@ import java.util.List;
 
 public class PacManController
 {
+    @FXML
+    public Button startButton;
+
     @FXML
     private Canvas pacmanCanvas;
 
@@ -96,9 +100,21 @@ public class PacManController
 
     private void update()
     {
+        tickCounter++;
+
+        if (tickCounter >= tickRate)
+            tickCounter = 0;
+
+        hasPressedKeyThisTick = false;
+        playerActor.collectPellet();
+        playerActor.move();
+        playerActor.updatePowerSteps();
+
+        if (tickCounter % 3 == 0)
+            maze.updateGhosts();
+
         if (maze.ghostOverlapsWithPlayer())
         {
-
             try
             {
                 gameLoop.stop();
@@ -116,23 +132,19 @@ public class PacManController
             if (playerActor.getLives() <= 0)
             {
                 gameLoop.stop();
+                startButton.setText("You died! Restart Game!");
+                return;
+            }
+
+            if (playerActor.getPoints() == 280)
+            {
+                gameLoop.stop();
+                startButton.setText("You won! Restart Game!");
                 return;
             }
         }
 
-        tickCounter++;
-
-        if (tickCounter >= tickRate)
-            tickCounter = 0;
-
-        hasPressedKeyThisTick = false;
-        playerActor.collectPellet();
-        playerActor.move();
-        playerActor.updatePowerSteps();
         drawFrame();
-
-        if (tickCounter % 3 == 0)
-            maze.updateGhosts();
 
         scoreLabel.setText(String.valueOf(playerActor.getPoints()));
     }

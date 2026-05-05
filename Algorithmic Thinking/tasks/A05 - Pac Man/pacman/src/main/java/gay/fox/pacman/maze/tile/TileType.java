@@ -6,6 +6,7 @@ public enum TileType
     PACMAN_POWER,
     GHOST,
     GHOST_FRIGHTENED,
+    GHOST_EATEN,
     WALL,
     PELLET,
     POWER_PELLET,
