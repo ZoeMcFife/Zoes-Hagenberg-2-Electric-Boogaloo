@@ -1,0 +1,16 @@
+Topic: Outpainting
+
+People:
+
+- Prommegger
+- Bunea
+- Melem
+
+Image Model used:
+
+- https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-inpainting/blob/main/sd-v1-5-inpainting.ckpt
+
+Workflow Description:
+
+- SD inpainting model -> goes through the regular ai gen steps (clip, ksampler, decoder, etc)
+- Outpainting -> image gets loaded -> pad image for outpaintisng node used and then gets encoded for inpainting and placed into the latent image input of the ksampler

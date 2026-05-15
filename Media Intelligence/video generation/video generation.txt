@@ -1,0 +1,15 @@
+Topic: Video Generation
+
+Workflow Description:
+
+- diffusion model gets loaded and does the sampling 
+- clip gets loaded
+- vae gets oaded 
+
+- gets connected to a wan fun inpaint to Video
+
+- images get generated using ai 
+- gets encoded with clip
+- start and end images get connected into the wan fun inpaint to Video
+
+video gets generated!!!!!
