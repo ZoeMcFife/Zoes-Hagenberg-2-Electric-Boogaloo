@@ -1,0 +1,4 @@
+steam_appid,name,developers,publishers,categories,genres,required_age,n_achievements,platforms,is_released,release_date,additional_content,total_reviews,total_positive,total_negative,review_score,review_score_desc,positive_percentual,metacritic,is_free,price_initial (USD)
+2710580,The Cost Of Bliss,['Andre David Dev'],['Andre David Dev'],"['Single-player', 'Steam Cloud', 'Family Sharing']",['Indie'],0,0,['windows'],True,2024-01-05 00:00:00,[],6,6,0,0.0,6 user reviews,100.0,0,False,2.99
+2710590,Black silk girl,['7miao game'],['7miao game'],"['Single-player', 'Family Sharing']","['Casual', 'Indie', 'Strategy']",0,0,['windows'],True,2024-01-29 00:00:00,[],0,0,0,0.0,No user reviews,0.0,0,False,1.99
+2710600,Arcane Prophecy: Flamebound,['Dream On Games'],['Dream On Games'],"['Single-player', 'Steam Achievements', 'Partial Controller Support']","['Action', 'Adventure', 'Indie', 'Early Access']",0,0,['windows'],False,Not Released,[],0,0,0,0.0,No user reviews,0.0,0,False,0.0

@@ -1,14 +1,16 @@
-DROP DATABASE IF EXISTS game_db;
+SET search_path TO public;
 
-CREATE DATABASE game_db;
+DROP TABLE IF EXISTS game_genres;
+DROP TABLE IF EXISTS genres;
+DROP TABLE IF EXISTS games;
 
-CREATE TABLE genre
+CREATE TABLE genres
 (
     genre_id SERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL
 );
 
-CREATE TABLE game
+CREATE TABLE games
 (
     game_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -19,8 +21,8 @@ CREATE TABLE game
 
 CREATE TABLE game_genres
 (
-    game_id INT REFERENCES game (game_id),
-    genre_id INT REFERENCES genre (genre_id),
+    game_id INT REFERENCES games (game_id),
+    genre_id INT REFERENCES genres (genre_id),
 
     PRIMARY KEY (game_id, genre_id)
 );
