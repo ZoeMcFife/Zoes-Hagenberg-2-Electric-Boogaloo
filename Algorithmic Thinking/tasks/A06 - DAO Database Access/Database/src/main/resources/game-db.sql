@@ -21,8 +21,8 @@ CREATE TABLE games
 
 CREATE TABLE game_genres
 (
-    game_id INT REFERENCES games (game_id),
-    genre_id INT REFERENCES genres (genre_id),
+    game_id INT REFERENCES games (game_id) ON DELETE CASCADE,
+    genre_id INT REFERENCES genres (genre_id) ON DELETE CASCADE ,
 
     PRIMARY KEY (game_id, genre_id)
 );
