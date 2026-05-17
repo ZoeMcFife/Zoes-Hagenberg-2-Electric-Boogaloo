@@ -47,8 +47,6 @@ public class CsvParser
                     date = null;
                 }
 
-                IO.println(col[20].trim());
-
                 double price;
 
                 try

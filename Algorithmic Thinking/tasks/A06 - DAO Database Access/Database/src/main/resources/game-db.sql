@@ -16,7 +16,7 @@ CREATE TABLE games
     name VARCHAR(100) NOT NULL,
     release_date DATE,
     price DECIMAL(1000,2),
-    review_score INT CHECK (review_score > 0 AND review_score < 100)
+    review_score INT CHECK (review_score > -1 AND review_score < 11)
 );
 
 CREATE TABLE game_genres

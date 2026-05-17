@@ -88,8 +88,11 @@ public class GenreService
         genreRepository.delete(genre.get());
     }
 
-
-
+    @Transactional
+    public boolean doesGenreExist(String name)
+    {
+        return getGenreByName(name) != null;
+    }
 }
 
 

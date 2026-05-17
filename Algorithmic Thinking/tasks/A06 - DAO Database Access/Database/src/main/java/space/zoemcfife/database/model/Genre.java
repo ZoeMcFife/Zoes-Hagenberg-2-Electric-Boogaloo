@@ -33,7 +33,7 @@ public class Genre implements Model
         return genreId;
     }
 
-    public String getName(String name)
+    public String getName()
     {
         return name;
     }
