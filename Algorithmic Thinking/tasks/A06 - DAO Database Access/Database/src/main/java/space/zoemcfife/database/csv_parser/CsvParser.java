@@ -29,15 +29,6 @@ public class CsvParser
             {
                 String[] col = line.split(",(?![^\\[]*])", -1);
 
-                List<String> cols = Arrays.stream(col).toList();
-
-                // 0 - steanappid
-                // 1 - game name
-                // 5 - genre list
-                // 10 - release date
-                // 15 - review_score
-                // 20 - price initial
-
                 int gameId = Integer.parseInt(col[0].trim());
                 String name = col[1].trim();
 
