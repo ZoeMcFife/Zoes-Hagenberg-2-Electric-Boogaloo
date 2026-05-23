@@ -147,4 +147,21 @@ public class GameService
 
         gameGenreRepository.deleteById(gameGenreId);
     }
+
+    @Transactional
+    public List<Game> findByGenre(int genreId)
+    {
+        return gameRepository.findByGenreId(genreId);
+    }
+
+    @Transactional
+    public List<Game> findByPriceRange(double minPrice, double maxPrice)
+    {
+        if (minPrice < 0 || maxPrice < 0 || minPrice > maxPrice)
+        {
+            throw new IllegalArgumentException("Invalid price range");
+        }
+
+        return gameRepository.findByPriceBetween(minPrice, maxPrice);
+    }
 }

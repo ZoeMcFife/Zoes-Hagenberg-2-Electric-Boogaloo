@@ -2,6 +2,8 @@ package space.zoemcfife.database.presentation.ui.genre;
 
 import space.zoemcfife.database.presentation.ui.CrudScreen;
 import space.zoemcfife.database.presentation.ui.DbAccessScreen;
+import space.zoemcfife.database.presentation.ui.game.crud.FindByGenreScreen;
+import space.zoemcfife.database.presentation.ui.game.crud.FindByPriceRange;
 import space.zoemcfife.database.presentation.ui.game.crud.ViewGameScreen;
 import space.zoemcfife.database.presentation.ui.genre.crud.*;
 import space.zoemcfife.database.presentation.zoeui.Menu;

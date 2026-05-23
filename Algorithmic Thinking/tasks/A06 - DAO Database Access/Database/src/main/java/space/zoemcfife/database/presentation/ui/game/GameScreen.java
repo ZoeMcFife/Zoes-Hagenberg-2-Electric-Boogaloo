@@ -2,10 +2,7 @@ package space.zoemcfife.database.presentation.ui.game;
 
 import space.zoemcfife.database.presentation.ui.CrudScreen;
 import space.zoemcfife.database.presentation.ui.DbAccessScreen;
-import space.zoemcfife.database.presentation.ui.game.crud.CreateGameScreen;
-import space.zoemcfife.database.presentation.ui.game.crud.DeleteGameScreen;
-import space.zoemcfife.database.presentation.ui.game.crud.UpdateGameScreen;
-import space.zoemcfife.database.presentation.ui.game.crud.ViewGameScreen;
+import space.zoemcfife.database.presentation.ui.game.crud.*;
 import space.zoemcfife.database.presentation.zoeui.Menu;
 import space.zoemcfife.database.presentation.zoeui.MenuItem;
 import space.zoemcfife.database.presentation.zoeui.Screen;
@@ -35,8 +32,10 @@ public class GameScreen extends DbAccessScreen implements CrudScreen
         MenuItem update = new MenuItem("Update Game", this::update);
         MenuItem viewByName = new MenuItem("Get Game by Name", this::viewByName);
         MenuItem viewById = new MenuItem("Get Game by Id", this::viewById);
+        MenuItem findByGenre = new MenuItem("Find Game by Genre", this::findByGenre);
+        MenuItem findByPriceRange = new MenuItem("Find Game by Price", this::findByPriceRange);
 
-        Menu gameMenu = new Menu("Games", create, delete, update, viewByName, viewById);
+        Menu gameMenu = new Menu("Games", create, delete, update, viewByName, viewById,  findByGenre, findByPriceRange);
 
         gameMenu.startScreen();
     }
@@ -91,5 +90,21 @@ public class GameScreen extends DbAccessScreen implements CrudScreen
 
         ViewGameScreen viewGameScreen = new ViewGameScreen(gameService, genreService, name);
         viewGameScreen.startScreen();
+    }
+
+    public void findByGenre()
+    {
+        UI.clearScreen();
+
+        FindByGenreScreen findByGenreScreen = new FindByGenreScreen(gameService, genreService);
+        findByGenreScreen.startScreen();
+    }
+
+    public void findByPriceRange()
+    {
+        UI.clearScreen();
+
+        FindByPriceRange findByPriceRange = new FindByPriceRange(gameService, genreService);
+        findByPriceRange.startScreen();
     }
 }
