@@ -20,12 +20,11 @@ public class ConsoleUI
 
     public void run()
     {
-        while (true)
-        {
-            MainMenu menu = new MainMenu(gameService, genreService);
 
-            menu.startScreen();
-            UI.clearScreen();
-        }
+        MainMenu menu = new MainMenu(gameService, genreService);
+
+        menu.startScreen();
+        UI.clearScreen();
+
     }
 }

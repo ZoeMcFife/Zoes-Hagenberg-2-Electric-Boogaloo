@@ -1,21 +1,21 @@
 package space.zoemcfife.database.presentation.ui;
 
+import space.zoemcfife.database.presentation.ui.game.GameScreen;
+import space.zoemcfife.database.presentation.ui.genre.GenreScreen;
 import space.zoemcfife.database.presentation.zoeui.Menu;
 import space.zoemcfife.database.presentation.zoeui.MenuItem;
 import space.zoemcfife.database.presentation.zoeui.Screen;
+import space.zoemcfife.database.presentation.zoeui.UI;
 import space.zoemcfife.database.service.GameService;
 import space.zoemcfife.database.service.GenreService;
 
-public class MainMenu extends Screen
+public class MainMenu extends DbAccessScreen
 {
-
-    private final GameService gameService;
-    private final GenreService genreService;
+    private boolean exit = false;
 
     public MainMenu(GameService gameService, GenreService genreService)
     {
-        this.gameService = gameService;
-        this.genreService = genreService;
+        super(gameService, genreService);
     }
 
     /**
@@ -25,17 +25,41 @@ public class MainMenu extends Screen
     @Override
     public void startScreen()
     {
-        MenuItem seed = new MenuItem("Seed Database", this::seedDatabase);
+        while (!exit)
+        {
+            MenuItem seed = new MenuItem("Seed Database", this::seedDatabase);
+            MenuItem games = new MenuItem("Access Games", this::openGames);
+            MenuItem genres = new MenuItem("Access Genres", this::openGenres);
+            MenuItem exit = new MenuItem("Exit", this::exit);
 
-        Menu main = new  Menu("Main Menu", seed);
+            Menu main = new  Menu("Main Menu", seed, games, genres, exit);
 
-        main.startScreen();
+            UI.printlnYellow("Welcoem to Database! :(");
+
+            main.startScreen();
+        }
     }
 
     private void seedDatabase()
     {
         SeedDB seedDB = new SeedDB(gameService, genreService);
-
         seedDB.startScreen();
+    }
+
+    private void openGames()
+    {
+        GameScreen gameScreen = new GameScreen(gameService, genreService);
+        gameScreen.startScreen();
+    }
+
+    private void openGenres()
+    {
+        GenreScreen genreScreen = new GenreScreen(gameService, genreService);
+        genreScreen.startScreen();
+    }
+
+    private void exit()
+    {
+        exit = true;
     }
 }

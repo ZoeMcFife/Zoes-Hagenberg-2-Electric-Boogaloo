@@ -1,6 +1,7 @@
 package space.zoemcfife.database.model;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 
 import java.sql.Date;
 import java.util.List;
@@ -24,7 +25,7 @@ public class Game implements Model
     @Column(name = "review_score")
     private int reviewScore;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable
             (
                     name = "game_genres",
@@ -95,6 +96,11 @@ public class Game implements Model
     public void setReviewScore(int reviewScore)
     {
         this.reviewScore = reviewScore;
+    }
+
+    public List<Genre> getGenres()
+    {
+        return genres;
     }
 
     @Override

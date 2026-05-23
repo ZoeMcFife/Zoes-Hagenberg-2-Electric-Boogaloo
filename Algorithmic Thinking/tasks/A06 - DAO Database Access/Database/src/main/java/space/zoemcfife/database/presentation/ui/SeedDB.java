@@ -6,15 +6,11 @@ import space.zoemcfife.database.service.DbSeeder;
 import space.zoemcfife.database.service.GameService;
 import space.zoemcfife.database.service.GenreService;
 
-public class SeedDB extends Screen
+public class SeedDB extends DbAccessScreen
 {
-    private final GameService gameService;
-    private final GenreService genreService;
-
     public SeedDB(GameService gameService, GenreService genreService)
     {
-        this.gameService = gameService;
-        this.genreService = genreService;
+        super(gameService, genreService);
     }
 
     /**
@@ -26,7 +22,10 @@ public class SeedDB extends Screen
     {
         UI.clearScreen();
 
-        DbSeeder.seed(gameService, genreService);
+        if (UI.getYesNoInput("Seed Database?"))
+            DbSeeder.seed(gameService, genreService);
+        else
+            IO.println("Okay, not seeding!");
 
         UI.waitForEnterKey();
     }
