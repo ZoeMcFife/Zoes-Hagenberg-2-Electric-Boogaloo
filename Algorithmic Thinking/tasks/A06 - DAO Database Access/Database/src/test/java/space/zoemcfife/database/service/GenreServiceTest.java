@@ -104,16 +104,6 @@ class GenreServiceTest
     {
         Genre createdGenre = mock(Genre.class);
 
-        when(createdGenre.isValid()).thenReturn(true);
-
-        /*
-         * Since Genre is created with new Genre(name)
-         * inside the service, we cannot directly mock it easily
-         * without PowerMockito.
-         *
-         * This test focuses on repository interaction.
-         */
-
         GenreService spyService = spy(new GenreService(genreRepository));
 
         doReturn(createdGenre)
