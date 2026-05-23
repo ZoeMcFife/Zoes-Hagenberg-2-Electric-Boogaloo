@@ -86,6 +86,16 @@ public final class UI
         IO.println(PURPLE + message + RESET);
     }
 
+    public static void printlnWhite(String message)
+    {
+        IO.println(message + RESET);
+    }
+
+    public static void printWhite(String message)
+    {
+        IO.print(message + RESET);
+    }
+
     /**
      * Gets a single character input from the player.
      * Continues to prompt until valid input is provided.
@@ -151,6 +161,37 @@ public final class UI
                 printCyan("> ");
 
                 int value = Integer.parseInt(IO.readln());
+
+                if (value >= min && value <= max)
+                {
+                    return value;
+                }
+            }
+            catch (NumberFormatException ignored)
+            {
+
+            }
+
+            printlnRed("Invalid input. Enter a number between " + min + " and " + max + ".");
+        }
+    }
+
+    /**
+     * returns a double value
+     *
+     * @param min min value
+     * @param max max value
+     * @return the read double value
+     */
+    public static double getDoubleInput(double min, double max)
+    {
+        while (true)
+        {
+            try
+            {
+                printCyan("> ");
+
+                double value = Double.parseDouble(IO.readln());
 
                 if (value >= min && value <= max)
                 {
@@ -349,4 +390,6 @@ public final class UI
         printlnRed("Your computer will blow up in 3 seconds...");
         System.exit(0);
     }
+
+
 }

@@ -1,5 +1,7 @@
 package space.zoemcfife.database.presentation.zoeui;
 
+import java.util.List;
+
 public class Menu extends Screen
 {
     private final MenuItem[] menuItems;
@@ -9,6 +11,17 @@ public class Menu extends Screen
     {
         this.menuTitle = menuTitle;
         this.menuItems = menuItems;
+    }
+
+    public Menu(String menuTitle, List<MenuItem> menuItems)
+    {
+        this.menuTitle = menuTitle;
+        this.menuItems = new MenuItem[menuItems.size()];
+
+        for (int i = 0; i < menuItems.size(); i++)
+        {
+            this.menuItems[i] = menuItems.get(i);
+        }
     }
 
     /**

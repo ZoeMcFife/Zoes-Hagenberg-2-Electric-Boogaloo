@@ -37,6 +37,14 @@ public class GameService
     }
 
     @Transactional
+    public Game getGameByName(String name)
+    {
+        Optional<Game> game = gameRepository.findByName(name);
+
+        return game.orElse(null);
+    }
+
+    @Transactional
     public List<Game> getAllGames()
     {
         return (List<Game>) gameRepository.findAll();
