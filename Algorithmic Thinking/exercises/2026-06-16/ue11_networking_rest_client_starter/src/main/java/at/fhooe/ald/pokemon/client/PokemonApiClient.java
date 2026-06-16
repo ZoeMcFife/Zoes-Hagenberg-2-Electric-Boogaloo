@@ -1,5 +1,7 @@
 package at.fhooe.ald.pokemon.client;
 
+import at.fhooe.ald.pokemon.client.dto.CatchRequest;
+import at.fhooe.ald.pokemon.client.dto.CaughtPokemonDto;
 import at.fhooe.ald.pokemon.client.dto.PokemonDto;
 import at.fhooe.ald.pokemon.client.dto.TrainerDto;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -84,6 +86,33 @@ public class PokemonApiClient
             checkStatus(response, 200);
 
             return mapper.readValue(response.body(), TrainerDto.class);
+        }
+        catch (IOException | InterruptedException e)
+        {
+            throw new RuntimeException("add trainer rerror", e);
+        }
+    }
+
+    public List<CaughtPokemonDto> getRoster()
+    {
+        return get(baseUrl + "/api/pokemon/roster", new TypeReference<>() {});
+    }
+
+    public void catchPokemon(int trainerId, int pokemonNr, String nickname)
+    {
+        try
+        {
+            String body = mapper.writeValueAsString(new CatchRequest(pokemonNr, nickname));
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(baseUrl + "/api/trainers/" + trainerId + "/catch"))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(body))
+                    .build();
+
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+            checkStatus(response, 201);
         }
         catch (IOException | InterruptedException e)
         {
