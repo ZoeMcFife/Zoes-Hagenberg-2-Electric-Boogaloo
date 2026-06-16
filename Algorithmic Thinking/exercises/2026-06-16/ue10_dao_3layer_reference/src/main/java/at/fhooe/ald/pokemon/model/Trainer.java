@@ -1,5 +1,6 @@
 package at.fhooe.ald.pokemon.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class Trainer {
     public void setName(String name) { this.name = name; }
     public int getBadgeCount() { return badgeCount; }
     public void setBadgeCount(int badgeCount) { this.badgeCount = badgeCount; }
+    @JsonIgnore
     public List<CaughtPokemon> getRoster() { return roster; }
 
     @Override
