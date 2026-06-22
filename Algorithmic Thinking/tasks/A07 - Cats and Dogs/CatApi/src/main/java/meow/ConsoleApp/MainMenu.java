@@ -26,9 +26,10 @@ public class MainMenu extends Screen
         MenuItem displayAllBreeds = new MenuItem("Display all Breeds", this::displayAllBreeds);
         MenuItem searchBreedById =  new MenuItem("Search Breed by ID", this::searchBreedById);
         MenuItem searchImageByBreed = new MenuItem("Search Image by Breed ID", this::searchImageByBreedId);
+        MenuItem asyncTest = new MenuItem("Async Test", this::runAsyncTest);
         MenuItem exit = new MenuItem("Exit", this::exit);
 
-        Menu mainMenu = new Menu("Cat Api", displayAllBreeds, searchBreedById, searchImageByBreed, exit);
+        Menu mainMenu = new Menu("Cat Api", displayAllBreeds, searchBreedById, searchImageByBreed, asyncTest, exit);
 
         UI.printlnRed("Cat API is running!");
         mainMenu.startScreen();
@@ -52,6 +53,12 @@ public class MainMenu extends Screen
     {
         SearchImageScreen searchImageScreen = new SearchImageScreen(api);
         searchImageScreen.startScreen();
+    }
+
+    private void runAsyncTest()
+    {
+        AsyncTestScreen asyncTestScreen = new AsyncTestScreen(api);
+        asyncTestScreen.startScreen();
     }
 
     private void exit()
