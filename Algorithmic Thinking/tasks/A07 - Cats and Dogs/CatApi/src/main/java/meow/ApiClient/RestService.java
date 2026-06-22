@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
@@ -31,6 +32,7 @@ public class RestService
         mapper = new ObjectMapper()
                 .registerModule(new JavaTimeModule())
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+                .setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }
 
@@ -51,6 +53,8 @@ public class RestService
         return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(response ->
                 {
+                    IO.println("BODY: \n" + new String(response.body()));
+
                     if (response.statusCode() == 404)
                         return Optional.empty();
 
@@ -62,6 +66,8 @@ public class RestService
 
                     try
                     {
+                        IO.println("BODY: \n" + new String(response.body()));
+
                         return Optional.of(mapper.readValue(response.body(), type));
                     }
                     catch (JsonProcessingException e)

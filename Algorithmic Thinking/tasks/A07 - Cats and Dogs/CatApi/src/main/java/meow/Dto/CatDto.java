@@ -2,6 +2,7 @@ package meow.Dto;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class CatDto
 {
@@ -75,5 +76,17 @@ public class CatDto
     public String toString()
     {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        CatDto catDto = (CatDto) o;
+        return Objects.equals(getId(), catDto.getId()) && Objects.equals(getName(), catDto.getName()) && Objects.equals(getTemperament(), catDto.getTemperament()) && Objects.equals(getOrigin(), catDto.getOrigin()) && Objects.equals(getDescription(), catDto.getDescription()) && Objects.equals(getLifeSpan(), catDto.getLifeSpan()) && Objects.equals(getWeight(), catDto.getWeight());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getTemperament(), getOrigin(), getDescription(), getLifeSpan(), getWeight());
     }
 }

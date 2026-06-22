@@ -1,5 +1,7 @@
 package meow.Dto;
 
+import java.util.Objects;
+
 public class ImageDto
 {
     private String id;
@@ -19,5 +21,17 @@ public class ImageDto
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        ImageDto imageDto = (ImageDto) o;
+        return Objects.equals(getId(), imageDto.getId()) && Objects.equals(getUrl(), imageDto.getUrl());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getUrl());
     }
 }

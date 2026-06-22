@@ -1,5 +1,7 @@
 package meow.Dto;
 
+import java.util.Objects;
+
 public class WeightDto
 {
     private String imperial;
@@ -39,5 +41,17 @@ public class WeightDto
     public String toString()
     {
         return getImperial() + " " + getImperialUnit() + " " + getMetric() + " " + getMetricUnit();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        WeightDto weightDto = (WeightDto) o;
+        return Objects.equals(getImperial(), weightDto.getImperial()) && Objects.equals(getMetric(), weightDto.getMetric());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getImperial(), getMetric());
     }
 }
