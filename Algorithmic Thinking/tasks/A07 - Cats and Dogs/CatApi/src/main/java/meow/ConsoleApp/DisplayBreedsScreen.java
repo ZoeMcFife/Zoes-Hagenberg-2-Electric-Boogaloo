@@ -22,10 +22,21 @@ public class DisplayBreedsScreen extends Screen
      * Each implementation should handle its own display logic and user interaction.
      */
     @Override
-    public void startScreen() {
+    public void startScreen()
+    {
+        UI.clearScreen();
+
         UI.printlnRed("Showing all Breeds: ");
 
-        api.getAllBreeds().thenAccept(this::displayBreeds).join();
+        try
+        {
+            api.getAllBreeds().thenAccept(this::displayBreeds).join();
+        }
+        catch (Exception e)
+        {
+            UI.printlnRed("Failed to show all Breeds. API ERROR.");
+        }
+
 
         UI.waitForEnterKey();
     }

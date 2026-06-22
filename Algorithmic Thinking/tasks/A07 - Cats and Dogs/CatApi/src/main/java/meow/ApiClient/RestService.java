@@ -55,7 +55,7 @@ public class RestService
                         return Optional.empty();
 
                     if (response.statusCode() != 200)
-                        throw new RuntimeException("GET " + url + " failed!");
+                        throw new RuntimeException("GET " + url + " failed! - " +  response.statusCode());
 
                     try
                     {

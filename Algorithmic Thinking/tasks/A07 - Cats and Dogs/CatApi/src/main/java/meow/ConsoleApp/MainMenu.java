@@ -25,12 +25,15 @@ public class MainMenu extends Screen
     {
         MenuItem displayAllBreeds = new MenuItem("Display all Breeds", this::displayAllBreeds);
         MenuItem searchBreedById =  new MenuItem("Search Breed by ID", this::searchBreedById);
-        MenuItem searchImageByBreed = new MenuItem("Search Image by Breed ID", this::searchBreedById);
+        MenuItem searchImageByBreed = new MenuItem("Search Image by Breed ID", this::searchImageByBreedId);
+        MenuItem exit = new MenuItem("Exit", this::exit);
 
-        Menu mainMenu = new Menu("Cat Api", displayAllBreeds, searchBreedById, searchImageByBreed);
+        Menu mainMenu = new Menu("Cat Api", displayAllBreeds, searchBreedById, searchImageByBreed, exit);
 
         UI.printlnRed("Cat API is running!");
         mainMenu.startScreen();
+
+        UI.clearScreen();
     }
 
     private void displayAllBreeds()
@@ -47,7 +50,12 @@ public class MainMenu extends Screen
 
     private void searchImageByBreedId()
     {
-
+        SearchImageScreen searchImageScreen = new SearchImageScreen(api);
+        searchImageScreen.startScreen();
     }
 
+    private void exit()
+    {
+        System.exit(0);
+    }
 }
