@@ -8,7 +8,7 @@ import meow.UserInterface.UI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.*;
 
 public class AsyncTestScreen extends Screen
 {
@@ -16,6 +16,11 @@ public class AsyncTestScreen extends Screen
     private static final String[] BREED_IDS = {
             "abys", "beng", "mcoo", "ragd", "siam", "sphy", "pers", "sava"
     };
+
+    // TheCatAPI's free/no-key tier throttles hard if you slam it with
+    // a burst of simultaneous requests. Capping how many are "in flight"
+    // at once avoids tripping their 429 rate limiter.
+    private static final int MAX_CONCURRENT_REQUESTS = 3;
 
     private final CatApi api;
 
@@ -61,37 +66,48 @@ public class AsyncTestScreen extends Screen
 
         long start = System.currentTimeMillis();
         int found = 0;
+        int errors = 0;
 
         for (String id : BREED_IDS)
         {
             long reqStart = System.currentTimeMillis();
 
-            Optional<CatDto> breed = api.getBreedById(id).join();
-
-            long reqTime = System.currentTimeMillis() - reqStart;
-
-            if (breed.isPresent())
+            try
             {
-                found++;
-                UI.printlnGreen("[" + id + "] found  (" + reqTime + "ms)");
+                Optional<CatDto> breed = api.getBreedById(id).join();
+
+                long reqTime = System.currentTimeMillis() - reqStart;
+
+                if (breed.isPresent())
+                {
+                    found++;
+                    UI.printlnGreen("[" + id + "] found  (" + reqTime + "ms)");
+                }
+                else
+                {
+                    UI.printlnRed("[" + id + "] not found (" + reqTime + "ms)");
+                }
             }
-            else
+            catch (CompletionException | CancellationException e)
             {
-                UI.printlnRed("[" + id + "] not found (" + reqTime + "ms)");
+                errors++;
+                UI.printlnRed("[" + id + "] an API error occurred: " + rootMessage(e));
             }
         }
 
         long totalTime = System.currentTimeMillis() - start;
 
         UI.printSeparatorLine();
-        UI.printlnCyan("Sequential total: " + totalTime + "ms — " + found + "/" + BREED_IDS.length + " found.");
+        UI.printlnCyan("Sequential total: " + totalTime + "ms — " + found + "/" + BREED_IDS.length
+                + " found, " + errors + " error(s).");
     }
 
     /**
      * ASYNC STYLE.
-     * We fire off every request first WITHOUT waiting, stashing the futures.
-     * Only once all requests are in flight do we wait for them to finish.
-     * Total time ≈ the slowest single request, not the sum of all of them.
+     * We fire off requests in small batches WITHOUT waiting on each one
+     * individually - within a batch every request is truly concurrent.
+     * Batching (rather than firing all 8 at once) keeps us under
+     * TheCatAPI's rate limit and avoids 429 Too Many Requests errors.
      */
     private void runConcurrent()
     {
@@ -100,34 +116,78 @@ public class AsyncTestScreen extends Screen
 
         long start = System.currentTimeMillis();
 
-        List<CompletableFuture<Optional<CatDto>>> futures = new ArrayList<>();
+        Semaphore inFlight = new Semaphore(MAX_CONCURRENT_REQUESTS);
+        List<CompletableFuture<Void>> tasks = new ArrayList<>();
+        int[] found = {0};
+        int[] errors = {0};
 
         for (String id : BREED_IDS)
         {
-            futures.add(api.getBreedById(id)); // fired, not joined yet
+            CompletableFuture<Void> task = CompletableFuture.runAsync(() ->
+            {
+                try
+                {
+                    inFlight.acquireUninterruptibly();
+
+                    try
+                    {
+                        Optional<CatDto> breed = api.getBreedById(id).join();
+
+                        if (breed.isPresent())
+                        {
+                            synchronized (found)
+                            {
+                                found[0]++;
+                            }
+                            UI.printlnGreen("[" + id + "] found");
+                        }
+                        else
+                        {
+                            UI.printlnRed("[" + id + "] not found");
+                        }
+                    }
+                    finally
+                    {
+                        inFlight.release();
+                    }
+                }
+                catch (CompletionException | CancellationException e)
+                {
+                    synchronized (errors)
+                    {
+                        errors[0]++;
+                    }
+                    UI.printlnRed("[" + id + "] an API error occurred: " + rootMessage(e));
+                }
+            });
+
+            tasks.add(task);
         }
 
-        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+        try
+        {
+            CompletableFuture.allOf(tasks.toArray(new CompletableFuture[0])).join();
+        }
+        catch (CompletionException e)
+        {
+            UI.printlnRed("An API error occurred while waiting on the batch: " + rootMessage(e));
+        }
 
         long totalTime = System.currentTimeMillis() - start;
-        int found = 0;
-
-        for (int i = 0; i < BREED_IDS.length; i++)
-        {
-            Optional<CatDto> breed = futures.get(i).join(); // already done, instant
-
-            if (breed.isPresent())
-            {
-                found++;
-                UI.printlnGreen("[" + BREED_IDS[i] + "] found");
-            }
-            else
-            {
-                UI.printlnRed("[" + BREED_IDS[i] + "] not found");
-            }
-        }
 
         UI.printSeparatorLine();
-        UI.printlnCyan("Concurrent total: " + totalTime + "ms — " + found + "/" + BREED_IDS.length + " found.");
+        UI.printlnCyan("Concurrent total: " + totalTime + "ms — " + found[0] + "/" + BREED_IDS.length
+                + " found, " + errors[0] + " error(s).");
+    }
+
+    /**
+     * CompletableFuture wraps thrown exceptions in a CompletionException.
+     * This digs out the actual underlying cause so the printed message
+     * is useful instead of just "CompletionException".
+     */
+    private String rootMessage(Throwable t)
+    {
+        Throwable cause = t.getCause() != null ? t.getCause() : t;
+        return cause.getMessage() != null ? cause.getMessage() : cause.toString();
     }
 }
