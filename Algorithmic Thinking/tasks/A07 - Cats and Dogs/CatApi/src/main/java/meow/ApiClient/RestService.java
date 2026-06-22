@@ -24,7 +24,9 @@ public class RestService
 
     public RestService()
     {
-        httpClient = HttpClient.newBuilder().build();
+        httpClient = HttpClient.newBuilder()
+                .connectTimeout(java.time.Duration.ofSeconds(10))
+                .build();
 
         mapper = new ObjectMapper()
                 .registerModule(new JavaTimeModule())
@@ -42,6 +44,7 @@ public class RestService
     {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
+                .timeout(java.time.Duration.ofSeconds(15))
                 .GET()
                 .build();
 
@@ -72,6 +75,7 @@ public class RestService
     {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
+                .timeout(java.time.Duration.ofSeconds(15))
                 .GET()
                 .build();
 
