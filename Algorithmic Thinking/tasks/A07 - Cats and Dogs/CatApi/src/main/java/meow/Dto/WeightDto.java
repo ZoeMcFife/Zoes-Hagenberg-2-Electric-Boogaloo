@@ -4,7 +4,7 @@ public class WeightDto
 {
     private String imperial;
     private String metric;
-    
+
     public void setImperial(String imperial)
     {
         this.imperial = imperial;
@@ -33,5 +33,11 @@ public class WeightDto
     public  String getImperialUnit()
     {
         return "lbs";
+    }
+
+    @Override
+    public String toString()
+    {
+        return getImperial() + " " + getImperialUnit() + " " + getMetric() + " " + getMetricUnit();
     }
 }

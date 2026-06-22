@@ -1,5 +1,6 @@
 package meow.Dto;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class CatDto
@@ -32,8 +33,10 @@ public class CatDto
         return temperament;
     }
 
-    public void setTemperament(List<String> temperament) {
-        this.temperament = temperament;
+    public void setTemperament(String temperament) {
+        this.temperament = Arrays.stream(temperament.split(","))
+                .map(String::trim)
+                .toList();
     }
 
     public String getOrigin() {
@@ -66,5 +69,11 @@ public class CatDto
 
     public void setWeight(WeightDto weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public String toString()
+    {
+        return name;
     }
 }
