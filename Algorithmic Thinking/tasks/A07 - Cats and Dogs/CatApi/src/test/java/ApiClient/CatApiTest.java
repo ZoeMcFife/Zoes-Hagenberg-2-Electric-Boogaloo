@@ -14,10 +14,11 @@ import org.junit.jupiter.api.Test;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.CompletionException;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CatApiTest
 {
@@ -123,5 +124,99 @@ public class CatApiTest
         ImageDto image = images.getFirst();
         assertEquals("mpcBi2Utm", image.getId());
         assertEquals("https://cdn2.thecatapi.com/images/mpcBi2Utm.jpg", image.getUrl());
+    }
+
+    @Test
+    public void testGetBreedById_NotFound_ReturnsEmptyOptional()
+    {
+        wireMock.stubFor(get(urlEqualTo("/breeds/doesnotexist"))
+                .willReturn(aResponse()
+                        .withStatus(404)));
+
+        Optional<CatDto> result = api.getBreedById("doesnotexist").join();
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void testGetBreedById_ServerError_ThrowsException()
+    {
+        wireMock.stubFor(get(urlEqualTo("/breeds/abob"))
+                .willReturn(aResponse()
+                        .withStatus(500)));
+
+        assertThrows(CompletionException.class, () -> api.getBreedById("abob").join());
+    }
+
+    @Test
+    public void testGetBreedById_MalformedJson_ThrowsException()
+    {
+        wireMock.stubFor(get(urlEqualTo("/breeds/abob"))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", "application/json")
+                        .withBody("{not valid json")));
+
+        assertThrows(CompletionException.class, () -> api.getBreedById("abob").join());
+    }
+
+    @Test
+    public void testGetAllBreeds_EmptyArray_ReturnsEmptyList()
+    {
+        wireMock.stubFor(get(urlEqualTo("/breeds"))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", "application/json")
+                        .withBody("[]")));
+
+        List<CatDto> result = api.getAllBreeds().join();
+
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void testGetAllBreeds_ServerError_ThrowsException()
+    {
+        wireMock.stubFor(get(urlEqualTo("/breeds"))
+                .willReturn(aResponse()
+                        .withStatus(503)));
+
+        assertThrows(CompletionException.class, () -> api.getAllBreeds().join());
+    }
+
+    @Test
+    public void testGetImagesOfBreed_NoImagesFound_ReturnsEmptyList()
+    {
+        wireMock.stubFor(get(urlEqualTo("/images/search?breed_ids=nopics"))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", "application/json")
+                        .withBody("[]")));
+
+        List<ImageDto> images = api.getImagesOfBreed("nopics").join();
+
+        assertNotNull(images);
+        assertTrue(images.isEmpty());
+    }
+
+    @Test
+    public void testGetImagesOfBreed_NotFound_ReturnsEmptyList()
+    {
+        wireMock.stubFor(get(urlEqualTo("/images/search?breed_ids=munc"))
+                .willReturn(aResponse()
+                        .withStatus(404)));
+
+        List<ImageDto> images = api.getImagesOfBreed("munc").join();
+
+        assertNotNull(images);
+        assertTrue(images.isEmpty());
+    }
+
+    @Test
+    public void testGetImagesOfBreed_ServerError_ThrowsException()
+    {
+        wireMock.stubFor(get(urlEqualTo("/images/search?breed_ids=munc"))
+                .willReturn(aResponse()
+                        .withStatus(500)));
+
+        assertThrows(CompletionException.class, () -> api.getImagesOfBreed("munc").join());
     }
 }

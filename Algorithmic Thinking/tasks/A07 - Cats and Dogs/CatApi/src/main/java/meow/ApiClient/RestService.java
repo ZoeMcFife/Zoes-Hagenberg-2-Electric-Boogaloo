@@ -53,8 +53,6 @@ public class RestService
         return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(response ->
                 {
-                    IO.println("BODY: \n" + new String(response.body()));
-
                     if (response.statusCode() == 404)
                         return Optional.empty();
 
@@ -66,8 +64,6 @@ public class RestService
 
                     try
                     {
-                        IO.println("BODY: \n" + new String(response.body()));
-
                         return Optional.of(mapper.readValue(response.body(), type));
                     }
                     catch (JsonProcessingException e)
