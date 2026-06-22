@@ -22,32 +22,46 @@ public class SearchBreedScreen extends Screen
     @Override
     public void startScreen()
     {
+        UI.clearScreen();
+
         UI.printlnRed("Search for Breed by ID: ");
 
         String id = UI.getStringInput("Enter Breed ID: ", 4, 4);
 
-        CatDto cat = api.getBreedById(id).join().orElse(null);
+        CatDto cat = null;
+
+        try
+        {
+            cat = api.getBreedById(id).join().orElse(null);
+        }
+        catch (Exception e)
+        {
+            UI.printlnRed("Failed to find breed. API ERROR.");
+        }
 
         if (cat != null)
         {
-            UI.printlnRed("========== BREED INFO ==========");
+            UI.printlnRed("╔══════════════════════════════╗");
+            UI.printlnRed("║        BREED PROFILE         ║");
+            UI.printlnRed("╚══════════════════════════════╝");
 
-            UI.printlnGreen("ID: " + cat.getId());
-            UI.printlnBlue("Name: " + cat.getName());
+            UI.printlnGreen("ID        : " + cat.getId());
+            UI.printlnBlue("Name      : " + cat.getName());
+            UI.printlnYellow("Origin    : " + cat.getOrigin());
+            UI.printlnCyan("Life span : " + cat.getLifeSpan());
 
-            UI.printlnYellow("Origin: " + cat.getOrigin());
-            UI.printlnCyan("Life Span: " + cat.getLifeSpan());
+            UI.printlnPurple("Weight    : " + cat.getWeight());
 
-            UI.printlnPurple("Weight: " + cat.getWeight());
-
-            UI.printlnGray("Description:");
-            UI.printlnGray(cat.getDescription());
+            IO.println("\nDescription:");
+            IO.println(cat.getDescription());
 
             UI.printlnYellow("\nTemperament:");
-            cat.getTemperament().forEach(t ->
-                    UI.printlnCyan(" - " + t));
+            for (String t : cat.getTemperament())
+            {
+                UI.printlnCyan(" • " + t);
+            }
 
-            UI.printlnRed("================================");
+            UI.printlnRed("══════════════════════════════");
         }
         else
         {

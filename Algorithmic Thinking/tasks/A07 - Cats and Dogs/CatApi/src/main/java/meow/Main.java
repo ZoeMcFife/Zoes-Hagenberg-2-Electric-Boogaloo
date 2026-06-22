@@ -22,7 +22,10 @@ public class Main
 
         MainMenu mainMenu = new MainMenu(catApi);
 
-        mainMenu.startScreen();
+        while (true)
+        {
+            mainMenu.startScreen();
+        }
 
         /*catApi.getAllBreeds()
                 .thenAccept(breeds ->
