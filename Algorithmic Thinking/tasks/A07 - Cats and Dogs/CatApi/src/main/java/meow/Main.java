@@ -2,6 +2,7 @@ package meow;
 
 import meow.ApiClient.CatApi;
 import meow.ApiClient.RestService;
+import meow.ConsoleApp.MainMenu;
 import meow.Dto.CatDto;
 import meow.Dto.ImageDto;
 import meow.Image.ImageHelper;
@@ -19,8 +20,11 @@ public class Main
         RestService rest = new RestService();
         CatApi catApi = new CatApi(rest);
 
+        MainMenu mainMenu = new MainMenu(catApi);
 
-        catApi.getAllBreeds()
+        mainMenu.startScreen();
+
+        /*catApi.getAllBreeds()
                 .thenAccept(breeds ->
                 {
                     IO.println(breeds.size());
@@ -36,7 +40,7 @@ public class Main
 
         ImageDto img = catApi.getImagesOfBreed("abob").join().getFirst();
 
-        ImageHelper.openFromUrl(img.getUrl());
+        ImageHelper.openFromUrl(img.getUrl());*/
 
     }
 }
