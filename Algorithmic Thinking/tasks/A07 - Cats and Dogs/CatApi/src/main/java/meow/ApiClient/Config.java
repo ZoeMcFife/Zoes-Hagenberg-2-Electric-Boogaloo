@@ -13,4 +13,9 @@ public class Config
     {
         return BASE_URL + "/images";
     }
+
+    public static void setBaseUrl(String baseUrl)
+    {
+        BASE_URL = baseUrl;
+    }
 }
