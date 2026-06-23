@@ -37,7 +37,6 @@ public class DisplayBreedsScreen extends Screen
             UI.printlnRed("Failed to show all Breeds. API ERROR.");
         }
 
-
         UI.waitForEnterKey();
     }
 
