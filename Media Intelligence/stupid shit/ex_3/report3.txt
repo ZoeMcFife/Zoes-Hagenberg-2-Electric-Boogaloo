@@ -1,0 +1,46 @@
+# ComfyUI Lessons 3 & 4 — Report template
+# Copy this file, rename to report.txt, and fill in the sections below.
+
+Lesson number: 3
+
+Topic: Jack Black - Evil
+
+---
+
+## Pipeline summary (3–5 sentences)
+
+The face portrait and pose reference get put into the image and image_kps inputs of the ApplyInstantID node. Here the InstantID model gets loaded and the Face Analysis node will determine the facial features. Ihe InstantID node also recieves the positive and negative prompts that all get fed to the K-Sampler which goes into Decoder and the image gets outputted. ControlNet is responsible for the structure of the pose, while InstantId preserves the facial identity. The two get combined independendly.
+
+---
+
+## Lesson 3 only — Wiring notes
+
+- Which nodes were hardest to connect and why? None of them were hard to connect. It was very self explanatory.
+- How did changing the pose reference change the output? N/A - The pipeline failed due to internal issues or something. I couldn't run it. 
+- What would you use this pipeline for in a real project? Personally can't think of any use-case I would use this in. I would draw poses myself honestly, since I find that much more fulfilling. 
+
+---
+
+## Model links
+
+- Checkpoint / base models: https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors
+- InstantID / ControlNet (Lesson 3): https://huggingface.co/InstantX/InstantID/resolve/main/ControlNetModel/diffusion_pytorch_model.safetensors, https://huggingface.co/InstantX/InstantID/resolve/main/ip-adapter.bin
+
+---
+
+## Results
+
+- What worked well? Nothing.
+- What failed or looked wrong? InstantID Face Analysis threw an assertion error. Reading docs and researching online didn't help much. Installation of related models / nodes like antelopev2 were installed correctly. And I had all the needed python dependencies installed too. I gave up on following this rabbit-hole since I value my time.
+- Limitations for real production use? It doesn't work. I expect limited usability for an actual project that needed pose references. Personally, I'd sketch them myself. 
+- One thing you would improve next time. Not use this.
+
+## If you could not run locally
+
+- What blocked you (GPU, install, login)? - Errors.
+- What did you still learn from wiring the graph or reading the docs? - Nothing really, it wasn't that much effort?
+
+## Reference Images 
+
+- reference images picked from pixabay.
+- no particular reason of choosing. 

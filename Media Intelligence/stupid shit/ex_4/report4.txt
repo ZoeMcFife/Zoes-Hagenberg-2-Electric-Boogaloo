@@ -1,0 +1,49 @@
+# ComfyUI Lessons 3 & 4 — Report template
+# Copy this file, rename to report.txt, and fill in the sections below.
+
+Lesson number: 4
+
+Topic: Alien Catgirl
+
+---
+
+## Pipeline summary (3–5 sentences)
+
+[Describe what your workflow does end-to-end. For Lesson 3: how face + pose references combine. For Lesson 4: how you went from prompt to 3D asset.]
+Simple image generation model to create an image. (with optional manual loading of an image) It gets fed to clip vision encode, gets put into the Hunyuan3D conditioner and into the KSampler. The KSampler outputs the latent image into the 3D VAE Decoder that outputs voxel data, that gets converted to a mesh, likely using remeshing algorithms. The mesh gets displayed in a nice preview.
+---
+
+
+## Lesson 4 only — Research log (required)
+
+- Which 3D Partner Node did you choose (Hunyuan3D / Tripo / other)? Hunyuan3D
+- Which documentation or template did you use? Default Hunyuan3D template
+- What inputs did the 3D node require? Samples of a latent image and VAE
+- Optional: did you add the video extension from Lesson 2? How? No.
+
+Research Log:
+
+- I didn't feel the need to really research the usage, since it was pretty self explanatory to use.
+- checked out their repository and site though: 
+    - https://github.com/tencent-hunyuan/hunyuan3d-2.1
+    - https://3d-models.hunyuan.tencent.com/
+
+---
+
+## Model links
+
+- 3D Partner Node service (Lesson 4): https://huggingface.co/tencent/Hunyuan3D-2.1
+
+---
+
+## Results
+
+- What worked well? It was rather simple to set up and the 3d generated model resembled the image.
+- What failed or looked wrong?  it worked. Didnt look good, but it worked.
+- Limitations for real production use? Generated 3d models are unusable for real use, especially in game development. It's hard to change or modifiy such models, they're unoptimized for real scenarios, and it's not really possible to keep it fully consistent.
+- One thing you would improve next time. Not sure.
+
+**Describe in report: your prompt or image source, and why it fits image-to-3D**
+
+- drawn by me
+- was curious to see how well the ai can use a 2d pixel art drawing to create a mesh out of it. 

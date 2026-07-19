@@ -1,0 +1,870 @@
+{
+  "id": "lesson3-portrait-set-puzzle",
+  "revision": 0,
+  "last_node_id": 40,
+  "last_link_id": 61,
+  "nodes": [
+    {
+      "id": 15,
+      "type": "Note",
+      "pos": [
+        757.0121949652838,
+        836.4969530722766
+      ],
+      "size": [
+        360,
+        90
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "For portraits 2 and 3: upload a different pose image and/or change the prompt, then run again."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 1,
+      "type": "Note",
+      "pos": [
+        -107.11185878418823,
+        -319.85007231059535
+      ],
+      "size": [
+        420,
+        100
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "LESSON 3 — Portrait Set Pipeline\nGroup A: Identity | Group B: Pose | Group C: Generation"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 0,
+      "type": "Note",
+      "pos": [
+        -107.11185878418823,
+        -439.85007231059535
+      ],
+      "size": [
+        480,
+        90
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "PUZZLE: Connect all nodes. No wires yet!\nSee intro.html hint ladder on eLearning."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 5,
+      "type": "InstantIDModelLoader",
+      "pos": [
+        378.7423550796827,
+        -122.51232867993728
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INSTANTID",
+          "type": "INSTANTID",
+          "links": [
+            19
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InstantIDModelLoader"
+      },
+      "widgets_values": [
+        "ip-adapter.bin"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "ControlNetLoader",
+      "pos": [
+        373.05484306119007,
+        243.27973059081668
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            20
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetLoader"
+      },
+      "widgets_values": [
+        "instantid\\diffusion_pytorch_model.safetensors"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "CLIPTextEncode",
+      "pos": [
+        377.0121949652844,
+        836.4969530722766
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            24
+          ]
+        }
+      ],
+      "title": "Negative prompt",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "blurry, deformed, low quality, watermark, extra fingers"
+      ]
+    },
+    {
+      "id": 10,
+      "type": "EmptyLatentImage",
+      "pos": [
+        377.0121949652844,
+        996.4969530722766
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            25
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        768,
+        1024,
+        1
+      ]
+    },
+    {
+      "id": 12,
+      "type": "KSampler",
+      "pos": [
+        1140,
+        200
+      ],
+      "size": [
+        270,
+        262
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 28
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 26
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 27
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 25
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            31
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        190676943398280,
+        "randomize",
+        25,
+        5,
+        "euler",
+        "normal",
+        1
+      ]
+    },
+    {
+      "id": 2,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -48.058961595979746,
+        728.5421073447228
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            29
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            21,
+            22
+          ]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            32
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "sd_xl_base_1.0.safetensors"
+      ]
+    },
+    {
+      "id": 13,
+      "type": "VAEDecode",
+      "pos": [
+        1480,
+        200
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 31
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 32
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            33
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 21,
+      "type": "PreviewImage",
+      "pos": [
+        2307.5091593231477,
+        147.81410556671224
+      ],
+      "size": [
+        140,
+        26
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 34
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 11,
+      "type": "ApplyInstantID",
+      "pos": [
+        772.1659614070351,
+        145.16172984924637
+      ],
+      "size": [
+        270,
+        266
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "instantid",
+          "type": "INSTANTID",
+          "link": 19
+        },
+        {
+          "name": "insightface",
+          "type": "FACEANALYSIS",
+          "link": 39
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 20
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 38
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 29
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 23
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 24
+        },
+        {
+          "name": "image_kps",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 35
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 36
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            28
+          ]
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            26
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            27
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ApplyInstantID"
+      },
+      "widgets_values": [
+        0.8,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 14,
+      "type": "SaveImage",
+      "pos": [
+        1920.3944201762697,
+        171.87261753012928
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 33
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            34
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "lesson3_portrait"
+      ]
+    },
+    {
+      "id": 22,
+      "type": "InstantIDFaceAnalysis",
+      "pos": [
+        389.78768347442576,
+        92.78930738659024
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "FACEANALYSIS",
+          "type": "FACEANALYSIS",
+          "links": [
+            39
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InstantIDFaceAnalysis"
+      },
+      "widgets_values": [
+        "CPU"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "CLIPTextEncode",
+      "pos": [
+        385.0410660980567,
+        668.468081939504
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 21
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            23
+          ]
+        }
+      ],
+      "title": "Positive prompt",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "evil editorial portrait, devil, satan, hell, fire, burning, evil"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "LoadImage",
+      "pos": [
+        -472.3654401550151,
+        -68.33179054320101
+      ],
+      "size": [
+        375.9341796875,
+        314
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            38
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "Face reference — upload your own (see intro.html)",
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "652234-man-2785071.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "LoadImage",
+      "pos": [
+        -436.8118899402636,
+        389.6412265064991
+      ],
+      "size": [
+        376.80234375,
+        314
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            35
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            36
+          ]
+        }
+      ],
+      "title": "Pose reference — upload your own (see intro.html)",
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "anilsharma26-shamatajofficial-7140335.jpg",
+        "image"
+      ]
+    }
+  ],
+  "links": [
+    [
+      19,
+      5,
+      0,
+      11,
+      0,
+      "INSTANTID"
+    ],
+    [
+      20,
+      7,
+      0,
+      11,
+      2,
+      "CONTROL_NET"
+    ],
+    [
+      21,
+      2,
+      1,
+      8,
+      0,
+      "CLIP"
+    ],
+    [
+      22,
+      2,
+      1,
+      9,
+      0,
+      "CLIP"
+    ],
+    [
+      23,
+      8,
+      0,
+      11,
+      5,
+      "CONDITIONING"
+    ],
+    [
+      24,
+      9,
+      0,
+      11,
+      6,
+      "CONDITIONING"
+    ],
+    [
+      25,
+      10,
+      0,
+      12,
+      3,
+      "LATENT"
+    ],
+    [
+      26,
+      11,
+      1,
+      12,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      27,
+      11,
+      2,
+      12,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      28,
+      11,
+      0,
+      12,
+      0,
+      "MODEL"
+    ],
+    [
+      29,
+      2,
+      0,
+      11,
+      4,
+      "MODEL"
+    ],
+    [
+      31,
+      12,
+      0,
+      13,
+      0,
+      "LATENT"
+    ],
+    [
+      32,
+      2,
+      2,
+      13,
+      1,
+      "VAE"
+    ],
+    [
+      33,
+      13,
+      0,
+      14,
+      0,
+      "IMAGE"
+    ],
+    [
+      34,
+      14,
+      0,
+      21,
+      0,
+      "IMAGE"
+    ],
+    [
+      35,
+      4,
+      0,
+      11,
+      7,
+      "IMAGE"
+    ],
+    [
+      36,
+      4,
+      1,
+      11,
+      8,
+      "MASK"
+    ],
+    [
+      38,
+      3,
+      0,
+      11,
+      3,
+      "IMAGE"
+    ],
+    [
+      39,
+      22,
+      0,
+      11,
+      1,
+      "FACEANALYSIS"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "Group A — Identity (face)",
+      "bounding": [
+        -500.995661412689,
+        -151.75793708580454,
+        320,
+        360
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "Group B — Pose reference",
+      "bounding": [
+        -411.04301403874894,
+        339.23111229310837,
+        320,
+        200
+      ],
+      "color": "#8A8",
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "Group C — Generation",
+      "bounding": [
+        357.0121949652844,
+        656.4969530722767,
+        1420,
+        400
+      ],
+      "color": "#a1309b",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.34522712143931444,
+      "offset": [
+        1111.5602571780764,
+        683.2969323301583
+      ]
+    },
+    "frontendVersion": "1.45.20"
+  },
+  "version": 0.4
+}
